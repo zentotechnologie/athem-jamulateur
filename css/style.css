@@ -1,0 +1,1124 @@
+@font-face {
+    font-family: 'montserratBold';
+    src: url('../fonts/montserrat-bold-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+} 
+@font-face {
+    font-family: 'montserratExtraBold';
+    src: url('../fonts/montserrat-extrabold-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}  
+@font-face {
+    font-family: 'montserrat';
+    src: url('../fonts/montserrat-regular-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+*{
+    outline: none!important;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+    border: 0;
+}
+a img{
+    border: 0;
+    outline: none;
+}
+body{
+    color: #000;
+    font-size: 14px; 
+    cursor: default;
+    font-family: arial; 
+   font-family: "montserrat", arial;
+}
+.clear{
+    clear: both;
+    float: none;
+    width: 100%;
+    margin: 0!important;
+} 
+.wrapper{
+    background: url(../images/bg.jpg) 0 0;
+    max-width: 1280px;
+    margin:0 auto;
+    /*height: 685px;*/
+    padding: 25px;
+    margin-top: 30px;
+    position: relative;
+}
+ 
+.header .logo {
+    margin-left: 125px;
+    width: 120px;
+    display: block;
+    padding-top: 5px;
+}
+.header .logo img{
+    width: 100%;
+    height: auto;
+}
+.block > .head,
+.modal .modal-content .modal-header{ 
+    background: #000000;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #fff;
+    font-size: 17px;
+    text-transform: uppercase;
+    font-family: "montserratExtraBold";
+    padding: 0 10px;
+}
+.modal .modal-content .modal-header h4{
+    line-height: 35px;
+}
+.modal .modal-header .close {
+    margin-top: 5px;
+}
+form.blocks-content {
+    margin-top: 27px;  
+    z-index: 9;
+    position: relative;
+}
+.block-1,
+.block-2{
+    background: #f2f2f2;
+    float: left;
+}
+.block > .content{
+    background: #f2f2f2; 
+    padding: 25px 20px 29px;
+}
+.block-1 > .content{
+    background: #f2f2f2;
+    padding: 25px 20px 10px; 
+}
+.table{
+    display: table;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.table > div{
+    display: table-row; 
+}
+.table > div > div{
+    display: table-cell; 
+    vertical-align: middle;
+}
+.table > div > div.customLabel,
+h2.customLabel{
+    font-size: 12px;
+    font-family: "montserratBold";
+    text-transform: uppercase;
+    width: 85px;
+}
+h2.customLabel{ 
+    width: auto;
+}
+.table.uploads > div > div.customLabel{
+    width: 90px;
+}
+.block{
+    width: 406px; 
+    margin-right: 25px;
+}
+.block.block-3{
+    width: 368px; 
+    margin-right: 0;
+    float: left;
+}
+.wrapper input[type=number], 
+.wrapper input[type=text], 
+.jcf-select{
+    background: #ffffff;
+    width: 100%;
+    height: 20px;
+    color: #000;
+    padding: 0 7px;
+    border:0;  
+    font-size: 11px;
+    margin-bottom: 0;
+    border: 1px solid transparent;
+}
+.wrapper input[type=text].error, 
+.jcf-select.error,
+#demandeDevis input.error {
+    border-color: #ef9c9c!important;
+    background-color: #f9dcdc!important; 
+}
+input, a, button{
+    outline-offset: -999999px; 
+}
+.table .table {
+     background-color: transparent; 
+}
+.jcf-select{ 
+    min-width: 44px;
+}
+.jcf-select .jcf-select-text{
+    margin:0;
+}
+.jcf-select .jcf-select-opener { 
+    width: 16px;
+    bottom: 2px;
+    right: 2px;
+    top: 2px;
+    background: url(../images/arrow.png) no-repeat center center /25px auto;
+}
+.wrapper input[name="ville"] {
+    width: 202px;
+    padding: 0 7px;
+    margin-left: 12px;
+}
+.wrapper input[name="cp"] {
+    width: 63px;
+    padding: 0 7px;
+}
+.dimensions .hauteur{
+    width: 36px;
+    text-align: center;
+    vertical-align: top;
+}
+.dimensions .table{
+    margin-bottom: 0;
+}
+.dimensions .hauteur .hauteurInput{
+    text-align: center;
+    margin-bottom: 12px;
+    padding: 0;
+}
+.dimensions .largeur .largeurInput {
+    width: 36px;
+    text-align: center;
+    padding: 0; 
+}
+.dimensions .largeur {
+    text-align: right;
+    padding-right: 0;
+    margin-bottom: 16px;
+}
+.dimensions .block-image{
+    position: relative;
+    text-align: right;
+}
+.dimensions  .block-image img{
+    width: 247px; 
+}
+.dimensions  .block-image strong{
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: "montserratBold";
+    font-size: 12px;
+    text-align: left;
+    text-transform: uppercase;
+}
+.dimensions  .block-image strong span{ 
+    font-family: "montserrat";
+    font-size: 9px;
+    text-transform: unset;
+}
+.dimensions .hauteur .jcf-range.jcf-vertical .jcf-range-track {
+    height: 79px;
+}
+.jcf-range .jcf-range-wrapper {
+    background: url(../images/horizontal-range.png) 0 0 / 100% 100%; 
+}
+.jcf-vertical.jcf-range .jcf-range-wrapper {
+    background: url(../images/vertical-range.png) 0 0 / 100% 100%;
+    padding: 13px 0 0;
+}
+.jcf-range .jcf-range-track {
+    margin: 0 13px 0 0; 
+    height: 7px;
+}
+.jcf-range .jcf-range-handle { 
+    background: url(../images/horizontal-range.puce.png) 0 0 / 100% 100%;
+    border-radius: 0;
+    height: 21px;
+    width: 14px;
+    top: -3px;
+    cursor: pointer;
+}
+.jcf-range.jcf-vertical .jcf-range-handle {
+    left: -7px; 
+    background: url(../images/vertical-range.puce.png) 0 0 / 100% 100%; 
+    width: 21px;
+    height: 14px;
+}
+.dimensions .largeur .jcf-range {
+    margin-top: 10px;
+    margin-right: 3px;
+    width: 235px;
+}
+
+.dimensions .jcf-range .jcf-range-wrapper{
+    margin-bottom: -1px;
+}
+
+.date .subLabel {
+    font-size: 10px;
+    padding-right: 6px;
+}
+.date .table {
+    margin-bottom: 0;
+}
+.date .subLabel {
+    font-size: 10px;
+    padding-right: 6px;
+    padding-left: 10px;
+    padding-top: 2px;
+}
+.date .subLabel.subLabel-1 { 
+    padding-left: 0;
+}
+.wrapper input[name=dateDebut],
+.wrapper input[name=dateFin]{
+    background: #fff url(../images/arrow.png) no-repeat right center /25px auto;
+    cursor: pointer;
+}
+
+.uploads .block-files{
+    text-align: center;
+    background: #f6f6f6;
+    position: relative;
+}
+.uploads .block-files input[type=file] {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+    height: 100%;
+    opacity: 0;
+    top: 0;
+}
+.table.uploads > div > div.customLabel{
+    font-size: 10px;
+}
+.table.uploads > div > div.customLabel strong{
+    font-size: 13px;
+}
+.table.uploads.table{
+    margin-bottom: 0;
+    margin-top: 26px;
+}
+.img-button{
+    display: inline-block;
+    width: 44px;
+    height: 40px;
+    background: url(../images/img-button.svg) 0 0 ;  
+}
+.img-button.active,
+.img-off-on.active{ 
+    background-position: 0 -100%;
+}
+.alignLeft{
+    text-align: left;
+}
+.alignRight{
+    text-align: right;
+}
+.alignCenter{
+    text-align: center;
+}
+.img-button-container .item-1 p{
+    text-align: center;
+    margin-left: -20px;
+}
+.img-button-container .item-3{
+    width: 85px;
+}
+.img-button-container .item-2{
+    width: 131px;
+}
+.img-button-container p{
+    font-size: 8.9px;
+    text-transform: uppercase;
+}
+p.images-animees-ml {
+    font-size: 10px;
+    color: #454545;
+    line-height: 12px; 
+    min-height: 97px;
+}
+p.decriptionService{
+    display: none;
+    white-space: pre-line;
+}
+p.decriptionService.active{
+    display: block;
+}
+.table.boucles > div > div.customLabel { 
+    width: 104px;
+        position: absolute;
+}
+.definition-de-option .option{
+    display: none;
+}
+.table > div > div.definition-de-option{
+    vertical-align: top;
+    padding-top: 20px;
+    padding-right: 10px
+}
+.boucles .select{
+    width: 46px;
+}
+.boucles .range{
+    text-align: right;
+    vertical-align: top;
+    padding-top: 17px;
+}
+.jcf-select .jcf-select-text {
+    line-height: 20px;
+    font-size: 12px;
+}
+.boucles  .jcf-select .jcf-select-text{
+    padding-left: 6px;
+}
+
+.boucles  .jcf-range .jcf-range-handle {
+    background: url(../images/horizontal-range.puce.big.png) 0 0 / 100% 100%; 
+    height: 44px;
+    width: 20px;
+    top: -13px;
+}
+.boucles  .jcf-range { 
+    margin-right: 18px;
+    min-width: 185px;
+}
+.boucles .range > img {
+    margin-right: 18px;
+}
+.boucles input[name=nbrBouclesInput]{
+    display: none;
+    text-align: center;
+    padding: 0;
+}
+.titleCreationOriginal{
+    display: none;
+}
+.boucles .range > img.graduations_10_100,
+.boucles .range > img.graduations_5_50 {
+    margin-right: 10px;
+    width: 186px;
+    display: none
+}
+.boucles .jcf-range .jcf-range-display-wrapper { 
+    left: 10px;
+    right: 10px;
+}
+.boucles .jcf-range .jcf-range-track {
+    margin:0 12px 0 -8px;
+    height: 10px;
+}
+p.son-ml {
+    font-size: 10px;
+    min-height: 28px;
+}
+.table.boucles{
+    margin-top: 39px;
+    margin-bottom: 0;
+}
+.table.son-ml-container{ 
+    margin-bottom: 0;
+}
+.table.son{ 
+    margin-top: 35px;
+}
+
+.block-3 .item-1 .table > div > div{
+    width: 50%;
+    position: relative;
+}
+.img-off-on{
+    background: url(../images/img-on-off.png) 0 0;
+    display: inline-block;
+    width: 84px;
+    height: 61px;
+    margin-bottom: 18px;
+    background-size: 100% auto;
+}
+.block-3 .item-1 .table span {
+    position: absolute;
+    font-size: 9px;
+    text-transform: uppercase;
+    top: 31px;
+    left: 70px;
+}
+.block-3 .item-1 .table{
+    margin-bottom:0;
+}
+.definition-de-option p {
+    font-size: 10px;
+    padding-left: 30px;
+    color: #717171;
+    position: relative;
+}
+.block-3 .item-1 .table  .definition-de-option p span {
+    display: block;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    line-height: 18px;
+    background: #595959;
+    color: #fff; 
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 5px;
+}
+.block-3 > .content { 
+    padding: 0;
+    background:none;
+}
+.block-3 > .content .item-1 { 
+    padding: 30px 23px 0px 23px;
+    background:#f2f2f2;
+}
+.block-3 > .content .item-1-1{
+   background:#f2f2f2;
+   padding: 10px 23px 23px 23px;
+   margin-top: 0;
+}
+.block-3 > .content .item-1-1 h2 {
+    margin-bottom: 4px;
+    margin-top: 13px;
+}
+.block-3 > .content .item-1-1 label.subtitle {
+    display: block;
+    line-height: 22px;
+    font-family: "montserrat", arial;
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: normal;
+}
+.block-3 > .content .item-1-1 > .table > div > div{
+    vertical-align: top;
+} 
+.block-3 .item-1-1 .table { 
+    font-size: 10px; 
+}
+.block-3 > .content .item-2 { 
+     padding-top: 16px;
+}
+.block-3 > .content .item-2 .customLabel { 
+    width: 109px;
+    font-size: 17px;
+    color: #fff;
+    font-family: "montserratBold";
+    line-height: 20px;
+}
+.block-3 > .content .item-2 input[name=devis]{
+    height: 39px;
+    background: #fff;
+    font-family: "montserratBold";
+    font-size: 18px;
+    text-align: right;
+    padding-right: 29px;
+}
+.block-3 > .content .item-2 input[name=devis].loading {
+    background-image: url(../images/loading.gif);
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    background-position: 7px 7px;
+}
+.block-3 > .content .item-2 .inputContainer{
+    position: relative;
+}
+.block-3 > .content .item-2 .inputContainer span{
+    position: absolute;
+    right: 11px;
+    top: 8px;
+    font-family: "montserratBold";
+    font-size: 18px;
+}
+.block-3 > .content .item-2 .reduction p{
+    font-size: 11px;
+    font-family: "montserratBold";
+    text-transform: uppercase;
+    color: #fff;
+    text-align: justify;
+    line-height: 18px;
+}
+.block-3 > .content .item-2 .reduction p strong{
+    font-size: 15px; 
+    display: block; 
+}
+.block-3 > .content .item-2 .recevoir-devis h2 {
+    font-size: 17px;
+    font-family: "montserratExtraBold";
+    text-transform: uppercase;
+    color: #fff;
+    display: inline-block;
+    position: relative;
+}
+.block-3 > .content .item-2 .recevoir-devis{
+    margin-top: 23px;
+}
+
+.block-3 > .content .item-2 .recevoir-devis h2 span {
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    background: #595959;
+    text-align: center;
+    font-family: "montserrat";
+    font-size: 12px;
+    border-radius: 50px;
+    line-height: 17px;
+    position: absolute;
+    right: -25px;
+    top: -1px;
+}
+.block-3 > .content .item-2 .blockEmail{
+    margin-bottom: 0;
+}
+.block-3 > .content .item-2 .blockEmail .emailInput{
+    width: 308px; 
+}
+.block-3 > .content .item-2 .blockEmail .submitInput{
+   position: relative;
+}
+.submitInput button {
+    height: 36px;
+    text-indent: -9999999px;
+    width: 37px;
+    background: url(../images/submit-button.png);
+    border: 0;
+    position: absolute;
+    bottom: -1px;
+    left: 23px;
+    cursor: pointer; 
+}
+.submitInput button:hover{
+    opacity: 0.9;
+}
+.boucles .select {
+    vertical-align: top;
+    padding-top: 16px;
+}
+.dimensions .jcf-range.jcf-vertical .jcf-range-wrapper { 
+    width: 7px; 
+}
+.modal-header { 
+    padding: 11px 15px 9px;
+    background: #000;
+    text-align: center; 
+}
+.modal-header h4 { 
+    color: #fff;
+    text-transform: uppercase;
+}
+.modal-content { 
+    border-radius: 0; 
+    background: #f3f3f3;
+}
+.modal-body {
+    position: relative;
+    padding: 13px 24px;
+}
+#demandeDevis input.form-control {
+    height: 26px;
+    padding: 0;
+    border-radius: 0;
+    border-color: #b3b5b6;
+    padding: 0 7px;
+}
+.modal {
+    height: 100%;
+    overflow: auto;
+}
+.modal  form{
+    margin-top: 33px;
+}
+.form-horizontal .form-group {
+     margin-right: 0px; 
+     margin-left: 0px; 
+}
+.form-horizontal .control-label {
+    padding: 0;
+    text-align: left;
+    font-family: "montserratBold"; 
+    font-size: 16px;
+    padding-top: 3px;
+}
+.privacy-policy > p {
+    text-align: center; 
+}
+.content-privacy-policy  li{
+    list-style: inherit;
+}
+.privacy-policy.opened > p {
+    text-align: left; 
+}
+.privacy-policy{
+    margin-top: 41px;
+}
+.privacy-policy > p a {
+    font-family: "montserratBold";
+    font-size: 16px;
+    color: #000;
+}
+.submitBTN  {
+    text-align: center;
+    margin-top: 14px;
+}
+.submitBTN .btn  {
+     max-width: 380px;
+     height: 46;
+     font-size: 16px;
+     text-transform: uppercase;
+     color: #fff;
+     background: #000;
+     border-radius: 0;
+     display: inline-block;
+     width: 100%; 
+}
+.submitBTN .btn:hover  {
+     background: #222;
+     color: #fff; 
+}
+.footer-modal{
+    text-align: center;
+    color: #949798;
+    margin-top: 46px;
+    line-height: 18px;
+}
+.content-privacy-policy {
+    background: #fff;
+    padding: 20px;
+    margin-top: 13px;
+}
+.content-privacy-policy h1 {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "montserratBold";
+    margin-top: 20px;
+}
+
+.content-privacy-policy h2{
+    font-size: 14px;
+    font-family: "montserratBold";
+    margin-bottom: 10px;
+    padding-left: 30px;
+    text-transform: uppercase;
+}
+.content-privacy-policy p{
+    margin-bottom: 20px;
+}
+.modal .close { 
+    color: #fff; 
+    opacity: .6;
+}
+.modal .close:hover {   
+    opacity: 1;
+}
+
+#sent h3{
+    font-size: 20px;
+    font-family: "montserratBold";
+    margin-top: 40px;
+}
+#sent p{
+    font-size: 18px;
+    font-family: "montserratBold";
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+#sent .submitBTN{
+    margin-bottom: 24px;
+}
+.header { 
+    margin-bottom: 17px;
+}
+label.error{
+    display: none!important;
+}
+.filesPreview div {
+    font-size: 10px;
+    background: #fff;
+    padding: 3px 24px 3px 5px;
+    margin-bottom: 3px;
+    position: relative;
+}
+.filesPreview div span,
+.filesPreview div:before {
+    position: absolute;
+    width: 20px;
+    display: block;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    right: 0;
+    height: 20px;
+    top: 0;
+    line-height: 20px;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    z-index: 2
+}
+.filesPreview div:before{
+    height: 100%;
+    content: '';
+    z-index: 1
+}
+.filesPreview div span:hover{
+    opacity: 0.8;
+}
+.loader  {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9; 
+    display: none;
+} 
+.loader > div {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #000;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 0.7s linear infinite;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+    margin-top: 38.5%;
+}
+.loader .percent{
+    color: #fff;
+    font-weight: bold;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.pac-container:after{
+    display: none!important;
+}
+#error.modal .modal-body { 
+    background: #ffdcdc;
+}
+
+#error.modal .modal-content .modal-header{
+    background: #bd2929
+}
+
+
+.block-3 > .content .item-1-1 .jcf-checkbox span {
+    margin: -5px 0 0 -6px;
+}
+.block-3 > .content .item-1-1 .jcf-checkbox span { 
+    height: 7px;
+    width: 12px; 
+    border-color: #000003;
+}
+.block-3 > .content .item-1-1 .jcf-checkbox { 
+    width: 22px;
+    top: -3px;
+    margin: 0;
+    cursor: pointer;
+}
+.block-3 > .content .item-1-1 .jcf-select {
+    top: -2px;
+    margin-right: -11px;
+    width: 37px;
+    min-width: 0;
+}
+.block-3 > .content .item-1-1 .selectContainer { 
+    padding-right: 20px;
+    width: 20px;
+}
+
+.block-3 > .content .item-1-1 .table { 
+    margin-bottom: 0;
+}
+.block-3 > .content .item-1-1 .table.remise label{ 
+    width: 130px;
+}
+.block-3 > .content .item-1-1 .selectChekbox {
+    width: 20px;
+}
+
+
+@media (min-width: 768px){
+    .modal .modal-dialog {
+        width: 660px;
+        margin-top: 192px;
+    }
+
+}
+
+@media (min-width: 1280px){
+    .block > .content { 
+        min-height: 617px;
+    } 
+}
+
+
+@media (max-width: 1279px){
+    .block-2 { 
+        margin-right: 0px;
+    }
+    form.blocks-content { 
+        max-width: 837px;
+        margin: 0 auto;
+        display: block;
+    }
+    form.blocks-content > div{ 
+        float: left;
+    }
+    .block.block-3 {
+        width: 368px;
+        margin-right: 0;
+        float: none;
+        margin: auto;
+        padding-top: 20px;
+        clear: both;
+    }
+    .wrapper { 
+        margin-top: 0;
+    }
+    .wrapper:before {
+        content: "";
+        display: block;
+        position: absolute;
+        background: #0000007d;
+        z-index: 0;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .header{
+        position: relative;
+        z-index: 2
+    }
+    .block.block-3 {
+        width: 406px;
+        margin-right: 0;
+        float: none;
+        margin: auto;
+        padding-top: 20px;
+        clear: both;
+    }
+    .block-3 > .content .item-2 .blockEmail .emailInput {
+        width: 346px;
+    }
+}
+
+
+
+
+@media (max-width: 886px){
+    .block,
+    form.blocks-content > div { 
+        float: none;
+        margin-right: auto;
+        margin: auto;
+        margin-bottom: 25px;
+    }
+    .block-2 {
+        margin-right: auto;
+    } 
+}
+
+@media (max-width: 456px){
+    .wrapper {
+        padding: 0;
+    }
+    .block.block-3 { 
+        padding-top: 0; 
+        padding-bottom: 0;
+    }
+    .block { 
+        margin-bottom: 20px;
+    } 
+    .block-3 > .content .item-2 {
+        padding: 10px;
+    }
+    .block-3 > .content .item-2 .blockEmail .emailInput {
+        width: 326px;
+    }
+    .header {
+        padding-top: 23px;
+        text-align: left;
+        padding-left: 33px;
+    }
+
+    .header .logo {
+        margin-left: 0;
+        display: inline-block;
+    }
+    .wrapper { 
+        background-position: -120px 0;
+    }
+
+
+}
+@media (max-width: 405px){
+     .block-1 > .content > .table,
+     .block-1 > .content > .table > div,
+     .block-1 > .content > .table > div > div,
+     .block-2 > .content > .table:not(.boucles),
+     .block-2 > .content > .table:not(.boucles) > div,
+     .block-2 > .content > .table:not(.boucles) > div > div,
+     .block-3 > .content > .table,
+     .block-3 > .content > .table > div,
+     .block-3 > .content > .table > div > div{
+        display: block;
+        width: 100%;
+     }
+
+     .wrapper input[type=text], .jcf-select { 
+        height: 35px; 
+        padding: 0 12px; 
+        font-size: 12px; 
+    }
+    .dimensions .hauteur .hauteurInput {
+        text-align: center;
+        padding: 0;
+    } 
+    .block-1,
+    .block-2,
+    .block.block-3 {
+        width: 100%;
+    }
+    .jcf-select .jcf-select-text {
+        line-height: 34px;
+    }
+    .wrapper input[name="ville"] {
+        width: 70%; 
+        margin-left: 4%;
+    }
+    .wrapper input[name="cp"] {
+        width: 24%; 
+    }
+    .table.uploads > div > div.customLabel br{
+        display: none;
+    } 
+    .table.uploads > div > div.customLabel {
+        font-size: 13px;
+    }
+    .block-1 .table > div > div.customLabel {
+        width: 100%;
+        margin-bottom: 3px;l
+    }
+    .uploads .block-files { 
+        padding: 10px 0;
+    } 
+    .date .subLabel {
+        font-size: 12px; 
+    }
+    .img-button-container > div > div:nth-child(2),
+    .img-button-container > div > div:nth-child(3),
+    .img-button-container > div > div:nth-child(4){
+        float: left;
+        width: 33%!important;
+        text-align: center;
+    }
+    .img-button-container .item-1 p { 
+        margin-left: 0;
+    }
+
+    .table > div > div.customLabel br{
+        display: none;
+    }
+
+    .boucles .select {
+        float: right;
+    }
+    .table.boucles > div > div.customLabel {
+        position: absolute;
+        left: 0;
+        top: -38px;
+        width: 100%; 
+    }
+    .table.boucles {
+        margin-top: 59px; 
+        position: relative;
+    }
+
+    p.images-animees-ml,
+    p.son-ml { 
+        padding-top: 15px;
+        clear: both;
+    }
+    .block > .content { 
+        padding: 25px 10px 29px;
+    }
+    .dimensions .hauteur { 
+        vertical-align: bottom;
+    }
+    .dimensions .block-image strong {
+        position: static; 
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+    }
+    .block.block-3 > .content {
+        padding: 0;
+    }
+    .block-3 > .content .item-2 .reduction p strong {
+        font-size: 13px;
+        display: block;
+    }
+    .block-3 > .content .item-2 .blockEmail .emailInput {
+        width: 83%;
+    }
+    
+    .wrapper .block-3 > .content .item-1-1 .jcf-select {
+        height: 19px; 
+    }
+    .content .item-1-1 .jcf-select .jcf-select-text {
+        line-height: 20px;
+        margin-left: -5px;
+    }
+    
+    .wrapper .block-3 > .content .item-1-1 input[type=text]{
+        height: 21px;
+    }
+
+    form.blocks-content { 
+        padding-bottom: 10px;
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
