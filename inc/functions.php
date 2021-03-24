@@ -9,19 +9,20 @@
 	}
 	function db_connect(){
 		
-		$servername = "localhost";
-		$username = "jamuser";
-		$password = "J@MZTO2o18"; // 
-		$dbname = "jamulateur";
-
 		// $servername = "localhost";
-		// $username = "root";
-		// $password = "root"; // Zento&EI@2017
-		// $dbname = "jammulator";
+		// $username = "jamuser";
+		// $password = "J@MZTO2o18"; // 
+		// $dbname = "jamulateur";
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
 			    // set the PDO error mode to exception
+			    $db->exec("set names utf8");
 			    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 
 			    return $db;
