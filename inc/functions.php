@@ -9,15 +9,15 @@
 	}
 	function db_connect(){
 		
-		// $servername = "localhost";
-		// $username = "jamuser";
-		// $password = "J@MZTO2o18"; // 
-		// $dbname = "jamulateur";
-
 		$servername = "localhost";
-		$username = "root";
-		$password = "mysql";
+		$username = "jamuser";
+		$password = "J@MZTO2o18"; // 
 		$dbname = "jamulateur";
+
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "mysql";
+		// $dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -449,10 +449,11 @@
 
 		$Total["HT"] += $subTotal['autres']['HT'];
 
-		$nbrJourFromNow = datediff(time(),$result['dateDebut']);
-		if( $nbrJourFromNow >= (30*6) ){
-            $Total['HT'] = $Total['HT'] - ($Total['HT'] * 10) / 100;
-        }
+		/// if reservation Before 6 months
+		// $nbrJourFromNow = datediff(time(),$result['dateDebut']);
+		// if( $nbrJourFromNow >= (30*6) ){
+  //           $Total['HT'] = $Total['HT'] - ($Total['HT'] * 10) / 100;
+  //       }
 
         $remise = false;
         $Total['HTR'] = $Total['HT'];

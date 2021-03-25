@@ -23,11 +23,11 @@
 </head>
 <body>
 <div class="wrapper"> 
-	 <div class="header">
+	 <!-- <div class="header">
 	 	<a class="logo">
 	 		<img src="images/logo.png">
 	 	</a>
-	 </div>
+	 </div> -->
 	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data">
 	 	<div class="clear"></div>
 	 	<div class="block block-1">

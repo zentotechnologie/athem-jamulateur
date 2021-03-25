@@ -48,7 +48,8 @@ body{
     font-size: 14px; 
     cursor: default;
     font-family: arial; 
-   font-family: "montserrat", arial;
+    font-family: "montserrat", arial;
+    background: url(../images/jamulateur-fond.jpg) no-repeat bottom / cover;
 }
 .clear{
     clear: both;
@@ -57,7 +58,7 @@ body{
     margin: 0!important;
 } 
 .wrapper{
-    background: url(../images/bg.jpg) 0 0;
+    
     max-width: 1280px;
     margin:0 auto;
     /*height: 685px;*/
@@ -77,12 +78,12 @@ body{
     height: auto;
 }
 .block > .head,
-.modal .modal-content .modal-header{ 
+.modal .modal-content .modal-header{
     background: #000000;
     height: 35px;
     line-height: 35px;
     text-align: center;
-    color: #fff;
+    color: #fef857;
     font-size: 17px;
     text-transform: uppercase;
     font-family: "montserratExtraBold";
@@ -101,16 +102,14 @@ form.blocks-content {
 }
 .block-1,
 .block-2{
-    background: #f2f2f2;
+    background: #ffffffbf;
     float: left;
 }
 .block > .content{
-    background: #f2f2f2; 
     padding: 25px 20px 29px;
 }
 .block-1 > .content{
-    background: #f2f2f2;
-    padding: 25px 20px 10px; 
+    padding: 25px 20px 10px;
 }
 .table{
     display: table;
@@ -304,7 +303,7 @@ input, a, button{
 
 .uploads .block-files{
     text-align: center;
-    background: #f6f6f6;
+    background: #fff;
     position: relative;
 }
 .uploads .block-files input[type=file] {
@@ -330,7 +329,8 @@ input, a, button{
     display: inline-block;
     width: 44px;
     height: 40px;
-    background: url(../images/img-button.svg) 0 0 ;  
+    background: url(../images/img-button.png) 0 0;
+    background-size: 44px 78px;
 }
 .img-button.active,
 .img-off-on.active{ 
@@ -491,16 +491,15 @@ p.son-ml {
     top: 10px;
     left: 5px;
 }
-.block-3 > .content { 
+.block-3 > .content {
     padding: 0;
-    background:none;
 }
-.block-3 > .content .item-1 { 
+.block-3 > .content .item-1 {
     padding: 30px 23px 0px 23px;
-    background:#f2f2f2;
+    background: #ffffffbf;
 }
 .block-3 > .content .item-1-1{
-   background:#f2f2f2;
+   background: #ffffffbf;
    padding: 10px 23px 23px 23px;
    margin-top: 0;
 }
