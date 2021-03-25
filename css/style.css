@@ -197,9 +197,14 @@ input, a, button{
     width: 36px;
     text-align: center;
     vertical-align: top;
+    position: relative;
+    /* top: 20px; */
 }
 .dimensions .table{
     margin-bottom: 0;
+    max-width: 320px;
+    float: right;
+    margin-top: 20px;
 }
 .dimensions .hauteur .hauteurInput{
     text-align: center;
@@ -217,8 +222,8 @@ input, a, button{
     margin-bottom: 16px;
 }
 .dimensions .block-image{
-    position: relative;
-    text-align: right;
+    position: absolute;
+    text-align: left;
 }
 .dimensions  .block-image img{
     width: 247px; 
@@ -267,8 +272,8 @@ input, a, button{
 }
 .dimensions .largeur .jcf-range {
     margin-top: 10px;
-    margin-right: 3px;
-    width: 235px;
+    margin-right: 0;
+    width: 239px;
 }
 
 .dimensions .jcf-range .jcf-range-wrapper{
@@ -866,6 +871,9 @@ label.error{
 }
 .block-3 > .content .item-1-1 .selectChekbox {
     width: 20px;
+}
+[data-selected-option=performanceArt]{
+    display: none;
 }
 
 

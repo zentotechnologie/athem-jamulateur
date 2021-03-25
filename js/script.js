@@ -358,11 +358,11 @@
                 setTimeout(function () {
 
                     /// if reservation Before 6 months
-                    var now = new Date(); 
-                    var nbrJourFromNow = DatesDiffrence( now.getDate()+"-"+ (now.getMonth()+1) +"-"+now.getFullYear() , data.dateDebut) 
-                    if( nbrJourFromNow >= (30*6) ){
-                        totalDevis = totalDevis - (totalDevis * 10) / 100;
-                    }
+                    // var now = new Date(); 
+                    // var nbrJourFromNow = DatesDiffrence( now.getDate()+"-"+ (now.getMonth()+1) +"-"+now.getFullYear() , data.dateDebut) 
+                    // if( nbrJourFromNow >= (30*6) ){
+                    //     totalDevis = totalDevis - (totalDevis * 10) / 100;
+                    // }
                     ///////////////////////////////////
                     console.log("Finish")
                     $('[name=devis]').val( number_format(totalDevis, 2, ',',' ') )
@@ -559,6 +559,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         var dataIndex = $(this).attr('data-index');
         var TextOption = $(this).parent().find('p').text();
 
+        $('.table.boucles').attr('data-selected-option', dataIndex);
+
         $(this).parents('.table').find('.img-button').removeClass('active');
         $(this).addClass('active');
         $(this).parents('.table').find('.inputText').val( TextOption )
@@ -606,17 +608,17 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
         }else if( dataIndex == 'performanceArt' ){
 
-            $('input[name=nbrBouclesInput]').val( 3 )
-            $('select[name=nbrBouclesSelect]').val( 3 )
+            $('input[name=nbrBouclesInput]').val( 1 )
+            $('select[name=nbrBouclesSelect]').val( 1 )
 
             $('.table.boucles .customLabel .titleCreationOriginal').show()
             $('.table.boucles .customLabel .titleDefault').hide()
             setTimeout(function () {
-                $('[name=nbrBoucles]').val(3)
+                $('[name=nbrBoucles]').val(1)
                 interval = false;
                 calculate();
             })
-            $('[name=nbrBoucles]').attr('min', 3).attr('max', 50).attr('step', 1)
+            $('[name=nbrBoucles]').attr('min', 1).attr('max', 50).attr('step', 1)
             $('img.graduations_1_10').hide()
             $('img.graduations_5_50').show() 
             $('[name=nbrBouclesInput]').show()
@@ -650,29 +652,37 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         interval = false;
 
         if( dataIndex =='pasDeSon' ){
-            $('[name=sonorisation_unite]').val(0).attr('disabled','disabled')
-            $('[name=sonorisation_techniciens]').val(0).attr('disabled','disabled')
+            $('[name=sonorisation_unite]').val(0);//.attr('disabled','disabled')
+            $('[name=sonorisation_techniciens]').val(0);//.attr('disabled','disabled')
             $('[name=sonorisation_hebergement]').prop('checked', false).attr('disabled','disabled')
             $('[name=sonorisation_transport]').prop('checked', false).attr('disabled','disabled');
-        }else{
-            $('[name=sonorisation_unite]').val(1)
-            $('[name=sonorisation_techniciens]').val(1)
+        }else{ 
 
-            $('[name=sonorisation_unite]').removeAttr('disabled')
-            $('[name=sonorisation_techniciens]').removeAttr('disabled')
+            switch( $('[name=video_jamions]').val() ){
+                case '1':
+                    $('[name=sonorisation_unite]').val(1)
+                    $('[name=sonorisation_techniciens]').val(2)
+                    break;
+                case '2':
+                    $('[name=sonorisation_unite]').val(2)
+                    $('[name=sonorisation_techniciens]').val(2)
+                    break;
+                case '3':
+                    $('[name=sonorisation_unite]').val(3)
+                    $('[name=sonorisation_techniciens]').val(3)
+                    break;
+            }
+
+            // $('[name=sonorisation_unite]').removeAttr('disabled')
+            // $('[name=sonorisation_techniciens]').removeAttr('disabled')
             $('[name=sonorisation_hebergement]').removeAttr('disabled')
             $('[name=sonorisation_transport]').removeAttr('disabled');
         }
-        jcf.destroy('[name=sonorisation_unite]');
-        jcf.destroy('[name=sonorisation_techniciens]');
-        jcf.destroy('[name=sonorisation_hebergement]');
-        jcf.destroy('[name=sonorisation_transport]');
-        setTimeout(function () { 
-            jcf.replace('[name=sonorisation_unite]');
-            jcf.replace('[name=sonorisation_techniciens]');
-            jcf.replace('[name=sonorisation_hebergement]');
-            jcf.replace('[name=sonorisation_transport]');
-        }) 
+
+        jcf.getInstance($('select[name=sonorisation_unite]')).refresh()
+        jcf.getInstance($('select[name=sonorisation_techniciens]')).refresh()
+        jcf.getInstance($('select[name=sonorisation_hebergement]')).refresh()
+        jcf.getInstance($('select[name=sonorisation_transport]')).refresh()
         
         setTimeout(function () {
             calculate();
@@ -724,12 +734,53 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
     })
 
 
+    var setNbrJamion = function () {
+        var l = $('.rangeL').val();
+        var h = $('.rangeH').val();
+        var s = parseInt(l) * parseInt(h);
+        var nbrJamion = 1;
+        if( s <= 799 ){
+            nbrJamion = 1;
+        }else if( s <= 1399 ){
+            nbrJamion = 2;
+        }else if( s <= 1700 ){
+            nbrJamion = 3;
+        }else if( s > 1700 ){
+            nbrJamion = 3;
+            //// contact-us
+        } 
+
+        // set Nbr jamions
+        $('[name=video_jamions]').val(nbrJamion); 
+        jcf.getInstance($('select[name=video_jamions]')).refresh()
+
+        // change nbr techniciens son
+        switch(nbrJamion){
+            case 1:
+                $('[name=video_techniciens]').val(2); 
+                break;
+            case 2:
+                $('[name=video_techniciens]').val(2); 
+                break;
+            case 3:
+                $('[name=video_techniciens]').val(3); 
+                break;
+        }
+        jcf.getInstance($('select[name=video_techniciens]')).refresh()
+
+        // change nbr unite son/techniciens
+        $('.table.son .img-button.active').click()
+    }
+
+
 
     $('.rangeH').change(function () { 
-        $('input[name=hauteur]').val( $(this).val() )  
+        $('input[name=hauteur]').val( $(this).val() );
+        setNbrJamion() 
     })
     $('.rangeL').change(function () { 
         $('input[name=largeur]').val( $(this).val() )  
+        setNbrJamion(); 
     })
 
     $('[name=nbrBoucles]').change(function () {    
@@ -755,10 +806,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
     $('select[name=nbrBouclesSelect]').change(function () {  
         $('input[name=nbrBoucles]').val( $(this).val() )  
-        jcf.destroy('input[name=nbrBoucles]');
-        setTimeout(function () {
-            jcf.replace('input[name=nbrBoucles]');
-        }) 
+        jcf.getInstance($('input[name=nbrBoucles]')).refresh()
         interval = false;
         calculate();
     })

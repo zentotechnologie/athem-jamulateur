@@ -93,7 +93,7 @@
 			<table>
 				<tr>
 					<td>
-						<h2>ATHEM</h2>
+						<h2>THE JAM PROJECT</h2>
 						<p style="margin: 0">
 							2, rue René Bazin<br>	 	 	 	 	 	 	 
 							75016 PARIS - FRANCE
@@ -264,7 +264,8 @@
 				La protection des publics, des biens et du matériel de projection sont à la charge du client<br>	 
 				Ce devis n'intègre pas les droits d'utilisation des contenus devant être acquis auprès de tiers,<br>
 				ainsi que les éventuels droits d’asile, location d’espace ou taxes.<br>
-				Pour une projection <?= $DataCalcule['visuel']['qte'] ?> minute(s) après la tombée de la nuit (horaires à définir).
+				Pour une projection de 30 minutes après la tombée de la nuit.
+				<!-- <?php //$DataCalcule['visuel']['qte'] ?> -->
 			</p>
 
 			<table style="margin-top: 10px;" class="detailDevis" cellpadding="0" cellspacing="0">
@@ -306,11 +307,11 @@
 									break; 
 
 								case 'performanceArt':
-									echo "Performance art";
+									echo "Votre contenu: Facturer cahier des charges (1500€ HT) + frais de mise au format (800€ HT)";
 									break; 
 							} ?>
 						</td>
-						<td align="right"><?= $DataCalcule['visuel']['qte'] ?></td>
+						<td align="right"><?= $DataCalcule['visuel']['qte'] ?></td> 
 						<td>Minutes</td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['totalHT'],2,',',' ' ) ?> €</td>

@@ -249,6 +249,9 @@
 		$infos['nbrJoursPlus2'] = $infos['nbrJours'] + 2;
 
 		//printR(array($result, $DataPrices)) ;	
+		if( $result['visuel'] == 'performanceArt' ){
+			$result['nbrBoucles'] =  1;
+		}
 
 		$DataCalcule = array(
 			/////////////////////////////////////////// VIDÉO MAPPING /////////////////////////////////////////////////////////////
