@@ -23,11 +23,11 @@
 </head>
 <body>
 <div class="wrapper"> 
-	 <div class="header">
+	 <!-- <div class="header">
 	 	<a class="logo">
 	 		<img src="images/logo.png">
 	 	</a>
-	 </div>
+	 </div> -->
 	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data">
 	 	<div class="clear"></div>
 	 	<div class="block block-1">
@@ -106,18 +106,20 @@
 	 			</div>
 
 	 			<div class="dimensions">
-	 				<div class="table">
+	 				<div>
+	 					<strong>
+							Dimensions façade <span>(en m)</span>
+						</strong>
+	 				</div>
+	 				<div class="table"> 
 	 					<div>
-	 						<div class="block-image">
-	 							<strong>
-	 								Dimensions <br>façade(s) <span>(en m)</span>
-	 							</strong>
-	 							<img src="images/immeuble.png">
-	 						</div>
 	 						<div class="hauteur">
 	 							<input type="text" class="hauteurInput" name="hauteur" placeholder="(H)" value="10"  >
-	 							<input type="range"  class="rangeH" name="rangeH" data-jcf='{"orientation": "vertical"}' value="10" max="100" min="0" step="1">
+	 							<input type="range"  class="rangeH" name="rangeH" data-jcf='{"orientation": "vertical"}' value="10" max="80" min="0" step="1">
 	 						</div>
+	 						<div class="block-image"> 
+	 							<img src="images/immeuble.png">
+	 						</div> 
 	 					</div>
 	 				</div>
 	 				<div class="largeur">
@@ -215,7 +217,7 @@
 		 		<div class="table boucles">
 		 			<div>
 		 				<div class="customLabel">
-		 					<span class="titleDefault">Nombre <br>de boucles <br>pour</span> 
+		 					<span class="titleDefault">Durée</span> 
 		 					<span class="titleCreationOriginal">Durée de la</span> 
 		 					<span class="titleVisuel"><?= $ForfaisTexts['visuel'][1]['name'] ?></span>
 		 				</div>
@@ -358,10 +360,10 @@
 				 							<label class="subtitle">Nb. de jamions</label>
 				 						</div>
 				 						<div class="selectContainer">
-				 							<select name="video_jamions"> 
+				 							<select name="video_jamions" disabled="disabled"> 
 				 								<?php for ($i=1; $i <= $autres[12][2] ; $i++): ?>
 					 								<option value="<?= $i ?>"><?= $i ?></option>   
-					 							<?php endfor; ?> 
+					 							<?php endfor; ?>    
 					 						</select>
 				 						</div>
 				 					</div>
@@ -370,9 +372,9 @@
 				 							<label class="subtitle">Nb de techniciens</label>
 				 						</div>
 				 						<div class="selectContainer">
-				 							<select name="video_techniciens">
+				 							<select name="video_techniciens" disabled="">
 					 							<?php for ($i=1; $i <= $autres[10][2] ; $i++): ?>
-					 								<option value="<?= $i ?>"><?= $i ?></option>   
+					 								<option value="<?= $i ?>" <?= $i == 2 ? 'selected' : '' ?>><?= $i ?></option>   
 					 							<?php endfor; ?>    
 					 						</select>
 				 						</div>
@@ -412,7 +414,7 @@
 				 							<label class="subtitle">Nb. d’unités de son</label>
 				 						</div>
 				 						<div class="selectContainer">
-				 							<select name="sonorisation_unite">
+				 							<select name="sonorisation_unite" disabled>
 				 								<option value="0">0</option> 
 					 							<?php for ($i=1; $i <= $autres[13][2] ; $i++): ?>
 					 								<option value="<?= $i ?>" <?= ($i == 1) ? 'selected' : '' ?>><?= $i ?></option>   
@@ -425,10 +427,10 @@
 				 							<label class="subtitle">Nb de techniciens</label>
 				 						</div>
 				 						<div class="selectContainer">
-				 							<select name="sonorisation_techniciens">
+				 							<select name="sonorisation_techniciens" disabled>
 				 								<option value="0">0</option> 
 					 							<?php for ($i=1; $i <= $autres[11][2] ; $i++): ?>
-					 								<option value="<?= $i ?>" <?= ($i == 1) ? 'selected' : '' ?> ><?= $i ?></option>   
+					 								<option value="<?= $i ?>" <?= ($i == 2) ? 'selected' : '' ?> ><?= $i ?></option>   
 					 							<?php endfor; ?>           
 					 						</select>
 				 						</div>
@@ -518,12 +520,12 @@
 		 				</div>
 		 			</div>
 
-		 			<div class="reduction">
+		 			<!-- <div class="reduction">
 		 				<p>
 		 					<strong>profitez de la réduction early birds</strong>
 		 					si vous réservez 6 mois avant la date de l’événement
 		 				</p>
-		 			</div>	
+		 			</div>	 -->
 
 		 			<div class="recevoir-devis">
 		 				<h2>recevoir le DEVIS détaillé <span>?</span></h2>
@@ -643,7 +645,7 @@
 			</div>
 
 			<p class="footer-modal">
-				ATHEM - 2 rue René Bazin - 75106 Paris - <br>Siret : 39258871100037
+				THE JAM PROJECT - 75106 Paris - <br>Siret : 88424832900010
 			</p> 
 
 		</form>

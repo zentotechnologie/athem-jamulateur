@@ -16,12 +16,13 @@
 
 		// $servername = "localhost";
 		// $username = "root";
-		// $password = "root"; // Zento&EI@2017
-		// $dbname = "jammulator";
+		// $password = "mysql";
+		// $dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
 			    // set the PDO error mode to exception
+			    $db->exec("set names utf8");
 			    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 
 			    return $db;
@@ -248,6 +249,9 @@
 		$infos['nbrJoursPlus2'] = $infos['nbrJours'] + 2;
 
 		//printR(array($result, $DataPrices)) ;	
+		if( $result['visuel'] == 'performanceArt' ){
+			$result['nbrBoucles'] =  1;
+		}
 
 		$DataCalcule = array(
 			/////////////////////////////////////////// VIDÉO MAPPING /////////////////////////////////////////////////////////////
@@ -445,10 +449,11 @@
 
 		$Total["HT"] += $subTotal['autres']['HT'];
 
-		$nbrJourFromNow = datediff(time(),$result['dateDebut']);
-		if( $nbrJourFromNow >= (30*6) ){
-            $Total['HT'] = $Total['HT'] - ($Total['HT'] * 10) / 100;
-        }
+		/// if reservation Before 6 months
+		// $nbrJourFromNow = datediff(time(),$result['dateDebut']);
+		// if( $nbrJourFromNow >= (30*6) ){
+  //           $Total['HT'] = $Total['HT'] - ($Total['HT'] * 10) / 100;
+  //       }
 
         $remise = false;
         $Total['HTR'] = $Total['HT'];
