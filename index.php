@@ -713,7 +713,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap-datepicker.fr.js"></script>   
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places,geometry,geocoder&key=AIzaSyCUBPErUcahZbvPkAqtZ2w4Ny7u_QV3x5c&language=fr"></script>   
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places,geometry,geocoder&key=AIzaSyDdE2jgrKygv7hNryyAkvlr3zQq3c_wBu8&language=fr"></script>   
 
 <script type="text/javascript" src="js/script.js"></script> 
 <script type="text/javascript"> 
