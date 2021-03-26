@@ -303,7 +303,7 @@ input, a, button{
 
 .uploads .block-files{
     text-align: center;
-    background: #fff;
+    /*background: #fff;*/
     position: relative;
 }
 .uploads .block-files input[type=file] {
