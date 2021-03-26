@@ -9,15 +9,15 @@
 	}
 	function db_connect(){
 		
-		$servername = "localhost";
-		$username = "jamuser";
-		$password = "J@MZTO2o18"; // 
-		$dbname = "jamulateur";
-
 		// $servername = "localhost";
-		// $username = "root";
-		// $password = "mysql";
+		// $username = "jamuser";
+		// $password = "J@MZTO2o18"; // 
 		// $dbname = "jamulateur";
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);

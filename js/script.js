@@ -679,10 +679,10 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             $('[name=sonorisation_transport]').removeAttr('disabled');
         }
 
-        jcf.getInstance($('select[name=sonorisation_unite]')).refresh()
-        jcf.getInstance($('select[name=sonorisation_techniciens]')).refresh()
-        jcf.getInstance($('select[name=sonorisation_hebergement]')).refresh()
-        jcf.getInstance($('select[name=sonorisation_transport]')).refresh()
+        jcf.getInstance($('[name=sonorisation_unite]')).refresh()
+        jcf.getInstance($('[name=sonorisation_techniciens]')).refresh()
+        jcf.getInstance($('[name=sonorisation_hebergement]')).refresh()
+        jcf.getInstance($('[name=sonorisation_transport]')).refresh()
         
         setTimeout(function () {
             calculate();
@@ -741,13 +741,17 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         var nbrJamion = 1;
         if( s <= 799 ){
             nbrJamion = 1;
+            $('.warning-distance').slideUp()
         }else if( s <= 1399 ){
             nbrJamion = 2;
+            $('.warning-distance').slideUp()
         }else if( s <= 1700 ){
             nbrJamion = 3;
+            $('.warning-distance').slideUp()
         }else if( s > 1700 ){
             nbrJamion = 3;
-            //// contact-us
+            /// show worning if area mor than 1700m2
+            $('.warning-distance').slideDown()
         } 
 
         // set Nbr jamions
@@ -769,7 +773,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         jcf.getInstance($('select[name=video_techniciens]')).refresh()
 
         // change nbr unite son/techniciens
-        $('.table.son .img-button.active').click()
+        $('.table.son .img-button.active').click() 
+
     }
 
 
@@ -881,23 +886,23 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
     $('form').on('mousedown', '.jcf-range-handle', function(e){ 
         MouseDownJcfRangeHandle = true; 
         interval =  setInterval(function(){ 
-                        $('input[name=hauteur]').val( $('[name=rangeH]').val() )
-                        $('input[name=largeur]').val( $('[name=rangeL]').val() )
-                          
-                          
+            $('input[name=hauteur]').val( $('[name=rangeH]').val() )
+            $('input[name=largeur]').val( $('[name=rangeL]').val() )
+              
+              
 
-                        if( $('input[name=index-images-animees]').val() == 'creationOriginale' || $('input[name=index-images-animees]').val() == 'performanceArt' ){
-                            
-                            if( !$("input[name=nbrBouclesInput]").is(":focus")){
-                                $('input[name=nbrBouclesInput]').val( $('[name=nbrBoucles]').val() )
-                            }
+            if( $('input[name=index-images-animees]').val() == 'creationOriginale' || $('input[name=index-images-animees]').val() == 'performanceArt' ){
+                
+                if( !$("input[name=nbrBouclesInput]").is(":focus")){
+                    $('input[name=nbrBouclesInput]').val( $('[name=nbrBoucles]').val() )
+                }
 
-                        }else{
-                            
-                            $('select[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
-                            jcf.getInstance($('select[name=nbrBouclesSelect]')).refresh()
-                        }  
-                     } , 0); 
+            }else{
+                
+                $('select[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
+                jcf.getInstance($('select[name=nbrBouclesSelect]')).refresh()
+            }  
+         } , 0); 
     })
 
     $('form').on('mouseenter', '.jcf-range', function(e){  
