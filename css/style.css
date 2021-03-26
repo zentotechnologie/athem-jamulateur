@@ -278,6 +278,14 @@ input, a, button{
 .dimensions .jcf-range .jcf-range-wrapper{
     margin-bottom: -1px;
 }
+p.warning-distance {
+    display: none;
+    background: #fef857;
+    padding: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #b7b22f;
+}
 
 .date .subLabel {
     font-size: 10px;
