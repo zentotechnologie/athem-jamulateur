@@ -675,8 +675,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
             // $('[name=sonorisation_unite]').removeAttr('disabled')
             // $('[name=sonorisation_techniciens]').removeAttr('disabled')
-            $('[name=sonorisation_hebergement]').removeAttr('disabled')
-            $('[name=sonorisation_transport]').removeAttr('disabled');
+            $('[name=sonorisation_hebergement]').removeAttr('disabled').prop('checked', true)
+            $('[name=sonorisation_transport]').removeAttr('disabled').prop('checked', true);
         }
 
         jcf.getInstance($('[name=sonorisation_unite]')).refresh()
@@ -854,6 +854,11 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
             if( $('[name=devis]').val() == '' ){
                 $('#error').modal('show').find('center p').text('Adresse invalide ou mauvais code postal');
+                return false
+            }
+
+            if( $('.warning-distance').is(":visible") ){
+                $('#error').modal('show').find('center p').text('Dimension de projection ne peut pas dépasser 1700 m2');
                 return false
             }
 

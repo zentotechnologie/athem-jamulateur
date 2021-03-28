@@ -28,6 +28,11 @@
 	 		<img src="images/logo.png">
 	 	</a>
 	 </div> -->
+	 <div class="introduction">
+	 	Ce calculateur de prix vous permet d’obtenir une première approche budgétaire de votre projet.<br>
+		Ce devis sera validé après inspection du site de l’événement et après étude de votre projet par les équipes de l’Atelier JAM.<br>
+		Tarifs valables pour toute commande ferme avant le 31/08/2021 pour la réalisation d’une projection en 2021.<br>
+	 </div>
 	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data">
 	 	<div class="clear"></div>
 	 	<div class="block block-1">
@@ -348,7 +353,7 @@
 		 			
 	 			</div>
 				
-				<div class="item-1-1">
+				<div class="item-1-1" style="display: none;">
 	 				<h2 class="customLabel">Vidéo mapping</h2>
 
 	 				<?php   
@@ -392,7 +397,7 @@
 				 							<label for="video_hebergement" class="subtitle">Hébergement techniciens</label>
 				 						</div>
 				 						<div class="selectChekbox">
-				 							<input type="checkbox" id="video_hebergement" name="video_hebergement">
+				 							<input type="checkbox" checked id="video_hebergement" name="video_hebergement">
 				 						</div>
 				 					</div>
 				 					<div>
@@ -400,7 +405,7 @@
 				 							<label for="video_transport" class="subtitle">Transport de l’équipe</label>
 				 						</div>
 				 						<div class="selectChekbox">
-				 							<input type="checkbox" id="video_transport" name="video_transport">
+				 							<input type="checkbox" checked id="video_transport" name="video_transport">
 				 						</div>
 				 					</div>
 				 				</div>
@@ -448,7 +453,7 @@
 				 							<label for="sonorisation_hebergement" class="subtitle">Hébergement techniciens</label>
 				 						</div>
 				 						<div class="selectChekbox">
-				 							<input type="checkbox" id="sonorisation_hebergement" name="sonorisation_hebergement">
+				 							<input type="checkbox" checked id="sonorisation_hebergement" name="sonorisation_hebergement">
 				 						</div>
 				 					</div>
 				 					<div>
@@ -456,7 +461,7 @@
 				 							<label for="sonorisation_transport" class="subtitle">Transport de l’équipe</label>
 				 						</div>
 				 						<div class="selectChekbox">
-				 							<input type="checkbox" id="sonorisation_transport" name="sonorisation_transport">
+				 							<input type="checkbox" checked checked id="sonorisation_transport" name="sonorisation_transport">
 				 						</div>
 				 					</div>
 				 					<div>
@@ -464,7 +469,7 @@
 				 							<label for="sonorisation_taxe_sacem" class="subtitle">TAXE SACEM</label>
 				 						</div>
 				 						<div class="selectChekbox">
-				 							<input type="checkbox" id="sonorisation_taxe_sacem" name="sonorisation_taxe_sacem">
+				 							<input type="checkbox" checked id="sonorisation_taxe_sacem" name="sonorisation_taxe_sacem">
 				 						</div>
 				 					</div>
 				 				</div>

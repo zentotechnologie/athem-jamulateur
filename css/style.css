@@ -45,6 +45,7 @@ a img{
 }
 body{
     color: #000;
+    height: 100vh;
     font-size: 14px; 
     cursor: default;
     font-family: arial; 
@@ -58,13 +59,22 @@ body{
     margin: 0!important;
 } 
 .wrapper{
-    
     max-width: 1280px;
     margin:0 auto;
     /*height: 685px;*/
     padding: 25px;
     margin-top: 30px;
     position: relative;
+    padding-top: 0;
+}
+.introduction {
+    background: #ffffffbf;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    position: relative;
+    z-index: 9;
 }
  
 .header .logo {
@@ -889,13 +899,19 @@ label.error{
         width: 660px;
         margin-top: 192px;
     }
+    .introduction {
+        margin: 5px;
+    }
 
 }
 
 @media (min-width: 1280px){
     .block > .content { 
-        min-height: 617px;
+        min-height: 540px;
     } 
+    .block-3 > .content .item-1 {
+        min-height: 420px;
+    }
 }
 
 
