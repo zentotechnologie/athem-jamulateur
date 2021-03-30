@@ -29,9 +29,15 @@
 	 	</a>
 	 </div> -->
 	 <div class="introduction">
-	 	Ce calculateur de prix vous permet d’obtenir une première approche budgétaire de votre projet.<br>
-		Ce devis sera validé après inspection du site de l’événement et après étude de votre projet par les équipes de l’Atelier JAM.<br>
-		Tarifs valables pour toute commande ferme avant le 31/08/2021 pour la réalisation d’une projection en 2021.<br>
+ 	 	<p>
+ 	 		Ce calculateur de prix vous permet d’obtenir une première approche budgétaire de votre projet.
+ 	 	</p>
+		<p>
+			Le devis sera validé après de votre projet et du site de l’événement par l’équipe de l’Atelier JAM.
+		</p>
+		<p>
+			Pour soutenir la reprise des événements, nos tarifs de relance sont valables pour toute commande ferme<br> avant le 31/08/2021 pour la réalisation d’une projection en 2021.
+		</p>
 	 </div>
 	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data">
 	 	<div class="clear"></div>
@@ -97,7 +103,8 @@
 	 						</div>
 	 					</div>
 	 				</div>
-	 			</div>
+	 			</div> 
+
 	 			<div class="table">
 	 				<div>
 	 					<div class="customLabel"> 
@@ -106,6 +113,22 @@
 	 						<div> 
 		 						<input type="text" name="pays" placeholder="Pays">  
 	 						</div>
+	 					</div>
+	 				</div>
+	 			</div>
+
+	 			<div class="table domaine">
+	 				<div>
+	 					<div class="customLabel">
+	 						Domaine
+	 					</div>
+	 					<div>
+	 						 <label>
+	 						 	<input type="radio" name="domaine" value="Public" checked> Public
+	 						 </label>
+	 						 <label class="nth-child-2">
+	 						 	<input type="radio" name="domaine" value="Privé"> Privé
+	 						 </label>
 	 					</div>
 	 				</div>
 	 			</div>
@@ -134,7 +157,7 @@
 	 			</div>
 
 	 			<p class="warning-distance">
-	 				Dimension de projection ne peut pas dépasser 1700 m2
+	 				Au vue des dimensions de votre façade, du matériel supplémentaire pourrait être nécessaire. Nous vous invitons à nous contacter.
 	 			</p>
 
 	 			<div class="table date">
@@ -147,18 +170,18 @@
 	 							<div>
 	 								<div class="subLabel subLabel-1">début</div>
 	 								<div class="inputDate">
-	 									<input type="text" name="dateDebut" placeholder="01-01 -2017">
+	 									<input type="text" name="dateDebut" placeholder="01-01 -2021">
 	 								</div>
 	 								
 	 								<div class="subLabel">fin</div>
 	 								<div class="inputDate">
-	 									<input type="text" name="dateFin" placeholder="01-01 -2017">
+	 									<input type="text" name="dateFin" placeholder="01-01 -2021">
 	 								</div> 
 	 							</div>
 	 						</div>
 	 					</div>
 	 				</div>
-	 			</div>
+	 			</div> 
 
 	 			<div class="table uploads">
 	 				<div>
@@ -301,7 +324,7 @@
 			 					<span><?= nl2br( $ForfaisTexts['options'][0]['name'] ) ?></span>
 		 					</div>
 		 					<div>
-		 						<a href="#" class="img-off-on btnOffOn-2" data-index="siteWeb"></a>
+		 						<a href="#" class="img-off-on btnOffOn-2" data-index="teaser"></a>
 			 					<span><?= nl2br( $ForfaisTexts['options'][1]['name'] ) ?></span>
 		 					</div>
 		 				</div>
@@ -310,41 +333,41 @@
 		 						<a href="#" class="img-off-on btnOffOn-3" data-index="liveVideo"></a>
 			 					<span><?= nl2br( $ForfaisTexts['options'][2]['name'] ) ?></span>
 		 					</div>
-		 					<div>
-		 						<a href="#" class="img-off-on btnOffOn-4" data-index="GestDemarAdmin"></a>
-			 					<span><?= nl2br( $ForfaisTexts['options'][3]['name'] ) ?></span>
+		 					<div> 
+			 					<a href="#" class="img-off-on btnOffOn-5" data-index="affiche"></a>
+			 					<span><?= nl2br( $ForfaisTexts['options'][4]['name'] ) ?></span>
 		 					</div>
 		 				</div>
 		 				<div>
 		 					<div class="definition-de-option">
 		 						<p class="default captationVideo">
-				 					(définition) <br>de l’option<br> choisie
+				 					 Choisissez <br>vos options
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option captationVideo">
-				 					<?= $ForfaisTexts['options'][0]['description'] ?>
+				 					<?= nl2br($ForfaisTexts['options'][0]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option siteWeb">
-				 					<?= $ForfaisTexts['options'][1]['description'] ?>
+				 					<?= nl2br($ForfaisTexts['options'][1]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option liveVideo">
-				 					 <?= $ForfaisTexts['options'][2]['description'] ?>
+				 					 <?= nl2br($ForfaisTexts['options'][2]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option GestDemarAdmin">
-				 					<?= $ForfaisTexts['options'][3]['description'] ?> 
+				 					<?= nl2br($ForfaisTexts['options'][3]['description']) ?> 
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option affiche">
-				 					<?= $ForfaisTexts['options'][4]['description'] ?>
+				 					<?= nl2br($ForfaisTexts['options'][4]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>
 				 			</div>
 		 					<div>
-		 						<a href="#" class="img-off-on btnOffOn-5" data-index="affiche"></a>
-			 					<span><?= nl2br( $ForfaisTexts['options'][4]['name'] ) ?></span>
+		 						<a href="#" class="img-off-on btnOffOn-4" data-index="GestDemarAdmin"></a>
+			 					<span><?= nl2br( $ForfaisTexts['options'][3]['name'] ) ?></span>
 		 					</div>
 		 				</div>
 		 				<input type="hidden" class="inputText" name="option"  value="gestion des démarches administratives">

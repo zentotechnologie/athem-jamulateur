@@ -195,12 +195,17 @@
 			"cp" 			=> $result['cp'],
 			"villeEvent"	=> $result['villeEvent'], 
 			"ville"			=> $result['ville'], 
-			"paysEvent"			=> $result['paysEvent'], 
-			"distance"			=> $result['distance'], 
+			"paysEvent"		=> $result['paysEvent'], 
+			"distance"		=> $result['distance'], 
+
+			"domaine" 		=> $result['domaine'],
 
 			"dateDebut"		=> getFrenchDate( $result['dateDebut'] ),
 			"dateFin"		=> getFrenchDate( $result['dateFin'] ),
 			"nbrJours"		=> datediff($result['dateDebut'], $result['dateFin']),
+
+			"area"			=> $result['largeur'] * $result['hauteur'],
+			"jamions"		=> $result['video_jamions'],
 
 			"dateDevis"		=> getFrenchDate( $result['dateDevis'] ), 
 			"validateDate" 	=> getFrenchDate( $result['dateDevis'] + (3600 * 24 * 30) ), 
@@ -242,7 +247,7 @@
 		////// Options ///////////////
 	 	$captationVideo = (in_array('captationVideo', $infos['options'])) ? $DataPrices['options']['captationVideo'] : 0;
 	 	$liveVideo = (in_array('liveVideo', $infos['options'])) ? $DataPrices['options']['liveVideo'] : 0;
-	 	$siteWeb = (in_array('siteWeb', $infos['options'])) ? $DataPrices['options']['siteWeb'] : 0;
+	 	$teaser = (in_array('teaser', $infos['options'])) ? $DataPrices['options']['teaser'] : 0;
 	 	$affiche = (in_array('affiche', $infos['options'])) ? $DataPrices['options']['affiche'] : 0;
 		////////////////////////////////////////////////
 		
@@ -375,12 +380,12 @@
 				"TVA" 			=> TVA( $affiche ),
 				"TotalTTC" 		=> HTTC($affiche) 
 			),
-			"siteWeb" => array(
-				"qte" 			=> ($siteWeb > 0) ? 1 : 0,
-				"prixUnitaire" 	=> $siteWeb,
-				"totalHT" 		=> $siteWeb,
-				"TVA" 			=> TVA( $siteWeb ),
-				"TotalTTC" 		=> HTTC($siteWeb )
+			"teaser" => array(
+				"qte" 			=> ($teaser > 0) ? 1 : 0,
+				"prixUnitaire" 	=> $teaser,
+				"totalHT" 		=> $teaser,
+				"TVA" 			=> TVA( $teaser ),
+				"TotalTTC" 		=> HTTC($teaser )
 			),
 			/////////////////////////////////////////////// Autres /////////////////////////////////////////////////////////
 			"sonorisation_taxe_sacem" => array(
@@ -418,9 +423,9 @@
 				"TTC" => $DataCalcule['GestDemarAdmin']['TotalTTC']
 			), 
 			"options" => array(
-				"HT"  => $DataCalcule['captationVideo']['totalHT'] + $DataCalcule['liveVideo']['totalHT'] + $DataCalcule['affiche']['totalHT'] + $DataCalcule['siteWeb']['totalHT'] ,
-				"TVA" => $DataCalcule['captationVideo']['TVA'] + $DataCalcule['liveVideo']['TVA'] + $DataCalcule['affiche']['TVA'] + $DataCalcule['siteWeb']['TVA'],
-				"TTC" => $DataCalcule['captationVideo']['TotalTTC'] + $DataCalcule['liveVideo']['TotalTTC'] + $DataCalcule['affiche']['TotalTTC'] + $DataCalcule['siteWeb']['TotalTTC']
+				"HT"  => $DataCalcule['captationVideo']['totalHT'] + $DataCalcule['liveVideo']['totalHT'] + $DataCalcule['affiche']['totalHT'] + $DataCalcule['teaser']['totalHT'] ,
+				"TVA" => $DataCalcule['captationVideo']['TVA'] + $DataCalcule['liveVideo']['TVA'] + $DataCalcule['affiche']['TVA'] + $DataCalcule['teaser']['TVA'],
+				"TTC" => $DataCalcule['captationVideo']['TotalTTC'] + $DataCalcule['liveVideo']['TotalTTC'] + $DataCalcule['affiche']['TotalTTC'] + $DataCalcule['teaser']['TotalTTC']
 			),
 			"autres" => array(
 				"HT"  => $DataCalcule['autre_gardinnage']['totalHT'],
