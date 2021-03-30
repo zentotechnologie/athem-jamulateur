@@ -76,6 +76,9 @@ body{
     position: relative;
     z-index: 9;
 }
+.introduction p{
+    margin-bottom: 3px;
+}
  
 .header .logo {
     margin-left: 125px;
@@ -93,7 +96,7 @@ body{
     height: 35px;
     line-height: 35px;
     text-align: center;
-    color: #fef857;
+    color: #FEFB00;
     font-size: 17px;
     text-transform: uppercase;
     font-family: "montserratExtraBold";
@@ -139,6 +142,41 @@ h2.customLabel{
     font-family: "montserratBold";
     text-transform: uppercase;
     width: 85px;
+}
+.table.domaine label.nth-child-2{
+    margin-left: 30px;
+}
+.table.domaine input{
+    position: relative;
+    top: 2px;
+    margin-right: 4px;
+}
+.table.domaine input[type='radio']:after {
+        width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #ffffff;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+.table.domaine input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #000000;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
 }
 h2.customLabel{ 
     width: auto;
@@ -290,7 +328,7 @@ input, a, button{
 }
 p.warning-distance {
     display: none;
-    background: #fef857;
+    background: #FEFB00;
     padding: 10px;
     font-size: 12px;
     margin-bottom: 10px;
@@ -382,6 +420,9 @@ p.images-animees-ml {
     color: #454545;
     line-height: 12px; 
     min-height: 97px;
+}
+p.images-animees-ml strong{
+    color: #000;
 }
 p.decriptionService{
     display: none;
@@ -495,6 +536,7 @@ p.son-ml {
     padding-left: 30px;
     color: #717171;
     position: relative;
+    padding-top: 5px;
 }
 .block-3 .item-1 .table  .definition-de-option p span {
     display: block;
@@ -907,10 +949,10 @@ label.error{
 
 @media (min-width: 1280px){
     .block > .content { 
-        min-height: 540px;
+        min-height: 575px;
     } 
     .block-3 > .content .item-1 {
-        min-height: 420px;
+        min-height: 455px;
     }
 }
 

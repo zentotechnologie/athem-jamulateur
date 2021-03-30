@@ -437,6 +437,7 @@
         formData.append("cpEvent"       , $('#formDevis [name=cp]').val() ); 
         formData.append("villeEvent"    , $('#formDevis [name=ville]').val() ); 
         formData.append("paysEvent"    , $('#formDevis [name=pays]').val() ); 
+        formData.append("domaine"       , $('#formDevis [name=domaine]').val() ); 
         formData.append("largeur"       , $('#formDevis [name=rangeL]').val() ); 
         formData.append("hauteur"       , $('#formDevis [name=rangeH]').val() ); 
         formData.append("dateDebut"     , $('#formDevis [name=dateDebut]').val() ); 
@@ -573,7 +574,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         if( dataIndex == 'creationOriginale' ){
 
             $('input[name=nbrBouclesInput]').val( 3 )
-            $('select[name=nbrBouclesSelect]').val( 1 )
+            $('[name=nbrBouclesSelect]').val( 1 )
 
             $('.table.boucles .customLabel .titleCreationOriginal').show()
             $('.table.boucles .customLabel .titleDefault').hide()
@@ -591,7 +592,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         }else if( dataIndex == 'pretJammer' ){
 
             $('input[name=nbrBouclesInput]').val( 1 )
-            $('select[name=nbrBouclesSelect]').val( 1 )
+            $('[name=nbrBouclesSelect]').val( 1 )
 
             $('.table.boucles .customLabel .titleCreationOriginal').hide()
             $('.table.boucles .customLabel .titleDefault').show()
@@ -609,7 +610,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         }else if( dataIndex == 'performanceArt' ){
 
             $('input[name=nbrBouclesInput]').val( 1 )
-            $('select[name=nbrBouclesSelect]').val( 1 )
+            $('[name=nbrBouclesSelect]').val( 1 )
 
             $('.table.boucles .customLabel .titleCreationOriginal').show()
             $('.table.boucles .customLabel .titleDefault').hide()
@@ -756,7 +757,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
         // set Nbr jamions
         $('[name=video_jamions]').val(nbrJamion); 
-        jcf.getInstance($('select[name=video_jamions]')).refresh()
+        jcf.getInstance($('[name=video_jamions]')).refresh()
 
         // change nbr techniciens son
         switch(nbrJamion){
@@ -770,7 +771,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
                 $('[name=video_techniciens]').val(3); 
                 break;
         }
-        jcf.getInstance($('select[name=video_techniciens]')).refresh()
+        jcf.getInstance($('[name=video_techniciens]')).refresh()
 
         // change nbr unite son/techniciens
         $('.table.son .img-button.active').click() 
@@ -798,8 +799,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             
         }else{
             
-            $('select[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
-            jcf.getInstance($('select[name=nbrBouclesSelect]')).refresh()
+            $('[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
+            jcf.getInstance($('[name=nbrBouclesSelect]')).refresh()
         } 
 
         setTimeout(function () {
@@ -809,7 +810,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         
     }) 
 
-    $('select[name=nbrBouclesSelect]').change(function () {  
+    $('[name=nbrBouclesSelect]').change(function () {  
         $('input[name=nbrBoucles]').val( $(this).val() )  
         jcf.getInstance($('input[name=nbrBoucles]')).refresh()
         interval = false;
@@ -858,7 +859,6 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             }
 
             if( $('.warning-distance').is(":visible") ){
-                $('#error').modal('show').find('center p').text('Dimension de projection ne peut pas dépasser 1700 m2');
                 return false
             }
 
@@ -904,8 +904,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
             }else{
                 
-                $('select[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
-                jcf.getInstance($('select[name=nbrBouclesSelect]')).refresh()
+                $('[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
+                jcf.getInstance($('[name=nbrBouclesSelect]')).refresh()
             }  
          } , 0); 
     })

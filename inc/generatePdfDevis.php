@@ -175,6 +175,16 @@
 									 </table>
 								</td>
 							</tr>
+							<?php if($infos['domaine']): ?>
+								<tr>
+									<td align="right">
+										Domaine
+									</td>
+									<td>
+										 <?= $infos['domaine'] ?>
+									</td>
+								</tr>
+							<?php endif ?>
 							<tr>
 								<td align="right">
 									Date de début de la prestation
@@ -189,6 +199,22 @@
 								</td>
 								<td>
 									 <?= $infos['dateFin'] ?>
+								</td>
+							</tr>
+							<tr>
+								<td align="right">
+									Surface de projection (m²)
+								</td>
+								<td>
+									 <?= $infos['area'] ?>
+								</td>
+							</tr>
+							<tr>
+								<td align="right">
+									Nombre de jamions
+								</td>
+								<td>
+									 <?= $infos['jamions'] ?>
 								</td>
 							</tr>
 							<tr>
@@ -601,16 +627,16 @@
 					</tr>
 				<?php endif ?>
 
-				<?php if( $DataCalcule['siteWeb']['totalHT'] > 0 ): ?>
+				<?php if( $DataCalcule['teaser']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Réalisation d'un site Internet dédié au projet</td>
-						<td align="right"><?= $DataCalcule['siteWeb']['qte'] ?></td>
+						<td>TEASER</td>
+						<td align="right"><?= $DataCalcule['teaser']['qte'] ?></td>
 						<td>Forfait</td>
-						<td align="right"><?= number_format($DataCalcule['siteWeb']['prixUnitaire'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['siteWeb']['totalHT'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['prixUnitaire'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
-						<td align="right"><?= number_format($DataCalcule['siteWeb']['TVA'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['siteWeb']['TotalTTC'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['TVA'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>  
 				<?php endif ?>
 
