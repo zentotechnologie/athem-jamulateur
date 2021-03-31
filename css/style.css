@@ -356,6 +356,9 @@ p.warning-distance {
     background: #fff url(../images/arrow.png) no-repeat right center /25px auto;
     cursor: pointer;
 }
+.datepicker.datepicker-dropdown.dropdown-menu {
+    margin-top: 30px !important;
+}
 
 .uploads .block-files{
     text-align: center;
