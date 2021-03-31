@@ -437,7 +437,7 @@
         formData.append("cpEvent"       , $('#formDevis [name=cp]').val() ); 
         formData.append("villeEvent"    , $('#formDevis [name=ville]').val() ); 
         formData.append("paysEvent"    , $('#formDevis [name=pays]').val() ); 
-        formData.append("domaine"       , $('#formDevis [name=domaine]').val() ); 
+        formData.append("domaine"       , $('#formDevis [name=domaine]:checked').val() ); 
         formData.append("largeur"       , $('#formDevis [name=rangeL]').val() ); 
         formData.append("hauteur"       , $('#formDevis [name=rangeH]').val() ); 
         formData.append("dateDebut"     , $('#formDevis [name=dateDebut]').val() ); 

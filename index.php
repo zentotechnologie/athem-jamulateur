@@ -170,12 +170,12 @@
 	 							<div>
 	 								<div class="subLabel subLabel-1">début</div>
 	 								<div class="inputDate">
-	 									<input type="text" name="dateDebut" placeholder="01-01 -2021">
+	 									<input type="text" name="dateDebut" placeholder="01-01-2021" readonly>
 	 								</div>
 	 								
 	 								<div class="subLabel">fin</div>
 	 								<div class="inputDate">
-	 									<input type="text" name="dateFin" placeholder="01-01 -2021">
+	 									<input type="text" name="dateFin" placeholder="01-01-2021" readonly>
 	 								</div> 
 	 							</div>
 	 						</div>
@@ -705,7 +705,7 @@
       			à l'adresse <span id="email"> ....@....com </span>
       		</p>
       		<div class="submitBTN">
-				<a class="btn btn-large" data-dismiss="modal">A BIENTOT</a>
+				<a onclick="window.location.reload()" class="btn btn-large" data-dismiss="modal">A BIENTOT</a>
 			</div>
       	</center>
       </div>
@@ -752,7 +752,8 @@ $(function() {
 		 format: 'dd-mm-yyyy',  
 		 autoclose: true,
 		 startDate: getDate(2),
-		 language: "fr"
+		 language: "fr",
+		 orientation: 'top'
 	}).on('changeDate', function (event) {  
 		$('[name=dateFin]').datepicker('setStartDate', event.date );
 
@@ -763,7 +764,8 @@ $(function() {
 		 format: 'dd-mm-yyyy', 
 		 autoclose: true,
 		 startDate: getDate(3),
-		 language: "fr"
+		 language: "fr",
+		 orientation: 'top'
 	}).on('changeDate', function (event) {  
 		$('[name=dateDebut]').datepicker('setEndDate', event.date );
 
