@@ -348,7 +348,7 @@
 				 					<?= nl2br($ForfaisTexts['options'][0]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>
-				 				<p class="option siteWeb">
+				 				<p class="option teaser">
 				 					<?= nl2br($ForfaisTexts['options'][1]['description']) ?>
 				 					<span class="info">i</span>
 				 				</p>

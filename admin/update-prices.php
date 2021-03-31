@@ -49,8 +49,11 @@ if( isset($_POST['type']) ):
 
 			foreach ($_POST['fields'] as $key => $field) {
 				extract($field); 
-				$query = $db->prepare("UPDATE options SET price = '$price' , name = '$name', description ='$description' WHERE idOption = $id");
-				$query->execute( array($name, $description) );
+				$query = $db->prepare("UPDATE options SET price = :price , name = :name, description =:description WHERE idOption = $id");
+				$query->bindParam(":price", $price);
+				$query->bindParam(":name", $name);
+				$query->bindParam(":description", $description);
+				$query->execute();
 			}
 			break;
 

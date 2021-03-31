@@ -512,6 +512,7 @@ p.son-ml {
 .block-3 .item-1 .table > div > div{
     width: 50%;
     position: relative;
+    vertical-align: top;
 }
 .img-off-on{
     background: url(../images/img-on-off.png) 0 0;
