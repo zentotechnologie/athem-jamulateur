@@ -39,7 +39,7 @@
 			Pour soutenir la reprise des événements, nos tarifs de relance sont valables pour toute commande ferme<br> avant le 31/08/2021 pour la réalisation d’une projection en 2021.
 		</p>
 	 </div>
-	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data">
+	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data" style="display: none;">
 	 	<div class="clear"></div>
 	 	<div class="block block-1">
 	 		<div class="head">
@@ -142,8 +142,8 @@
 	 				<div class="table"> 
 	 					<div>
 	 						<div class="hauteur">
-	 							<input type="text" class="hauteurInput" name="hauteur" placeholder="(H)" value="10"  >
-	 							<input type="range"  class="rangeH" name="rangeH" data-jcf='{"orientation": "vertical"}' value="10" max="80" min="0" step="1">
+	 							<input type="text" class="hauteurInput" name="hauteur" placeholder="(H)" value="0"  >
+	 							<input type="range"  class="rangeH" name="rangeH" data-jcf='{"orientation": "vertical"}' value="0" max="60" min="0" step="1">
 	 						</div>
 	 						<div class="block-image"> 
 	 							<img src="images/immeuble.png">
@@ -151,14 +151,24 @@
 	 					</div>
 	 				</div>
 	 				<div class="largeur">
-	 					<input type="range" class="rangeL" name="rangeL"  value="10" max="80" min="10" step="1">
-	 					<input type="text" class="largeurInput" name="largeur" placeholder="(L)" value="10" >
+	 					<input type="range" class="rangeL" name="rangeL"  value="0" max="80" min="0" step="1">
+	 					<input type="text" class="largeurInput" name="largeur" placeholder="(L)" value="0" >
 	 				</div>
 	 			</div>
 
-	 			<p class="warning-distance">
-	 				Au vue des dimensions de votre façade, du matériel supplémentaire pourrait être nécessaire. Nous vous invitons à nous contacter.
-	 			</p>
+	 			<div class="table">
+	 				<div>
+	 					<div style="width: 50px"></div>
+	 					<div>
+	 						<p class="warning-distance">
+				 				<span class="info">i</span>
+				 				Au vue des dimensions de votre façade, du matériel supplémentaire pourrait être nécessaire. Nous vous invitons à nous contacter.
+				 			</p>
+	 					</div>
+	 				</div>
+	 			</div>
+
+	 			
 
 	 			<div class="table date">
 	 				<div>
@@ -230,8 +240,8 @@
 		 					<a href="#" class="img-button" data-index="performanceArt"></a>
 		 					<p><?= nl2br( $ForfaisTexts['visuel'][2]['name'] ) ?></p>
 		 				</div>
-		 				<input type="hidden" class="inputText" name="images-animees" value="prêt à jammer">
-		 				<input type="hidden" class="inputVal" name="index-images-animees" value="pretJammer">
+		 				<input type="hidden" class="inputText" name="images-animees" value="<?= $ForfaisTexts['visuel'][0]['name'] ?>">
+		 				<input type="hidden" class="inputVal" name="index-images-animees" value="creationOriginale">
 		 			</div>
 		 		</div>
 
@@ -701,8 +711,8 @@
       	
       	<center> 
       		<p>
-      			Vous allez recevoir très prochainement votre devis <br>
-      			à l'adresse <span id="email"> ....@....com </span>
+      			Votre devis a bien été envoyé à l'adresse <br> <span id="email"> ....@....com </span><br>
+      			N'oubliez pas de vérifier vos spams.
       		</p>
       		<div class="submitBTN">
 				<a onclick="window.location.reload()" class="btn btn-large" data-dismiss="modal">A BIENTOT</a>
