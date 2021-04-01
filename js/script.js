@@ -551,11 +551,16 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
     })
 
     var clickButton = 1;
-    $('.table.images-animees .img-button').click(function (event) {
-        event.preventDefault()
+    
+    /// set creationOriginale as default 
+    setTimeout(()=>{
+        $('.table.images-animees .item-1 .img-button').trigger('click', [true]);
+        $('.blocks-content').fadeIn()
+    })
 
-         
+    $('.table.images-animees .img-button').click(function (event, firstLoad) {
 
+        event.preventDefault() 
 
         var dataIndex = $(this).attr('data-index');
         var TextOption = $(this).parent().find('p').text();
@@ -581,7 +586,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             setTimeout(function () {
                 $('[name=nbrBoucles]').val(3)
                 interval = false;
-                calculate();
+                if(!firstLoad) calculate();
             })
             $('[name=nbrBoucles]').attr('min', 3).attr('max', 50).attr('step', 1) 
             $('img.graduations_1_10').hide()
@@ -599,7 +604,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             setTimeout(function () { 
                 $('[name=nbrBoucles]').val(1) 
                 interval = false;
-                calculate();
+                if(!firstLoad) calculate();
             })
             $('[name=nbrBoucles]').attr('min', 1).attr('max', 10).attr('step', 1)
             $('img.graduations_1_10').show()
@@ -617,7 +622,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             setTimeout(function () {
                 $('[name=nbrBoucles]').val(1)
                 interval = false;
-                calculate();
+                if(!firstLoad) calculate();
             })
             $('[name=nbrBoucles]').attr('min', 1).attr('max', 50).attr('step', 1)
             $('img.graduations_1_10').hide()
@@ -626,12 +631,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             $('.nbrBouclesView .jcf-select').hide() 
         }
 
-        jcf.destroy('input[name=nbrBoucles]');
-        setTimeout(function () { 
-            jcf.replace('input[name=nbrBoucles]'); 
-
-            heightBlock1Block2();
-        }) 
+        jcf.getInstance($('input[name=nbrBoucles]')).refresh()
+        heightBlock1Block2();
 
         
 
@@ -746,12 +747,12 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         }else if( s <= 1399 ){
             nbrJamion = 2;
             $('.warning-distance').slideUp()
-        }else if( s <= 1700 ){
+        }else if( s <= 2000 ){
             nbrJamion = 3;
             $('.warning-distance').slideUp()
-        }else if( s > 1700 ){
+        }else if( s > 2000 ){
             nbrJamion = 3;
-            /// show worning if area mor than 1700m2
+            /// show worning if area mor than 2000m2
             $('.warning-distance').slideDown()
         } 
 
@@ -782,10 +783,12 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
     $('.rangeH').change(function () { 
         $('input[name=hauteur]').val( $(this).val() );
+        $("#formDevis").valid();
         setNbrJamion() 
     })
     $('.rangeL').change(function () { 
         $('input[name=largeur]').val( $(this).val() )  
+        $("#formDevis").valid();
         setNbrJamion(); 
     })
 
@@ -824,10 +827,8 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
 
             $(this).val(val)  
             $('input[name=nbrBoucles]').val( val )  
-            jcf.destroy('input[name=nbrBoucles]');
-            setTimeout(function () {
-                jcf.replace('input[name=nbrBoucles]');
-            }) 
+
+            jcf.getInstance($('input[name=nbrBoucles]')).refresh()
             interval = false;
             calculate(); 
         // }
@@ -1071,6 +1072,16 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
                     ville:{  
                         required: true,  
                     }, 
+                    hauteur:{
+                        required: true,
+                        min: 1,
+                        number: true
+                    },
+                    largeur:{
+                        required: true,
+                        min: 1,
+                        number: true
+                    },
                     dateDebut: {
                       required: true,
                       australianDate: true

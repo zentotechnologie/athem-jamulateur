@@ -45,7 +45,7 @@ a img{
 }
 body{
     color: #000;
-    height: 100vh;
+    min-height: 100vh;
     font-size: 14px; 
     cursor: default;
     font-family: arial; 
@@ -328,11 +328,25 @@ input, a, button{
 }
 p.warning-distance {
     display: none;
-    background: #FEFB00;
     padding: 10px;
     font-size: 12px;
     margin-bottom: 10px;
-    border: 1px solid #b7b22f;
+    position: relative;
+    padding-left: 33px;
+    color: #595959;
+}
+p.warning-distance .info{
+    display: block;
+    height: 18px;
+    width: 18px;
+    text-align: center;
+    line-height: 18px;
+    background: #595959;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 5px;
 }
 
 .date .subLabel {
@@ -684,6 +698,9 @@ p.son-ml {
     vertical-align: top;
     padding-top: 16px;
 }
+.dimensions strong{
+    font-family: "montserratBold";
+}
 .dimensions .jcf-range.jcf-vertical .jcf-range-wrapper { 
     width: 7px; 
 }
@@ -953,10 +970,10 @@ label.error{
 
 @media (min-width: 1280px){
     .block > .content { 
-        min-height: 575px;
+        min-height: 595px;
     } 
     .block-3 > .content .item-1 {
-        min-height: 455px;
+        min-height: 475px;
     }
 }
 
@@ -969,6 +986,10 @@ label.error{
         max-width: 837px;
         margin: 0 auto;
         display: block;
+    }
+    .introduction {
+        max-width: 837px;
+        margin: 0 auto 20px;
     }
     form.blocks-content > div{ 
         float: left;
@@ -983,6 +1004,7 @@ label.error{
     }
     .wrapper { 
         margin-top: 0;
+        padding-top: 20px;
     }
     .wrapper:before {
         content: "";
