@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta charset='utf-8'> 
-		<title>Devis</title>
+		<title>Devis <?php echo $infos['devisNumber']; ?></title>
 		<style type="text/css"> 
 
 
@@ -366,7 +366,7 @@
 					<tr>
 						<td>Location des jamions</td>
 						<td align="right">1</td>
-						<td>Jour(s)</td>
+						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -695,7 +695,7 @@
 								<td>Total HT</td>
 								<td align="right"><?= number_format($Total['HT'],2,',',' ' ) ?> €</td>
 							</tr>
-							<?php if( $remise ): ?> 
+							<!-- <?php //if( $remise ): ?> 
 								<tr>
 									<td><?= empty($remise['label']) ? 'Remise' : $remise['label'] ?></td>
 									<td align="right"><?= $remise['value'] ?></td>
@@ -704,7 +704,7 @@
 									<td>Nouveau total HT</td>
 									<td align="right"><?= number_format($Total['HTR'],2,',',' ' ) ?> €</td>
 								</tr>
-							<?php endif ?>
+							<?php //endif ?> -->
 							<tr>
 								<td>TVA</td>
 								<td align="right"><?= number_format($Total['TVA'],2,',',' ' ) ?> €</td>
@@ -834,6 +834,6 @@
 	$dompdf->loadHtml($html);
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();  
-	// $dompdf->stream("codexworld",array("Attachment"=>0)); 
+	// $dompdf->stream("codexworld",array("Attachment"=>0)); die()
 	
 ?>

@@ -9,10 +9,16 @@ if( isset($_POST['type']) ):
 		 
 	switch ( $_POST['type'] ) {
 		case 'JamMobile':
-			unset($_POST['type']);
+			unset($_POST['type']); 
 			
-			foreach ($_POST as $key => $value) {
-				$db->exec("UPDATE JamMobile SET TotalPrice = '$value' WHERE idJamMobile = $key");
+			foreach ($_POST['price'] as $key => $value) {
+				$query = $db->prepare("UPDATE jamionsPrices SET jam_1 = :jam_1, jam_2 = :jam_2, jam_3 = :jam_3 WHERE id = :id ");
+				
+				$query->bindParam(":id", $key);
+				$query->bindParam(":jam_1", $value['jam_1']);
+				$query->bindParam(":jam_2", $value['jam_2']);
+				$query->bindParam(":jam_3", $value['jam_3']);
+				$query->execute();
 			}
 			break;
 

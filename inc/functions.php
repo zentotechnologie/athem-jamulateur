@@ -1,7 +1,4 @@
-<?php   
-	ini_set('display_errors', '1');
-	ini_set('display_startup_errors', '1');
-	error_reporting(E_ALL);
+<?php  
 
 	function printR($array)
 	{
@@ -498,20 +495,20 @@
 
         $remise = false;
         $Total['HTR'] = $Total['HT'];
-        if( $result['remise_montant'] > 0 ){
-        	$Total['HTR'] = $Total['HTR'] - $result['remise_montant'];
-        	$remise = array(
-        		'label' => $result['remise_label'],
-        		'value' => number_format($result['remise_montant'],2,',',' ' ).' €'
-        	);
-        }
-        if( $result['remise_pourcentage'] > 0 ){
-        	$Total['HTR'] = $Total['HTR'] - TAXE($Total['HTR'], $result['remise_pourcentage'] ); 
-        	$remise = array(
-        		'label' => $result['remise_label'],
-        		'value' => $result['remise_pourcentage'].'%'
-        	);
-        }
+        // if( $result['remise_montant'] > 0 ){
+        // 	$Total['HTR'] = $Total['HTR'] - $result['remise_montant'];
+        // 	$remise = array(
+        // 		'label' => $result['remise_label'],
+        // 		'value' => number_format($result['remise_montant'],2,',',' ' ).' €'
+        // 	);
+        // }
+        // if( $result['remise_pourcentage'] > 0 ){
+        // 	$Total['HTR'] = $Total['HTR'] - TAXE($Total['HTR'], $result['remise_pourcentage'] ); 
+        // 	$remise = array(
+        // 		'label' => $result['remise_label'],
+        // 		'value' => $result['remise_pourcentage'].'%'
+        // 	);
+        // }
 
 
 
@@ -563,7 +560,7 @@
 
 
 		//GMAIL
-		$mail->SMTPDebug = 2;	
+		$mail->SMTPDebug = 1;	
 		//Set the hostname of the mail server
 		$mail->Host = 'smtp.gmail.com';
 		// use
@@ -584,7 +581,9 @@
 		$mail->addAddress( $infos['email'] );
 		// $mail->addCC( getContactInfo()['email'] );
 		$mail->Subject  = 'JAMULATEUR - ATHEM';
-		$mail->addAttachment( $infos['addAttachment'] );
+		if($infos['addAttachment']){
+			$mail->addAttachment( $infos['addAttachment'] );
+		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
 		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/>Cette proposition financi&egrave;re peut probablement &ecirc;tre optimis&eacute;e, n&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/>Philippe<br/><a href="mailto:contact@athem-skertzo.com">contact@athem-skertzo.com</a><br/>GSM + 33 (0)6 07 32 09 21<br/>ATELIER ATHEM<br/><a href="http://www.athem-skertzo.com/" target="_blank">ATHEM WEBSITE</a> - <a href="https://www.facebook.com/athem" target="_blank">FACEBOOK</a> - <a href="https://plus.google.com/u/0/b/101244148760564709999/101244148760564709999/posts" target="_blank">GOOGLE+</a> - <a href="https://www.pinterest.com/stagedbyathem/" target="_blank">PINTEREST</a> - <a href="https://twitter.com/StagedbyATHEM" target="_blank">TWITTER</a></body></html>';
@@ -654,13 +653,6 @@
 		$query = $db->query("SELECT * FROM contents where slug = 'adresse_depot'");
         return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
 	}
-
-
-
-
-
-
-
 
 
 

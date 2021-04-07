@@ -326,7 +326,7 @@ input, a, button{
 .dimensions .jcf-range .jcf-range-wrapper{
     margin-bottom: -1px;
 }
-p.warning-distance {
+p.warning-message  {
     display: none;
     padding: 10px;
     font-size: 12px;
@@ -335,7 +335,7 @@ p.warning-distance {
     padding-left: 33px;
     color: #595959;
 }
-p.warning-distance .info{
+p.warning-message .info{
     display: block;
     height: 18px;
     width: 18px;
