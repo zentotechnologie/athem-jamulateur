@@ -3,7 +3,7 @@
 <?php generateJsonDataPrice() ?>
 <!DOCTYPE html>
 <!--[if lt IE 9]> <html class="lt-ie9" lang="fr"> <![endif]-->
-<html class="no-js" lang="fr">
+<html class="no-js" lang="fr" style="opacity: 1">
 <!--<![endif]-->
 <head>
 	<title>JAMULATEUR</title>
@@ -98,6 +98,7 @@
 	 							<div class="clear"></div>
 		 							<input type="text" name="cp" placeholder="CP">
 		 							<input type="text" name="ville" placeholder="Ville">
+		 							<input type="hidden" name="idf" placeholder="idf">
 		 							<input type="hidden" name="distance" value="-1">
 	 							<div class="clear"></div>
 	 						</div>
@@ -160,7 +161,7 @@
 	 				<div>
 	 					<div style="width: 50px"></div>
 	 					<div>
-	 						<p class="warning-distance">
+	 						<p class="warning-message warning-distance">
 				 				<span class="info">i</span>
 				 				Au vue des dimensions de votre façade, du matériel supplémentaire pourrait être nécessaire. Nous vous invitons à nous contacter.
 				 			</p>
@@ -192,6 +193,18 @@
 	 					</div>
 	 				</div>
 	 			</div> 
+
+	 			<div class="table">
+	 				<div>
+	 					<div style="width: 50px"></div>
+	 					<div>
+	 						<p class="warning-message warning-out-10-days">
+				 				<span class="info">i</span>
+				 				Pour une réservations de plus de 10 jours. Nous vous invitons à nous contacter.
+				 			</p>
+	 					</div>
+	 				</div>
+	 			</div>
 
 	 			<div class="table uploads">
 	 				<div>
@@ -779,8 +792,7 @@ $(function() {
 	}).on('changeDate', function (event) {  
 		$('[name=dateDebut]').datepicker('setEndDate', event.date );
 
-		calculate();
-
+		calculate(); 
 	});	 
 }); 
 </script>

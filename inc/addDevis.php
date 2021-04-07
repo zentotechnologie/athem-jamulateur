@@ -1,7 +1,4 @@
 <?php 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require 'functions.php'; 
 if(isset($_POST)):
 	extract($_POST); 
@@ -21,6 +18,7 @@ if(isset($_POST)):
 	 	`rueEvent`, 
 	 	`cpEvent`, 
 	 	`villeEvent`,
+	 	`idf`,
 	 	`paysEvent`,
 	 	`distance`,
 	 	`domaine`,
@@ -43,9 +41,6 @@ if(isset($_POST)):
 	 	`sonorisation_transport`, 
 	 	`sonorisation_taxe_sacem`, 
 	 	`autre_gardinnage`, 
-	 	`remise_montant`, 
-	 	`remise_pourcentage`, 
-	 	`remise_label`, 
 
 	 	`email`, 
 	 	`tel`, 
@@ -66,6 +61,7 @@ if(isset($_POST)):
 	 	'$rueEvent', 
 	 	'$cpEvent',
 	 	'$villeEvent', 
+	 	'$idf', 
 	 	'$paysEvent', 
 	 	'$distance',
 	 	'$domaine',
@@ -87,10 +83,7 @@ if(isset($_POST)):
 	 	'$sonorisation_hebergement', 
 	 	'$sonorisation_transport', 
 	 	'$sonorisation_taxe_sacem', 
-	 	'$autre_gardinnage', 
-	 	'$remise_montant', 
-	 	'$remise_pourcentage', 
-	 	'$remise_label', 
+	 	'$autre_gardinnage',  
 	 	
 	 	'$email', 
 	 	'$tel', 

@@ -62,8 +62,12 @@
                 geocoder.geocode({
                     'address': address
                 }, function (results, status) { 
+
                     if (status == google.maps.GeocoderStatus.OK) {  
+                        console.log(results)
                         
+                        if( typeAddress == 'destination' ) $('#formDevis [name=idf]').val( 0 )
+
                         for (var i=0; i < results[0].address_components.length; i++) {
                             for (var j=0; j < results[0].address_components[i].types.length; j++) {
                                 
@@ -105,10 +109,17 @@
                                         $('[name=devis]').removeClass('loading').val(''); 
                                         reject();
                                       }
+
+                                      
+
                                     } 
                                 }else{
                                     resolve( results[0].geometry.location )
                                 }
+
+                                if( typeAddress == 'destination' && results[0].address_components[i].short_name == "IDF" ){
+                                    $('#formDevis [name=idf]').val( 1 )
+                                } 
                             }
                             
 
@@ -223,6 +234,11 @@
                 if( !$("#formDevis [name=dateDebut]").valid() ) return false; 
                 if( !$("#formDevis [name=dateFin]").valid() ) return false; 
 
+                if( $('.warning-distance').is(":visible") ){
+                    $("[name=devis]").val('')
+                    return false
+                }
+
                 var data = {
                     depotAddress: $('[name=depotAddress]').val(),
                     rue         : $('#formDevis  [name=rue]').val(),
@@ -254,8 +270,6 @@
                     }
                 }   
 
-                console.log(data)
-
                 if( interval ) return false; 
                 var totalDevis = 0;   
  
@@ -263,15 +277,26 @@
                 
                 var nbrJour = DatesDiffrence( data.dateDebut, data.dateFin );  
 
-                console.log(" nbrJour ",nbrJour)
+                if( nbrJour > 10 ){
+                    $('.warning-out-10-days').slideDown()
+                    $("[name=devis]").val('')
+                    return;
+                }else{
+                    $('.warning-out-10-days').slideUp()
+                }
+
+                let jamionPrice = GlobalData.jamionsPrices.find(j=>{
+                    return parseInt(j.nbrJour) == parseInt(nbrJour) && parseInt(j.idf) == parseInt($('[name=idf]').val())
+                })
 
                 ///Required Price
-                if( nbrJour <= 90 ){
-                    totalDevis += GlobalData.JamMobile[ nbrJour ] * data.video_maping.jamions; 
+                if( nbrJour <= 10 ){
+                    totalDevis += jamionPrice[ 'jam_' + data.video_maping.jamions ]; 
                     totalDevis += GlobalData.JamSon[ nbrJour ] * data.sonorisation.unite; 
                 }else{
-                    totalDevis += GlobalData.JamMobile[ 90 ]; 
-                    totalDevis += GlobalData.JamSon[ 90 ]; 
+                    return;
+                    // totalDevis += GlobalData.JamMobile[ 90 ]; 
+                    // totalDevis += GlobalData.JamSon[ 90 ]; 
                 } 
 
                 
@@ -292,16 +317,16 @@
 
                 // Video Mapping
                     // Jamions
-                    totalDevis += GlobalData.autres.priceJamionImage * data.video_maping.jamions;
+                    // totalDevis += GlobalData.autres.priceJamionImage * data.video_maping.jamions;
 
                     // TECHNICIENS
-                    totalDevis += GlobalData.autres.priceTechnicienImage * data.video_maping.techniciens * nbrJour;
+                    // totalDevis += GlobalData.autres.priceTechnicienImage * data.video_maping.techniciens * nbrJour;
 
                     // Hebergement
-                    if( data.video_maping.hebergement ){
-                        var priceHebergementImage = GlobalData.autres.priceHebergementImage; 
-                        totalDevis += priceHebergementImage * nbrJour;
-                    }
+                    // if( data.video_maping.hebergement ){
+                    //     var priceHebergementImage = GlobalData.autres.priceHebergementImage; 
+                    //     totalDevis += priceHebergementImage * nbrJour;
+                    // }
 
                     //Transport 
                     if( data.video_maping.transport ){
@@ -345,14 +370,14 @@
                     }
 
                     // remise montant Eauro
-                    if( data.autres.remise_montant != '' ){  
-                        totalDevis -= parseFloat( data.autres.remise_montant );
-                    }
+                    // if( data.autres.remise_montant != '' ){  
+                    //     totalDevis -= parseFloat( data.autres.remise_montant );
+                    // }
 
                     // remise %
-                    if( data.autres.remise_pourcentage != '' ){  
-                        totalDevis -= (totalDevis * parseFloat( data.autres.remise_pourcentage )) / 100;
-                    }
+                    // if( data.autres.remise_pourcentage != '' ){  
+                    //     totalDevis -= (totalDevis * parseFloat( data.autres.remise_pourcentage )) / 100;
+                    // }
       
 
                 setTimeout(function () {
@@ -436,7 +461,8 @@
         formData.append("rueEvent"      , $('#formDevis [name=rue]').val() ); 
         formData.append("cpEvent"       , $('#formDevis [name=cp]').val() ); 
         formData.append("villeEvent"    , $('#formDevis [name=ville]').val() ); 
-        formData.append("paysEvent"    , $('#formDevis [name=pays]').val() ); 
+        formData.append("idf"           , $('#formDevis [name=idf]').val() ); 
+        formData.append("paysEvent"     , $('#formDevis [name=pays]').val() ); 
         formData.append("domaine"       , $('#formDevis [name=domaine]:checked').val() ); 
         formData.append("largeur"       , $('#formDevis [name=rangeL]').val() ); 
         formData.append("hauteur"       , $('#formDevis [name=rangeH]').val() ); 
@@ -457,9 +483,9 @@
         formData.append("sonorisation_transport"  , $('#formDevis [name=sonorisation_transport]').is(':checked')*1 ); 
         formData.append("sonorisation_taxe_sacem" , $('#formDevis [name=sonorisation_taxe_sacem]').is(':checked')*1 ); 
         formData.append("autre_gardinnage"        , $('#formDevis [name=autre_gardinnage]').is(':checked')*1 ); 
-        formData.append("remise_montant"          , $('#formDevis [name=remise_montant]').val() ); 
-        formData.append("remise_pourcentage"      , $('#formDevis [name=remise_pourcentage]').val() ); 
-        formData.append("remise_label"      , $('#formDevis [name=remise_label]').val() ); 
+        // formData.append("remise_montant"          , $('#formDevis [name=remise_montant]').val() ); 
+        // formData.append("remise_pourcentage"      , $('#formDevis [name=remise_pourcentage]').val() ); 
+        // formData.append("remise_label"      , $('#formDevis [name=remise_label]').val() ); 
 
         formData.append("email"         , $('#SendDevis [name=email]').val() ); 
         formData.append("tel"           , $('#SendDevis [name=tel]').val() ); 
@@ -753,7 +779,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         }else if( s > 2000 ){
             nbrJamion = 3;
             /// show worning if area mor than 2000m2
-            $('.warning-distance').slideDown()
+            $('.warning-distance').slideDown() 
         } 
 
         // set Nbr jamions

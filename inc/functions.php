@@ -1,4 +1,5 @@
-<?php   
+<?php  
+
 	function printR($array)
 	{
 		echo "<pre>";
@@ -89,7 +90,7 @@
 			"son" => array(),
 			"options" => array(),
 			"autres" => array(),
-			"JamMobile" => array(),
+			"jamionsPrices" => array(),
 			"JamSon" => array()
 		);
 
@@ -130,10 +131,16 @@
 
 
 		/////////////////////// JamMobile ///////////////////////
-		$query = $db->query("SELECT nbrJours, TotalPrice from JamMobile");
+		$query = $db->query("SELECT nbr_days,jam_1,jam_2,jam_3,idf from jamionsPrices");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['JamMobile'][$value['nbrJours']] = intval($value['TotalPrice']);
+			$data['jamionsPrices'][$key] = array(
+				"nbrJour" => intval($value['nbr_days']),
+				"jam_1" => intval($value['jam_1']),
+				"jam_2" => intval($value['jam_2']),
+				"jam_3" => intval($value['jam_3']),
+				"idf" 	=> intval($value['idf'])
+			);
 		}
 		/////////////////////////////////////////////////////////
 
@@ -195,6 +202,7 @@
 			"cp" 			=> $result['cp'],
 			"villeEvent"	=> $result['villeEvent'], 
 			"ville"			=> $result['ville'], 
+			"idf"			=> $result['idf'], 
 			"paysEvent"		=> $result['paysEvent'], 
 			"distance"		=> $result['distance'], 
 
@@ -258,6 +266,15 @@
 			$result['nbrBoucles'] =  1;
 		}
 
+		///////// jamionsPrices ///////// 
+		$jamion = array();
+		foreach ($DataPrices['jamionsPrices'] as $_k => $jam) {
+			if( $jam['nbrJour'] == $infos['nbrJours'] && $jam['idf'] == $infos['idf']  ){
+				$jamion = $jam;
+			}
+		}
+		/////////////////////////////////
+
 		$DataCalcule = array(
 			/////////////////////////////////////////// VIDÉO MAPPING /////////////////////////////////////////////////////////////
 			"visuel" => array(
@@ -268,34 +285,34 @@
 				"TVA" 			=> TVA( $DataPrices['visuel'][ $result['visuel'] ] * $result['nbrBoucles'] ),
 				"TotalTTC" 		=> HTTC($DataPrices['visuel'][ $result['visuel'] ] * $result['nbrBoucles'])
 			),
-			"video_jamions" => array(
-				"qte" 			=> $result['video_jamions'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceJamionImage'],
-				"totalHT" 		=> $DataPrices['autres']['priceJamionImage']*$result['video_jamions'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceJamionImage']*$result['video_jamions'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceJamionImage']*$result['video_jamions'])
-			),
+			// "video_jamions" => array(
+			// 	"qte" 			=> $result['video_jamions'],
+			// 	"prixUnitaire" 	=> $DataPrices['autres']['priceJamionImage'],
+			// 	"totalHT" 		=> $DataPrices['autres']['priceJamionImage']*$result['video_jamions'],
+			// 	"TVA" 			=> TVA( $DataPrices['autres']['priceJamionImage']*$result['video_jamions'] ),
+			// 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceJamionImage']*$result['video_jamions'])
+			// ),
 			"JamMobile" => array(
 				"qte" 			=> 1,
-				"prixUnitaire" 	=> $DataPrices['JamMobile'][ $infos['nbrJours'] ],
-				"totalHT" 		=> $DataPrices['JamMobile'][ $infos['nbrJours'] ] * $result['video_jamions'],
-				"TVA" 			=> TVA( $DataPrices['JamMobile'][ $infos['nbrJours'] ] * $result['video_jamions'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['JamMobile'][ $infos['nbrJours'] ] * $result['video_jamions'] ) 
+				"prixUnitaire" 	=> $jamion['jam_'.$result['video_jamions']],
+				"totalHT" 		=> $jamion['jam_'.$result['video_jamions']],
+				"TVA" 			=> TVA( $jamion['jam_'.$result['video_jamions']] ),
+				"TotalTTC" 		=> HTTC( $jamion['jam_'.$result['video_jamions']] ) 
 			),
-			"video_techniciens" => array(
-				"qte" 			=> $result['video_techniciens'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceTechnicienImage'],
-				"totalHT" 		=> $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'])
-			),
-			"video_hebergement" => array(
-				"qte" 			=> $result['video_hebergement'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceHebergementImage'],
-				"totalHT" 		=> $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'])
-			),
+			// // "video_techniciens" => array(
+			// // 	"qte" 			=> $result['video_techniciens'],
+			// // 	"prixUnitaire" 	=> $DataPrices['autres']['priceTechnicienImage'],
+			// // 	"totalHT" 		=> $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'],
+			// // 	"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'] ),
+			// // 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'])
+			// // ),
+			// "video_hebergement" => array(
+			// 	"qte" 			=> $result['video_hebergement'],
+			// 	"prixUnitaire" 	=> $DataPrices['autres']['priceHebergementImage'],
+			// 	"totalHT" 		=> $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'],
+			// 	"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'] ),
+			// 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'])
+			// ),
 
 			"video_transport" => array(
 				"qte" 			=> $result['video_transport']*$infos['distance'],
@@ -408,9 +425,25 @@
 
 		$subTotal = array(
 			"videoMapimg" => array(
-				"HT"  => $DataCalcule['visuel']['totalHT'] + $DataCalcule['video_jamions']['totalHT'] + $DataCalcule['JamMobile']['totalHT'] + $DataCalcule['video_techniciens']['totalHT'] + $DataCalcule['video_hebergement']['totalHT'] + $DataCalcule['video_transport']['totalHT'] ,
-				"TVA" => $DataCalcule['visuel']['TVA'] + $DataCalcule['video_jamions']['TVA'] + $DataCalcule['JamMobile']['TVA'] + $DataCalcule['video_techniciens']['TVA'] + $DataCalcule['video_hebergement']['TVA'] + $DataCalcule['video_transport']['TVA'],
-				"TTC" => $DataCalcule['visuel']['TotalTTC'] + $DataCalcule['video_jamions']['TotalTTC'] + $DataCalcule['JamMobile']['TotalTTC'] + $DataCalcule['video_techniciens']['TotalTTC'] + $DataCalcule['video_hebergement']['TotalTTC'] + $DataCalcule['video_transport']['TotalTTC']
+				"HT"  => $DataCalcule['visuel']['totalHT'] + 
+						// $DataCalcule['video_jamions']['totalHT'] + 
+						$DataCalcule['JamMobile']['totalHT'] + 
+						// $DataCalcule['video_techniciens']['totalHT'] + 
+						// $DataCalcule['video_hebergement']['totalHT'] + 
+						$DataCalcule['video_transport']['totalHT'] ,
+
+				"TVA" => $DataCalcule['visuel']['TVA'] + 
+						// $DataCalcule['video_jamions']['TVA'] + 
+						$DataCalcule['JamMobile']['TVA'] + 
+						// $DataCalcule['video_techniciens']['TVA'] + 
+						// $DataCalcule['video_hebergement']['TVA'] + 
+						$DataCalcule['video_transport']['TVA'],
+				"TTC" => $DataCalcule['visuel']['TotalTTC'] + 
+						// $DataCalcule['video_jamions']['TotalTTC'] + 
+						$DataCalcule['JamMobile']['TotalTTC'] + 
+						// $DataCalcule['video_techniciens']['TotalTTC'] + 
+						// $DataCalcule['video_hebergement']['TotalTTC'] + 
+						$DataCalcule['video_transport']['TotalTTC']
 			),
 			"sonorisation" => array(
 				"HT"  => $DataCalcule['son']['totalHT'] + $DataCalcule['sonorisation_unite']['totalHT'] + $DataCalcule['JamSon']['totalHT'] + $DataCalcule['sonorisation_techniciens']['totalHT'] + $DataCalcule['sonorisation_hebergement']['totalHT'] + $DataCalcule['sonorisation_transport']['totalHT'],
@@ -462,20 +495,20 @@
 
         $remise = false;
         $Total['HTR'] = $Total['HT'];
-        if( $result['remise_montant'] > 0 ){
-        	$Total['HTR'] = $Total['HTR'] - $result['remise_montant'];
-        	$remise = array(
-        		'label' => $result['remise_label'],
-        		'value' => number_format($result['remise_montant'],2,',',' ' ).' €'
-        	);
-        }
-        if( $result['remise_pourcentage'] > 0 ){
-        	$Total['HTR'] = $Total['HTR'] - TAXE($Total['HTR'], $result['remise_pourcentage'] ); 
-        	$remise = array(
-        		'label' => $result['remise_label'],
-        		'value' => $result['remise_pourcentage'].'%'
-        	);
-        }
+        // if( $result['remise_montant'] > 0 ){
+        // 	$Total['HTR'] = $Total['HTR'] - $result['remise_montant'];
+        // 	$remise = array(
+        // 		'label' => $result['remise_label'],
+        // 		'value' => number_format($result['remise_montant'],2,',',' ' ).' €'
+        // 	);
+        // }
+        // if( $result['remise_pourcentage'] > 0 ){
+        // 	$Total['HTR'] = $Total['HTR'] - TAXE($Total['HTR'], $result['remise_pourcentage'] ); 
+        // 	$remise = array(
+        // 		'label' => $result['remise_label'],
+        // 		'value' => $result['remise_pourcentage'].'%'
+        // 	);
+        // }
 
 
 
@@ -527,7 +560,7 @@
 
 
 		//GMAIL
-		$mail->SMTPDebug = 2;	
+		$mail->SMTPDebug = 1;	
 		//Set the hostname of the mail server
 		$mail->Host = 'smtp.gmail.com';
 		// use
@@ -548,7 +581,9 @@
 		$mail->addAddress( $infos['email'] );
 		// $mail->addCC( getContactInfo()['email'] );
 		$mail->Subject  = 'JAMULATEUR - ATHEM';
-		$mail->addAttachment( $infos['addAttachment'] );
+		if($infos['addAttachment']){
+			$mail->addAttachment( $infos['addAttachment'] );
+		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
 		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/>Cette proposition financi&egrave;re peut probablement &ecirc;tre optimis&eacute;e, n&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/>Philippe<br/><a href="mailto:contact@athem-skertzo.com">contact@athem-skertzo.com</a><br/>GSM + 33 (0)6 07 32 09 21<br/>ATELIER ATHEM<br/><a href="http://www.athem-skertzo.com/" target="_blank">ATHEM WEBSITE</a> - <a href="https://www.facebook.com/athem" target="_blank">FACEBOOK</a> - <a href="https://plus.google.com/u/0/b/101244148760564709999/101244148760564709999/posts" target="_blank">GOOGLE+</a> - <a href="https://www.pinterest.com/stagedbyathem/" target="_blank">PINTEREST</a> - <a href="https://twitter.com/StagedbyATHEM" target="_blank">TWITTER</a></body></html>';
@@ -618,13 +653,6 @@
 		$query = $db->query("SELECT * FROM contents where slug = 'adresse_depot'");
         return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
 	}
-
-
-
-
-
-
-
 
 
 
