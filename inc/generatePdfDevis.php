@@ -348,10 +348,10 @@
 				<?php endif ?>
 		
 				
-				<?php if( $DataCalcule['video_jamions']['totalHT'] > 0 ): ?>
+				<!-- <?php if( $DataCalcule['video_jamions']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Installation des jamions (compris une soirée de projection)</td>
-						<td align="right"><?= $DataCalcule['video_jamions']['qte'] ?></td>
+						<td align="right">1</td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['video_jamions']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_jamions']['totalHT'],2,',',' ' ) ?> €</td>
@@ -359,13 +359,13 @@
 						<td align="right"><?= number_format($DataCalcule['video_jamions']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_jamions']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr> 
-				<?php endif ?>
+				<?php endif ?> -->
 				
 
 				<?php if( $DataCalcule['JamMobile']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Mise à disposition des jamions (jours supplémentaires au delà de la 1ère soirée)</td>
-						<td align="right"><?= $DataCalcule['video_jamions']['qte'] ?> x <?= ( $infos['nbrJours'] == 1 ) ? 1 : ($infos['nbrJours'] - 1) ?></td>
+						<td>Location des jamions</td>
+						<td align="right">1</td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['totalHT'],2,',',' ' ) ?> €</td>
@@ -376,7 +376,7 @@
 				<?php endif ?>
 				
 
-				<?php if( $DataCalcule['video_techniciens']['totalHT'] > 0 ): ?>
+				<!-- <?php if( $DataCalcule['video_techniciens']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Rémunération des techniciens de vidéo mapping</td>
 						<td align="right"><?= $DataCalcule['video_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
@@ -387,9 +387,9 @@
 						<td align="right"><?= number_format($DataCalcule['video_techniciens']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_techniciens']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
-				<?php endif ?>
+				<?php endif ?> -->
 				
-				<?php if( $DataCalcule['video_hebergement']['totalHT'] > 0 ): ?>
+				<!-- <?php if( $DataCalcule['video_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Hébergement des techniciens de vidéo mapping</td>
 						<td align="right"><?= $DataCalcule['video_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
@@ -400,7 +400,7 @@
 						<td align="right"><?= number_format($DataCalcule['video_hebergement']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_hebergement']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
-				<?php endif ?>
+				<?php endif ?> -->
 				
 				<?php if( $DataCalcule['video_transport']['totalHT'] > 0 ): ?>
 					<tr>
@@ -470,19 +470,19 @@
 				
 				<?php if( $DataCalcule['sonorisation_unite']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Installation des unités de son</td>
+						<td>Location des unités de son  - équipement léger</td>
 						<td align="right"><?= $DataCalcule['sonorisation_unite']['qte'] ?> </td>
 						<td>Forfait</td>
-						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['prixUnitaire'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['totalHT'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['prixUnitaire'] + $DataCalcule['JamSon']['prixUnitaire'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['totalHT'] + $DataCalcule['JamSon']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
-						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TVA'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TotalTTC'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TVA'] + $DataCalcule['JamSon']['TVA'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TotalTTC'] + $DataCalcule['JamSon']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
 				<?php endif ?>
 
 				
-				<?php if( $DataCalcule['JamSon']['totalHT'] > 0 ): ?>
+				<!-- <?php if( $DataCalcule['JamSon']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Mise à disposition des unités de son</td>
 						<td align="right"><?= $DataCalcule['JamSon']['qte'] ?> x <?= $infos['nbrJours'] ?></td>
@@ -493,7 +493,7 @@
 						<td align="right"><?= number_format($DataCalcule['JamSon']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['JamSon']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr> 
-				<?php endif ?>
+				<?php endif ?> -->
 				
 				<?php if( $DataCalcule['sonorisation_techniciens']['totalHT'] > 0 ): ?>
 					<tr>

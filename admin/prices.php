@@ -135,14 +135,14 @@ if(isset($_POST['address'],$_POST['id'])){
         <!-- Main content -->
         <section class="content"> 
           <div class="row">  
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-8">
                 <!-- Custom Tabs -->
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                      <li class="<?= (!isset($_GET['tab']) || $_GET['tab'] == 1 || $_GET['tab'] == '' ) ? 'active' : '' ?>"><a href="#tab_1" data-toggle="tab">Jam Mobile</a></li>
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 2 ) ? 'active' : '' ?>"><a href="#tab_2" data-toggle="tab">Jam Son</a></li>
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 3 ) ? 'active' : '' ?>"><a href="#tab_3" data-toggle="tab">Les Visuels</a></li> 
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 4 ) ? 'active' : '' ?>"><a href="#tab_4" data-toggle="tab">Le Son</a></li> 
+                      <li class="<?= (!isset($_GET['tab']) || $_GET['tab'] == 1 || $_GET['tab'] == '' ) ? 'active' : '' ?>"><a href="#tab_1" data-toggle="tab">Jamion</a></li>
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 2 ) ? 'active' : '' ?>"><a href="#tab_2" data-toggle="tab">Son</a></li>
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 3 ) ? 'active' : '' ?>"><a href="#tab_3" data-toggle="tab">Textes des Visuels</a></li> 
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 4 ) ? 'active' : '' ?>"><a href="#tab_4" data-toggle="tab">Textes de Son</a></li> 
                       <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 5 ) ? 'active' : '' ?>"><a href="#tab_5" data-toggle="tab">Les Options</a></li> 
                       <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 6 ) ? 'active' : '' ?>"><a href="#tab_6" data-toggle="tab">Paramétrage</a></li>  
                     </ul>
@@ -365,7 +365,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             </div>
 
                             <hr>          
-                            <div class="row form-group">
+                            <div class="row form-group" style="display: none;">
                              <div class="col-xs-8">
                                 Prix d’installation d’1 véhicule jamion
                              </div> 
@@ -373,11 +373,9 @@ if(isset($_POST['address'],$_POST['id'])){
                                 <input type="hidden" name="fields[4][id]" value="<?= $result[4]['id'] ?>">
                                 <input type="text" class="form-control" name="fields[4][price]" value="<?= $result[4]['price'] ?>">
                              </div> 
-                            </div> 
+                            </div>  
 
-                            <hr>
-
-                            <div class="row form-group">
+                            <div class="row form-group" style="display: none;">
                              <div class="col-xs-8">
                                 Nombre maximal des techniciens Vidéo-Mapping
                              </div> 
@@ -385,10 +383,9 @@ if(isset($_POST['address'],$_POST['id'])){
                                 <input type="hidden" name="fields[10][id]" value="<?= $result[10]['id'] ?>">
                                 <input type="text" class="form-control" name="fields[10][price]" value="<?= $result[10]['price'] ?>">
                              </div> 
-                            </div>
-                            <hr>
+                            </div> 
 
-                            <div class="row form-group">
+                            <div class="row form-group" style="display: none;">
                              <div class="col-xs-8">
                                 Prix de rémunération (en jour) d’un technicien Vidéo-Mapping
                              </div> 
@@ -397,7 +394,8 @@ if(isset($_POST['address'],$_POST['id'])){
                                 <input type="text" class="form-control" name="fields[5][price]" value="<?= $result[5]['price'] ?>">
                              </div> 
                             </div>
-                            <hr>
+                            
+
                             <div class="row form-group">
                              <div class="col-xs-8">
                                 Hébergement équipe
@@ -535,7 +533,7 @@ if(isset($_POST['address'],$_POST['id'])){
               $result = $query->fetchAll(PDO::FETCH_ASSOC)[0];
             ?> 
 
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <div class="box">
                 <div class="box-header">L'address du dépot</div> 
                 <div class="box-body table-responsive ">

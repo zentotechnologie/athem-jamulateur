@@ -62,8 +62,12 @@
                 geocoder.geocode({
                     'address': address
                 }, function (results, status) { 
+
                     if (status == google.maps.GeocoderStatus.OK) {  
+                        console.log(results)
                         
+                        if( typeAddress == 'destination' ) $('#formDevis [name=idf]').val( 0 )
+
                         for (var i=0; i < results[0].address_components.length; i++) {
                             for (var j=0; j < results[0].address_components[i].types.length; j++) {
                                 
@@ -105,10 +109,17 @@
                                         $('[name=devis]').removeClass('loading').val(''); 
                                         reject();
                                       }
+
+                                      
+
                                     } 
                                 }else{
                                     resolve( results[0].geometry.location )
                                 }
+
+                                if( typeAddress == 'destination' && results[0].address_components[i].short_name == "IDF" ){
+                                    $('#formDevis [name=idf]').val( 1 )
+                                } 
                             }
                             
 
@@ -254,8 +265,6 @@
                     }
                 }   
 
-                console.log(data)
-
                 if( interval ) return false; 
                 var totalDevis = 0;   
  
@@ -263,15 +272,18 @@
                 
                 var nbrJour = DatesDiffrence( data.dateDebut, data.dateFin );  
 
-                console.log(" nbrJour ",nbrJour)
+                let jamionPrice = GlobalData.jamionsPrices.find(j=>{
+                    return parseInt(j.nbrJour) == parseInt(nbrJour) && parseInt(j.idf) == parseInt($('[name=idf]').val())
+                })
 
                 ///Required Price
-                if( nbrJour <= 90 ){
-                    totalDevis += GlobalData.JamMobile[ nbrJour ] * data.video_maping.jamions; 
+                if( nbrJour <= 10 ){
+                    totalDevis += jamionPrice[ 'jam_' + data.video_maping.jamions ]; 
                     totalDevis += GlobalData.JamSon[ nbrJour ] * data.sonorisation.unite; 
                 }else{
-                    totalDevis += GlobalData.JamMobile[ 90 ]; 
-                    totalDevis += GlobalData.JamSon[ 90 ]; 
+                    return;
+                    // totalDevis += GlobalData.JamMobile[ 90 ]; 
+                    // totalDevis += GlobalData.JamSon[ 90 ]; 
                 } 
 
                 
@@ -292,16 +304,16 @@
 
                 // Video Mapping
                     // Jamions
-                    totalDevis += GlobalData.autres.priceJamionImage * data.video_maping.jamions;
+                    // totalDevis += GlobalData.autres.priceJamionImage * data.video_maping.jamions;
 
                     // TECHNICIENS
-                    totalDevis += GlobalData.autres.priceTechnicienImage * data.video_maping.techniciens * nbrJour;
+                    // totalDevis += GlobalData.autres.priceTechnicienImage * data.video_maping.techniciens * nbrJour;
 
                     // Hebergement
-                    if( data.video_maping.hebergement ){
-                        var priceHebergementImage = GlobalData.autres.priceHebergementImage; 
-                        totalDevis += priceHebergementImage * nbrJour;
-                    }
+                    // if( data.video_maping.hebergement ){
+                    //     var priceHebergementImage = GlobalData.autres.priceHebergementImage; 
+                    //     totalDevis += priceHebergementImage * nbrJour;
+                    // }
 
                     //Transport 
                     if( data.video_maping.transport ){
@@ -345,14 +357,14 @@
                     }
 
                     // remise montant Eauro
-                    if( data.autres.remise_montant != '' ){  
-                        totalDevis -= parseFloat( data.autres.remise_montant );
-                    }
+                    // if( data.autres.remise_montant != '' ){  
+                    //     totalDevis -= parseFloat( data.autres.remise_montant );
+                    // }
 
                     // remise %
-                    if( data.autres.remise_pourcentage != '' ){  
-                        totalDevis -= (totalDevis * parseFloat( data.autres.remise_pourcentage )) / 100;
-                    }
+                    // if( data.autres.remise_pourcentage != '' ){  
+                    //     totalDevis -= (totalDevis * parseFloat( data.autres.remise_pourcentage )) / 100;
+                    // }
       
 
                 setTimeout(function () {

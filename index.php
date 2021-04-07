@@ -98,6 +98,7 @@
 	 							<div class="clear"></div>
 		 							<input type="text" name="cp" placeholder="CP">
 		 							<input type="text" name="ville" placeholder="Ville">
+		 							<input type="text" name="idf" placeholder="idf">
 		 							<input type="hidden" name="distance" value="-1">
 	 							<div class="clear"></div>
 	 						</div>
