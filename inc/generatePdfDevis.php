@@ -238,7 +238,7 @@
 									Nombre de soirée(s) sur place	
 								</td>
 								<td>
-									<?= $infos['nbrJours'] + 2 ?>
+									<?= $infos['nbrJoursPlusCalage'] ?>
 								</td>
 							</tr>
 							<tr>
@@ -379,7 +379,7 @@
 				<!-- <?php if( $DataCalcule['video_techniciens']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Rémunération des techniciens de vidéo mapping</td>
-						<td align="right"><?= $DataCalcule['video_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
+						<td align="right"><?= $DataCalcule['video_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['video_techniciens']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_techniciens']['totalHT'],2,',',' ' ) ?> €</td>
@@ -392,7 +392,7 @@
 				<!-- <?php if( $DataCalcule['video_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Hébergement des techniciens de vidéo mapping</td>
-						<td align="right"><?= $DataCalcule['video_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
+						<td align="right"><?= $DataCalcule['video_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['video_hebergement']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_hebergement']['totalHT'],2,',',' ' ) ?> €</td>
@@ -498,7 +498,7 @@
 				<?php if( $DataCalcule['sonorisation_techniciens']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Rémunération des techniciens de son</td>
-						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
+						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_techniciens']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_techniciens']['totalHT'],2,',',' ' ) ?> €</td>
@@ -511,7 +511,7 @@
 				<?php if( $DataCalcule['sonorisation_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Hébergement des techniciens de son</td>
-						<td align="right"><?= $DataCalcule['sonorisation_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlus2'] ?></td>
+						<td align="right"><?= $DataCalcule['sonorisation_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['totalHT'],2,',',' ' ) ?> €</td>

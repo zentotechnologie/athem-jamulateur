@@ -228,6 +228,7 @@
 		$DataPrices = getDataPrices(); 
 
 
+		$infos['nbrJoursPlusCalage'] = $infos['nbrJours'] + 1;
 
 		////// Transport et hebergement ///////////////
 		$priceHebergementImage 	= $DataPrices['autres']['priceHebergementImage'];
@@ -239,8 +240,8 @@
 		$PriceTransportHeberg = 0;
 
 		// Hebergement
-	 	$PriceTransportHeberg += ($priceHebergementImage * 2) * ($infos['nbrJours'] + 2);
-	 	$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceHebergementSon * ($infos['nbrJours'] + 2) : 0 ;
+	 	$PriceTransportHeberg += ($priceHebergementImage * 2) * ($infos['nbrJours'] + 1);
+	 	$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceHebergementSon * ($infos['nbrJours'] + 1) : 0 ;
 
 	 	// Transport
 	 	$PriceTransportHeberg += $priceDeplacementImage * $infos['distance'];
@@ -257,9 +258,7 @@
 	 	$liveVideo = (in_array('liveVideo', $infos['options'])) ? $DataPrices['options']['liveVideo'] : 0;
 	 	$teaser = (in_array('teaser', $infos['options'])) ? $DataPrices['options']['teaser'] : 0;
 	 	$affiche = (in_array('affiche', $infos['options'])) ? $DataPrices['options']['affiche'] : 0;
-		////////////////////////////////////////////////
-		
-		$infos['nbrJoursPlus2'] = $infos['nbrJours'] + 2;
+		//////////////////////////////////////////////// 
 
 		//printR(array($result, $DataPrices)) ;	
 		if( $result['visuel'] == 'performanceArt' ){
@@ -302,16 +301,16 @@
 			// // "video_techniciens" => array(
 			// // 	"qte" 			=> $result['video_techniciens'],
 			// // 	"prixUnitaire" 	=> $DataPrices['autres']['priceTechnicienImage'],
-			// // 	"totalHT" 		=> $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'],
-			// // 	"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'] ),
-			// // 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlus2'])
+			// // 	"totalHT" 		=> $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlusCalage'],
+			// // 	"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlusCalage'] ),
+			// // 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienImage']*$result['video_techniciens']*$infos['nbrJoursPlusCalage'])
 			// // ),
 			// "video_hebergement" => array(
 			// 	"qte" 			=> $result['video_hebergement'],
 			// 	"prixUnitaire" 	=> $DataPrices['autres']['priceHebergementImage'],
-			// 	"totalHT" 		=> $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'],
-			// 	"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'] ),
-			// 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlus2'])
+			// 	"totalHT" 		=> $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlusCalage'],
+			// 	"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlusCalage'] ),
+			// 	"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementImage']*$result['video_hebergement']*$infos['nbrJoursPlusCalage'])
 			// ),
 
 			"video_transport" => array(
@@ -348,16 +347,16 @@
 			"sonorisation_techniciens" => array(
 				"qte" 			=> $result['sonorisation_techniciens'],
 				"prixUnitaire" 	=> $DataPrices['autres']['priceTechnicienSon'],
-				"totalHT" 		=> $DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlus2'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlus2'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlus2'])
+				"totalHT" 		=> $DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'],
+				"TVA" 			=> TVA( $DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'] ),
+				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'])
 			),
 			"sonorisation_hebergement" => array(
 				"qte" 			=> $result['sonorisation_hebergement'],
 				"prixUnitaire" 	=> $DataPrices['autres']['priceHebergementSon'],
-				"totalHT" 		=> $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlus2'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlus2'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlus2'])
+				"totalHT" 		=> $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'],
+				"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] ),
+				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'])
 			),
 			"sonorisation_transport" => array(
 				"qte" 			=> $result['sonorisation_transport']*$infos['distance'],
@@ -413,11 +412,11 @@
 				"TotalTTC" 		=> "",
 			), 
 			"autre_gardinnage" => array(
-				"qte" 			=> $result['autre_gardinnage']*$infos['nbrJoursPlus2'],
+				"qte" 			=> $result['autre_gardinnage']*$infos['nbrJoursPlusCalage'],
 				"prixUnitaire" 	=> $DataPrices['autres']['priceGardiennage'],
-				"totalHT" 		=> $DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlus2'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlus2']),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlus2'])
+				"totalHT" 		=> $DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlusCalage'],
+				"TVA" 			=> TVA( $DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlusCalage']),
+				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceGardiennage']*$result['autre_gardinnage']*$infos['nbrJoursPlusCalage'])
 			),
 
 		);
@@ -560,7 +559,7 @@
 
 
 		//GMAIL
-		$mail->SMTPDebug = 1;	
+		$mail->SMTPDebug = 0;	
 		//Set the hostname of the mail server
 		$mail->Host = 'smtp.gmail.com';
 		// use
@@ -575,7 +574,7 @@
 		//Username to use for SMTP authentication - use full email address for gmail
 		$mail->Username = "athem.zento@gmail.com";
 		//Password to use for SMTP authentication
-		$mail->Password = "Xwo@6973nas";
+		$mail->Password = "ptnjuzmmblbrupvg";
 
 		$mail->setFrom( getContactInfo()['email'], 'ATHEM');
 		$mail->addAddress( $infos['email'] );
