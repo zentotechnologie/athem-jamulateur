@@ -313,7 +313,7 @@
                 });
 
 
-                nbrJour += 2;
+                nbrJour += 1;
 
                 // Video Mapping
                     // Jamions
@@ -879,6 +879,10 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
     $('#buttonDemandeDevis').click(function () {
  
         if( $("#formDevis").valid() ){
+
+            if( $('.warning-out-10-days').is(":visible") ){
+                return false
+            }
 
             if( $('[name=devis]').val() == '' ){
                 $('#error').modal('show').find('center p').text('Adresse invalide ou mauvais code postal');
