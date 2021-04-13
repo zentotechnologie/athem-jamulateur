@@ -10,15 +10,15 @@
 	}
 	function db_connect(){
 		
-		$servername = "localhost";
-		$username = "jamuser";
-		$password = "J@MZTO2o18"; // 
-		$dbname = "jamulateur";
-
 		// $servername = "localhost";
-		// $username = "root";
-		// $password = "mysql";
+		// $username = "jamuser";
+		// $password = "J@MZTO2o18"; // 
 		// $dbname = "jamulateur";
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -231,7 +231,7 @@
 		$infos['nbrJoursPlusCalage'] = $infos['nbrJours'] + 1;
 
 		////// Transport et hebergement ///////////////
-		$priceHebergementImage 	= $DataPrices['autres']['priceHebergementImage'];
+		// $priceHebergementImage 	= $DataPrices['autres']['priceHebergementImage'];
 		$priceHebergementSon 	= $DataPrices['autres']['priceHebergementSon'];
 
 		$priceDeplacementImage 	= $DataPrices['autres']['priceDeplacementImage'];
@@ -240,12 +240,16 @@
 		$PriceTransportHeberg = 0;
 
 		// Hebergement
-	 	$PriceTransportHeberg += ($priceHebergementImage * 2) * ($infos['nbrJours'] + 1);
-	 	$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceHebergementSon * ($infos['nbrJours'] + 1) : 0 ;
+	 	// $PriceTransportHeberg += ($priceHebergementImage * 2) * $infos['nbrJoursPlusCalage'];
+	 	if($infos['idf'] == 0){
+	 		$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceHebergementSon * ($infos['nbrJoursPlusCalage']) : 0 ;
+	 	} 
 
 	 	// Transport
-	 	$PriceTransportHeberg += $priceDeplacementImage * $infos['distance'];
-	 	$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceDeplacementSon * $infos['distance'] : 0 ;
+	 	if($infos['idf'] == 0){
+		 	$PriceTransportHeberg += $priceDeplacementImage * $infos['distance'];
+		 	$PriceTransportHeberg +=  ( $DataPrices['son'][ $result['son'] ] > 0 ) ? $priceDeplacementSon * $infos['distance'] : 0 ;
+		 }
 
 		////////////////////////////////////////////////
 
@@ -314,11 +318,11 @@
 			// ),
 
 			"video_transport" => array(
-				"qte" 			=> $result['video_transport']*$infos['distance'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceDeplacementImage']*2,
-				"totalHT" 		=> $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$infos['distance']*2,
-				"TVA" 			=> TVA( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$infos['distance']*2 ),
-				"TotalTTC" 		=> HTTC( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$infos['distance']*2 )
+				"qte" 			=> $infos['idf'] == 0 ? $result['video_transport']*$infos['distance']*2 : 0,
+				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementImage']*$result['video_jamions'] : 0,
+				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 : 0,
+				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 ) : 0,
+				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 ) : 0
 			),
 
 			/////////////////////////////////////////////// SONORISATION /////////////////////////////////////////////////////////
@@ -352,18 +356,18 @@
 				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceTechnicienSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'])
 			),
 			"sonorisation_hebergement" => array(
-				"qte" 			=> $result['sonorisation_hebergement'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceHebergementSon'],
-				"totalHT" 		=> $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'],
-				"TVA" 			=> TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'])
+				"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_hebergement'] : 0,
+				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceHebergementSon'] : 0,
+				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] : 0,
+				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] ) : 0,
+				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage']) : 0
 			),
 			"sonorisation_transport" => array(
-				"qte" 			=> $result['sonorisation_transport']*$infos['distance'],
-				"prixUnitaire" 	=> $DataPrices['autres']['priceDeplacementSon']*2,
-				"totalHT" 		=> $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$infos['distance']*2,
-				"TVA" 			=> TVA( $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$infos['distance']*2 ),
-				"TotalTTC" 		=> HTTC($DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$infos['distance']*2)
+				"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_transport']*$infos['distance']*2 : 0,
+				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_unite'] : 0,
+				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 : 0,
+				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 ) : 0,
+				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2) : 0
 			), 
 			/////////////////////////////////////////////// Demarches administratives /////////////////////////////////////////////////////////
 			"GestDemarAdmin" => array(
@@ -531,61 +535,33 @@
 	}
 
 
-	function sendEmailToCLient( $infos ){
-		
-		 
-		
+	function sendEmailToCLient( $infos ){ 
+
+		$contactInfos = getContactInfo();
 
 		$mail = new PHPMailer;
-		$mail->isSMTP();
 
-		// Zento
-		// Enable SMTP debugging
-		// 0 = off (for production use)
-		// 1 = client messages
-		// 2 = client and server messages
-		// $mail->SMTPDebug = 2;
-		// //Set the hostname of the mail server
-		// $mail->Host = 'auth.smtp.1and1.fr';
-		// //Set the SMTP port number - likely to be 25, 465 or 587
-		// $mail->Port = 465;
-		// //Whether to use SMTP authentication
-		// $mail->SMTPAuth = true;
-		// $mail->SMTPSecure = 'ssl'; 
-		// //Username to use for SMTP authentication
-		// $mail->Username = 'noreply-athem@zento.fr';
-		// //Password to use for SMTP authentication
-		// $mail->Password = 'Xwo@6973nas'; 
-
-
-		//GMAIL
-		$mail->SMTPDebug = 0;	
-		//Set the hostname of the mail server
-		$mail->Host = 'smtp.gmail.com';
-		// use
-		// $mail->Host = gethostbyname('smtp.gmail.com');
-		// if your network does not support SMTP over IPv6
-		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-		$mail->Port = 587;
-		//Set the encryption system to use - ssl (deprecated) or tls
-		$mail->SMTPSecure = 'tls';
-		//Whether to use SMTP authentication
-		$mail->SMTPAuth = true;
-		//Username to use for SMTP authentication - use full email address for gmail
-		$mail->Username = "athem.zento@gmail.com";
-		//Password to use for SMTP authentication
+		//SMTP GMAIL
+		$mail->isSMTP();  
+		$mail->SMTPDebug = 0;	 
+		$mail->Host = 'smtp.gmail.com'; 
+		$mail->Port = 587; 
+		$mail->SMTPSecure = 'tls'; 
+		$mail->SMTPAuth = true; 
+		$mail->Username = "athem.zento@gmail.com"; 
 		$mail->Password = "ptnjuzmmblbrupvg";
 
-		$mail->setFrom( getContactInfo()['email'], 'ATHEM');
+
+		$mail->setFrom( $contactInfos['email'], 'ATHEM');
 		$mail->addAddress( $infos['email'] );
 		// $mail->addCC( getContactInfo()['email'] );
-		$mail->Subject  = 'JAMULATEUR - ATHEM';
+		$mail->Subject  = 'JAMULATEUR - Atelier JAM';
 		if($infos['addAttachment']){
 			$mail->addAttachment( $infos['addAttachment'] );
 		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
-		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/>Cette proposition financi&egrave;re peut probablement &ecirc;tre optimis&eacute;e, n&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/>Philippe<br/><a href="mailto:contact@athem-skertzo.com">contact@athem-skertzo.com</a><br/>GSM + 33 (0)6 07 32 09 21<br/>ATELIER ATHEM<br/><a href="http://www.athem-skertzo.com/" target="_blank">ATHEM WEBSITE</a> - <a href="https://www.facebook.com/athem" target="_blank">FACEBOOK</a> - <a href="https://plus.google.com/u/0/b/101244148760564709999/101244148760564709999/posts" target="_blank">GOOGLE+</a> - <a href="https://www.pinterest.com/stagedbyathem/" target="_blank">PINTEREST</a> - <a href="https://twitter.com/StagedbyATHEM" target="_blank">TWITTER</a></body></html>';
+		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/> N&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone pour &eacute;tudier votre projet et finaliser votre chiffrage.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>ATELIER JAM</strong><br /> <span style="color: #555"><strong>PRODUCTION &amp; SC&Eacute;NOGRAPHIE CULTURELLE - COLLABORATION ARTISTIQUE</strong></span> </body></html>';
 
 		return ( $mail->send() ) ? true : false;
 	}
@@ -642,7 +618,8 @@
 	function getConditionsGenerales()
 	{	
 		$db = db_connect();
-		$query = $db->query("SELECT * FROM contents where slug = 'conditions_generales'");
+
+		$query = $db->query("SELECT * FROM contents where slug = 'conditions_generales'"); 
         return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
 	}
 

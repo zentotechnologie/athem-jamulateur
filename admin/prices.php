@@ -517,7 +517,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             </div>         
                             <div class="row form-group">
                              <div class="col-xs-8">
-                                Prix d’installation d’1 véhicule son
+                                Prix d’installation d'un dispositif sonore léger
                              </div> 
                              <div class="col-xs-4">
                                 <input type="hidden" name="fields[6][id]" value="<?= $result[6]['id'] ?>">
@@ -548,7 +548,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             <hr>
                             <div class="row form-group">
                              <div class="col-xs-8">
-                               Hébergement équipe
+                               Défraiements équipe technique
                              </div> 
                              <div class="col-xs-4">
                                 <input type="hidden" name="fields[1][id]" value="<?= $result[1]['id'] ?>">
@@ -558,7 +558,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             <hr>
                             <div class="row form-group">
                              <div class="col-xs-8">
-                                Transport (Coût / km)
+                                Renommer pour Transport du matériel (Coût / 1km)
                              </div> 
                              <div class="col-xs-4">
                                 <input type="hidden" name="fields[3][id]" value="<?= $result[3]['id'] ?>">

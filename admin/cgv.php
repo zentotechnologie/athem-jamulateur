@@ -5,7 +5,8 @@ $db = db_connect();
 
 if(isset($_POST['content'],$_POST['id'])){
   extract($_POST);
-  $query = $db->prepare("UPDATE `contents` SET `content` = ?  WHERE id = $id");
+  
+  $query = $db->prepare("UPDATE `contents` SET `content` = ?  WHERE id = $id"); 
   $query->execute( array($content) );
 }
 
@@ -36,35 +37,10 @@ if(isset($_POST['content'],$_POST['id'])){
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css">
-      .btn-remove img{
-          height: 22px;
-          margin-left: 24px;
-          cursor: pointer;
-      }
-      .fa.fa-thumbs-o-up,
-      .fa.fa-thumbs-o-down{
-          margin-top: 22px;
-      }
-      .nbr-participants .small-box .icon{
-        margin-top: 11px;
-      }
-      .nbr-participants p{
-        margin: 0;
-      }
-      .nbr-participants .small-box h3 {
-          font-size: 38px;
-          font-weight: bold;
-          margin: 0 0 7px 0;
-          white-space: nowrap;
-          padding: 0;
-      }
-      @media (max-width: 990px) { 
-      div .no-padding-990 {
-          padding: 0 !important;
-      }
-
-      }
+    <style type="text/css"> 
+      .mce-widget.mce-notification.mce-notification-warning {
+        display: none !important;
+      } 
     </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
@@ -143,7 +119,7 @@ if(isset($_POST['content'],$_POST['id'])){
           <div class="col-sm-12">
               <div class="box"> 
                 <div class="box-body table-responsive ">
-                   <form method="post" action="" class="form-horizontal  col-sm-12"">
+                   <form method="post" action="" class="form-horizontal  col-sm-12">
                       <div class="form-group"> 
                         <div class="col-sm-12">
                           <textarea class="form-control" name="content"><?= $result['content'] ?></textarea>

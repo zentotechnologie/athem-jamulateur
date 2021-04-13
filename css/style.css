@@ -603,11 +603,14 @@ p.son-ml {
      padding-top: 16px;
 }
 .block-3 > .content .item-2 .customLabel { 
-    width: 109px;
+    width: 141px;
     font-size: 17px;
     color: #fff;
     font-family: "montserratBold";
     line-height: 20px;
+}
+.block-3 > .content .item-2 .customLabel span.ht{  
+    font-family: "montserrat"; 
 }
 .block-3 > .content .item-2 input[name=devis]{
     height: 39px;

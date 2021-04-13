@@ -33,7 +33,7 @@
  	 		Ce calculateur de prix vous permet d’obtenir une première approche budgétaire de votre projet.
  	 	</p>
 		<p>
-			Le devis sera validé après de votre projet et du site de l’événement par l’équipe de l’Atelier JAM.
+			Le devis sera validé après étude de votre projet et du site de l’événement par l’équipe de l’Atelier JAM.
 		</p>
 		<p>
 			Pour soutenir la reprise des événements, nos tarifs de relance sont valables pour toute commande ferme<br> avant le 31/08/2021 pour la réalisation d’une projection en 2021.
@@ -128,7 +128,7 @@
 	 						 	<input type="radio" name="domaine" value="Public" checked> Public
 	 						 </label>
 	 						 <label class="nth-child-2">
-	 						 	<input type="radio" name="domaine" value="Privé"> Privé
+	 						 	<input type="radio" name="domaine" value="Privé"> Privé
 	 						 </label>
 	 					</div>
 	 				</div>
@@ -277,7 +277,7 @@
 		 					<span class="titleVisuel"><?= $ForfaisTexts['visuel'][1]['name'] ?></span>
 		 				</div>
 		 				<div class="range">
-		 					<input type="range" class="nbrBoucles" name="nbrBoucles" value="1" max="10" min="1" step="1">
+		 					<input type="range" class="nbrBoucles" name="nbrBoucles" id="nbrBoucles" value="1" max="10" min="1" step="1">
 		 					<img src="images/horizontal-range.vals.png" class="graduations_1_10">
 		 					<!-- <img src="images/horizontal-range.vals_10_100.png" class="graduations_10_100"> -->
 		 					<img src="images/horizontal-range.vals_5_50.png" class="graduations_5_50">
@@ -566,7 +566,7 @@
 		 			<div class="table">
 		 				<div>
 		 					<div class="customLabel">
-		 						DEVIS <br>estimatif
+		 						DEVIS <br>estimatif <span class="ht">(HT)</span>
 		 					</div>
 		 					<div class="inputContainer">
 		 						<input type="text" name="devis" disabled> 
@@ -717,7 +717,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" onclick="window.location.reload()" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">MERCI</h4>
       </div>
       <div class="modal-body"> 
