@@ -558,7 +558,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             <hr>
                             <div class="row form-group">
                              <div class="col-xs-8">
-                                Renommer pour Transport du matériel (Coût / 1km)
+                                Transport du matériel (Coût / 1km)
                              </div> 
                              <div class="col-xs-4">
                                 <input type="hidden" name="fields[3][id]" value="<?= $result[3]['id'] ?>">
