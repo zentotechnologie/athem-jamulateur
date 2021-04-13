@@ -83,7 +83,7 @@
                                             for (var k=0; k < results[0].address_components.length; k++) {
                                                 var types = results[0].address_components[k].types.join(",");
                                                 if (!isVille && (types == "sublocality,political" || types == "locality,political" || types == "neighborhood,political" || types == "administrative_area_level_1,political" || types == "administrative_area_level_2,political" || types == "administrative_area_level_3,political")) {
-                                                    $('#formDevis  [name=ville]').val(results[0].address_components[k].long_name); 
+                                                    //$('#formDevis  [name=ville]').val(results[0].address_components[k].long_name); 
                                                     isVille = true;
                                                 }
                                                 if (types == "postal_code" && hasZipCode == 0) {  
@@ -244,6 +244,7 @@
                     rue         : $('#formDevis  [name=rue]').val(),
                     cp          : $('#formDevis  [name=cp]').val(),
                     ville       : $('#formDevis  [name=ville]').val(),
+                    idf         : $('#formDevis  [name=idf]').val(),
                     dateDebut   : $('[name=dateDebut]').val(),
                     dateFin     : $('[name=dateFin]').val(),
                     visuel      : $('[name=index-images-animees]').val(),
@@ -329,9 +330,9 @@
                     // }
 
                     //Transport 
-                    if( data.video_maping.transport ){
+                    if( data.idf == '0' && data.video_maping.transport ){
                         var priceDeplacementImage = GlobalData.autres.priceDeplacementImage; 
-                        totalDevis += priceDeplacementImage * distance  * 2;
+                        totalDevis += ( priceDeplacementImage * data.video_maping.jamions ) * distance  * 2;
                     }
 
 
@@ -343,15 +344,15 @@
                     totalDevis += GlobalData.autres.priceTechnicienSon * data.sonorisation.techniciens  * nbrJour;
 
                     // Hebergement
-                    if( GlobalData.son[ data.son ] > 0 && data.sonorisation.hebergement ){
+                    if( data.idf == '0' && GlobalData.son[ data.son ] > 0 && data.sonorisation.hebergement ){
                         var priceHebergementSon = GlobalData.autres.priceHebergementSon; 
                         totalDevis += priceHebergementSon * nbrJour;
                     }
 
                     //Transport 
-                    if(  GlobalData.son[ data.son ] > 0 && data.sonorisation.transport ){
+                    if( data.idf == '0' && GlobalData.son[ data.son ] > 0 && data.sonorisation.transport ){
                         var priceDeplacementSon = GlobalData.autres.priceDeplacementSon; 
-                        totalDevis += priceDeplacementSon * distance * 2;
+                        totalDevis += (priceDeplacementSon * data.sonorisation.unite) * distance * 2;
                     }
 
                     
@@ -655,13 +656,14 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             $('img.graduations_5_50').show() 
             $('[name=nbrBouclesInput]').show()
             $('.nbrBouclesView .jcf-select').hide() 
-        }
+        } 
 
-        jcf.getInstance($('input[name=nbrBoucles]')).refresh()
-        heightBlock1Block2();
-
-        
-
+        jcf.destroy($('#nbrBoucles'))
+        setTimeout(function () {
+            jcf.replace($('[name=nbrBoucles]')) 
+            heightBlock1Block2();
+        })
+         
         
     })
 
@@ -828,8 +830,12 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             
         }else{
             
-            $('[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
-            jcf.getInstance($('[name=nbrBouclesSelect]')).refresh()
+            $('[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() ) 
+
+            jcf.destroy($('#nbrBouclesSelect'))
+            setTimeout(function () {
+                jcf.replace($('[name=nbrBouclesSelect]')) 
+            }) 
         } 
 
         setTimeout(function () {
@@ -839,31 +845,39 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         
     }) 
 
-    $('[name=nbrBouclesSelect]').change(function () {  
+    $('[name=nbrBouclesSelect]').change(function () { 
+
         $('input[name=nbrBoucles]').val( $(this).val() )  
-        jcf.getInstance($('input[name=nbrBoucles]')).refresh()
-        interval = false;
-        calculate();
+        jcf.destroy($('[name=nbrBoucles]'))
+        setTimeout(function () {
+            jcf.replace($('[name=nbrBoucles]'))
+            interval = false;
+            calculate();
+        }) 
     })
 
-    $('input[name=nbrBouclesInput]').keyup(function () {
+    $('[name=nbrBouclesInput]').keyup(function () {
 
         var val = $(this).val(); 
         // if( val >= 10 && val <= 100  ){
 
             $(this).val(val)  
-            $('input[name=nbrBoucles]').val( val )  
+            $('[name=nbrBoucles]').val( val )  
 
-            jcf.getInstance($('input[name=nbrBoucles]')).refresh()
-            interval = false;
-            calculate(); 
+
+            jcf.destroy($('[name=nbrBoucles]'))
+            setTimeout(function () {
+                jcf.replace($('[name=nbrBoucles]'))
+                interval = false;
+                calculate(); 
+            }) 
         // }
         
     })
 
-    $('input[name=nbrBouclesInput]').blur(function () {
+    $('[name=nbrBouclesInput]').blur(function () {
 
-        $(this).val( $('input[name=nbrBoucles]').val() )
+        $(this).val( $('[name=nbrBoucles]').val() )
         
     })
 
@@ -936,7 +950,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             }else{
                 
                 $('[name=nbrBouclesSelect]').val( $('[name=nbrBoucles]').val() )
-                jcf.getInstance($('[name=nbrBouclesSelect]')).refresh()
+                jcf.getInstance($('[name=nbrBouclesSelect]')).refresh() 
             }  
          } , 0); 
     })
@@ -1049,7 +1063,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
         });
 
         autocomplete.addListener('place_changed', function(  ) {
-            var data = getInfoAddress( autocomplete.getPlace() ); 
+            var data = getInfoAddress( autocomplete.getPlace() );  
  
             $('#formDevis [name=rue]').val( data.route )
             $('#formDevis [name=cp]').val( data.zipcode )
@@ -1189,6 +1203,9 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
                     }, 
                     ville:{  
                         required: true,  
+                    },
+                    pays:{  
+                        required: true
                     } 
                 }
             })

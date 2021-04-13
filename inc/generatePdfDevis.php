@@ -1,12 +1,6 @@
 <?php ob_start();?>
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset='utf-8'> 
-		<title>Devis <?php echo $infos['devisNumber']; ?></title>
-		<style type="text/css"> 
-
-
+<style type="text/css"> 
 			html{margin:20px 20px 20px}
 			body {
 			    font-family: sans-serif!important; 
@@ -76,6 +70,7 @@
 			.content-privacy-policy h1{
 				font-size: 14px!important;
 				text-transform: uppercase;
+				font-family: "DejaVuSans";
 			} 
 			.content-privacy-policy h2{
 				text-transform: uppercase;
@@ -87,8 +82,6 @@
 				font-size: 10px!important;
 			}
 		</style>
-	</head>
-	<body> 
 		<div>
 			<table>
 				<tr>
@@ -170,7 +163,7 @@
 									 <table width="100%" cellpadding="0" cellspacing="0">
 									 	<tr>
 									 		<td width="70"><?= $infos['fname'] ?> <?= $infos['lname'] ?></td>
-									 		<td>Tél. <?= $infos['tel'] ?></td>
+									 		<td>Tél. <?= preg_replace('#(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})#', '$1.$2.$3.$4.$5', $infos['tel']) ?></td>
 									 	</tr>
 									 </table>
 								</td>
@@ -230,7 +223,7 @@
 									Nombre de journée(s) de calage / installation
 								</td>
 								<td>
-									2
+									<?= $infos['nbrJoursPlusCalage'] - $infos['nbrJours'] ?>
 								</td>
 							</tr>
 							<tr>
@@ -285,12 +278,13 @@
 				</tr>
 			</table>
 
-			<p style="text-align: right; padding: 5px;background:#f3f3f3;">
-				Ce devis sera validé après inspection du site par les équipes d'ATHEM<br> 
-				La protection des publics, des biens et du matériel de projection sont à la charge du client<br>	 
-				Ce devis n'intègre pas les droits d'utilisation des contenus devant être acquis auprès de tiers,<br>
-				ainsi que les éventuels droits d’asile, location d’espace ou taxes.<br>
+			<p style="text-align: left; padding: 5px;background:#f3f3f3;">
+				Ce devis sera validé après étude de votre projet et du lieu de projection par les équipes de l’Atelier JAM.<br><br>
+
+				Ce devis n'intègre pas: le gardiennage obligatoire du matériel, les éventuels droits d'utilisation des contenus devant être acquis auprès de tiers, les éventuels droits d’asile, de location d’espace ou de taxes lies à la projection, la protection des publics.<br><br>
+
 				Pour une projection de 30 minutes après la tombée de la nuit.
+
 				<!-- <?php //$DataCalcule['visuel']['qte'] ?> -->
 			</p>
 
@@ -364,7 +358,7 @@
 
 				<?php if( $DataCalcule['JamMobile']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Location des jamions</td>
+						<td>Location et opération des jamions</td>
 						<td align="right">1</td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -404,7 +398,7 @@
 				
 				<?php if( $DataCalcule['video_transport']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Transport des équipes</td>
+						<td>Transport</td>
 						<td align="right"><?= $DataCalcule['video_transport']['qte'] ?></td>
 						<td>Km</td>
 						<td align="right"><?= number_format($DataCalcule['video_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -497,7 +491,7 @@
 				
 				<?php if( $DataCalcule['sonorisation_techniciens']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Rémunération des techniciens de son</td>
+						<td>Equipe technique</td>
 						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_techniciens']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -510,7 +504,7 @@
 				
 				<?php if( $DataCalcule['sonorisation_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Hébergement des techniciens de son</td>
+						<td>Défraiements équipe technique</td>
 						<td align="right"><?= $DataCalcule['sonorisation_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -523,7 +517,7 @@
 				
 				<?php if( $DataCalcule['sonorisation_transport']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Transport des équipes</td>
+						<td>Transport du matériel</td>
 						<td align="right"><?= $DataCalcule['sonorisation_transport']['qte'] ?></td>
 						<td>Km</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -756,7 +750,7 @@
 			<table class="footer">
 				<tr>
 					<td width="160">
-						<h3>ATHEM</h3>
+						<h3>The JAM PROJECT</h3>
 						<table >
 							<tr>
 								<td>2, rue René Bazin</td>
@@ -765,13 +759,13 @@
 								<td>75016 PARIS - FRANCE</td>
 							</tr>
 							<tr>
-								<td>www.athem-skertzo.com</td>
+								<td>www.thejamproject.com</td>
 							</tr>
 							<tr>
-								<td>No. Siren ou Siret : 39258871100037</td>
+								<td>RCS Paris 851 989 608</td>
 							</tr>
 							<tr>
-								<td>No. TVA intra. : FR02392588711</td>
+								<td>N° TVA intracommunautaire FR18 851 989 608</td>
 							</tr> 
 						</table>
 									
@@ -820,18 +814,15 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-		
-	</body>
-</html> 
+		</div> 
 
 <?php  $html = ob_get_clean();
-
+	header( 'content-type: text/html; charset=utf-8' );
 	require_once '../libraries/dompdf/autoload.inc.php';
 	use Dompdf\Dompdf;
 	$dompdf = new Dompdf();
 	 
-	$dompdf->loadHtml($html);
+	$dompdf->loadHtml($html,'UTF-8');
 	$dompdf->setPaper('A4', 'portrait');
 	$dompdf->render();  
 	// $dompdf->stream("codexworld",array("Attachment"=>0)); die()
