@@ -281,9 +281,9 @@
 			<p style="text-align: left; padding: 5px;background:#f3f3f3;">
 				Ce devis sera validé après étude de votre projet et du lieu de projection par les équipes de l’Atelier JAM.<br><br>
 
-				Ce devis n'intègre pas: le gardiennage obligatoire du matériel, les éventuels droits d'utilisation des contenus devant être acquis auprès de tiers, les éventuels droits d’asile, de location d’espace ou de taxes lies à la projection, la protection des publics.<br><br>
+				Ce devis n'intègre pas: le gardiennage obligatoire du matériel, les éventuels droits d'utilisation des contenus devant être acquis auprès de tiers, les éventuels droits d’asile, de location d’espace ou de taxes lies à la projection et l'accueil et la protection des publics.<br><br>
 
-				Pour une projection de 30 minutes après la tombée de la nuit.
+				Les projections démarrent 30 minutes après la tombée de la nuit.
 
 				<!-- <?php //$DataCalcule['visuel']['qte'] ?> -->
 			</p>
@@ -327,12 +327,12 @@
 									break; 
 
 								case 'performanceArt':
-									echo "Votre contenu: Facturer cahier des charges (1500€ HT) + frais de mise au format (800€ HT)";
+									echo "Cahier des charges et coordination artistique et technique";
 									break; 
 							} ?>
 						</td>
 						<td align="right"><?= $DataCalcule['visuel']['qte'] ?></td> 
-						<td>Minutes</td>
+						<td><?php echo $DataCalcule['visuel']['type'] == 'performanceArt' ? 'Forfait' : 'Minutes' ?></td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -356,9 +356,9 @@
 				<?php endif ?> -->
 				
 
-				<?php if( $DataCalcule['JamMobile']['totalHT'] > 0 ): ?>
+				
 					<tr>
-						<td>Location et opération des jamions</td>
+						<td>Location et opération du jamion</td>
 						<td align="right">1</td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -367,7 +367,7 @@
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
-				<?php endif ?>
+				
 				
 
 				<!-- <?php if( $DataCalcule['video_techniciens']['totalHT'] > 0 ): ?>
@@ -401,7 +401,7 @@
 						<td>Transport</td>
 						<td align="right"><?= $DataCalcule['video_transport']['qte'] ?></td>
 						<td>Km</td>
-						<td align="right"><?= number_format($DataCalcule['video_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
+						<td align="right"><?php echo $infos['jamions'] ?> x <?= number_format($DataCalcule['video_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['video_transport']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
 						<td align="right"><?= number_format($DataCalcule['video_transport']['TVA'],2,',',' ' ) ?> €</td>
@@ -462,7 +462,7 @@
 				<?php endif ?>
 
 				
-				<?php if( $DataCalcule['sonorisation_unite']['totalHT'] > 0 ): ?>
+				
 					<tr>
 						<td>Location des unités de son  - équipement léger</td>
 						<td align="right"><?= $DataCalcule['sonorisation_unite']['qte'] ?> </td>
@@ -473,7 +473,7 @@
 						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TVA'] + $DataCalcule['JamSon']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['TotalTTC'] + $DataCalcule['JamSon']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
-				<?php endif ?>
+				
 
 				
 				<!-- <?php if( $DataCalcule['JamSon']['totalHT'] > 0 ): ?>
@@ -520,7 +520,7 @@
 						<td>Transport du matériel</td>
 						<td align="right"><?= $DataCalcule['sonorisation_transport']['qte'] ?></td>
 						<td>Km</td>
-						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= $DataCalcule['sonorisation_unite']['qte'] ?> x <?= number_format($DataCalcule['sonorisation_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['TVA'],2,',',' ' ) ?> €</td>
@@ -529,7 +529,7 @@
 				<?php endif ?>
 
 
-
+				<?php $ForfaisTexts = GetForfaisTexts(); ?>
 
 
 				
@@ -550,7 +550,7 @@
 
 				<?php if( $DataCalcule['GestDemarAdmin']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Gestion des demarches administratives</td>
+						<td><?php echo $ForfaisTexts['options'][3]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['GestDemarAdmin']['qte'] ?></td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['GestDemarAdmin']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -562,6 +562,7 @@
 				<?php endif ?>
 
 
+				
 
 				
 				<?php if( $subTotal['options']['HT'] > 0 ): ?>
@@ -582,7 +583,7 @@
 
 				<?php if( $DataCalcule['captationVideo']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Réalisation d'une video de l´evenement</td>
+						<td><?php echo $ForfaisTexts['options'][0]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['captationVideo']['qte'] ?></td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['captationVideo']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -594,9 +595,23 @@
 				<?php endif ?>
 
 
+				<?php if( $DataCalcule['teaser']['totalHT'] > 0 ): ?>
+					<tr>
+						<td><?php echo $ForfaisTexts['options'][1]['name'] ?></td>
+						<td align="right"><?= $DataCalcule['teaser']['qte'] ?></td>
+						<td>Forfait</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['prixUnitaire'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['totalHT'],2,',',' ' ) ?> €</td>
+						<td align="center">20%</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['TVA'],2,',',' ' ) ?> €</td>
+						<td align="right"><?= number_format($DataCalcule['teaser']['TotalTTC'],2,',',' ' ) ?> €</td>
+					</tr>  
+				<?php endif ?>
+				
+
 				<?php if( $DataCalcule['liveVideo']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Diffusion en LIVE de l'événement sur votre site web et/ou vos réseaux sociaux</td>
+						<td><?php echo $ForfaisTexts['options'][2]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['liveVideo']['qte'] ?></td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['liveVideo']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -610,7 +625,7 @@
 
 				<?php if( $DataCalcule['affiche']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Réalisation d'une affiche pour annoncer l'événement</td>
+						<td><?php echo $ForfaisTexts['options'][4]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['affiche']['qte'] ?></td>
 						<td>Forfait</td>
 						<td align="right"><?= number_format($DataCalcule['affiche']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -619,20 +634,7 @@
 						<td align="right"><?= number_format($DataCalcule['affiche']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['affiche']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr>
-				<?php endif ?>
-
-				<?php if( $DataCalcule['teaser']['totalHT'] > 0 ): ?>
-					<tr>
-						<td>TEASER</td>
-						<td align="right"><?= $DataCalcule['teaser']['qte'] ?></td>
-						<td>Forfait</td>
-						<td align="right"><?= number_format($DataCalcule['teaser']['prixUnitaire'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['teaser']['totalHT'],2,',',' ' ) ?> €</td>
-						<td align="center">20%</td>
-						<td align="right"><?= number_format($DataCalcule['teaser']['TVA'],2,',',' ' ) ?> €</td>
-						<td align="right"><?= number_format($DataCalcule['teaser']['TotalTTC'],2,',',' ' ) ?> €</td>
-					</tr>  
-				<?php endif ?>
+				<?php endif ?> 
 
 				
 				<?php if( $subTotal['autres']['HT'] > 0 ): ?>

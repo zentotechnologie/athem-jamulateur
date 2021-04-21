@@ -10,15 +10,15 @@
 	}
 	function db_connect(){
 		
-		$servername = "localhost";
-		$username = "jamuser";
-		$password = "J@MZTO2o18"; // 
-		$dbname = "jamulateur";
-
 		// $servername = "localhost";
-		// $username = "root";
-		// $password = "mysql";
+		// $username = "jamuser";
+		// $password = "J@MZTO2o18"; // 
 		// $dbname = "jamulateur";
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -319,7 +319,7 @@
 
 			"video_transport" => array(
 				"qte" 			=> $infos['idf'] == 0 ? $result['video_transport']*$infos['distance']*2 : 0,
-				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementImage']*$result['video_jamions'] : 0,
+				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementImage']: 0,
 				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 : 0,
 				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 ) : 0,
 				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC( $DataPrices['autres']['priceDeplacementImage']*$result['video_transport']*$result['video_jamions']*$infos['distance']*2 ) : 0
@@ -358,13 +358,13 @@
 			"sonorisation_hebergement" => array(
 				"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_hebergement'] : 0,
 				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceHebergementSon'] : 0,
-				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] : 0,
-				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage'] ) : 0,
-				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_hebergement']*$infos['nbrJoursPlusCalage']) : 0
+				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'] : 0,
+				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'] ) : 0,
+				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage']) : 0
 			),
 			"sonorisation_transport" => array(
 				"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_transport']*$infos['distance']*2 : 0,
-				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_unite'] : 0,
+				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon'] : 0,
 				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 : 0,
 				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 ) : 0,
 				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2) : 0
@@ -543,7 +543,7 @@
 
 		//SMTP GMAIL
 		$mail->isSMTP();  
-		$mail->SMTPDebug = 0;	 
+		$mail->SMTPDebug = 1;	 
 		$mail->Host = 'smtp.gmail.com'; 
 		$mail->Port = 587; 
 		$mail->SMTPSecure = 'tls'; 
@@ -554,10 +554,12 @@
 
 		$mail->setFrom( $contactInfos['email'], 'ATHEM');
 		$mail->addAddress( $infos['email'] );
-		// $mail->addCC( getContactInfo()['email'] );
+		$mail->addCC( "contact@jamion.fr" );
 		$mail->Subject  = 'JAMULATEUR - Atelier JAM';
-		if($infos['addAttachment']){
-			$mail->addAttachment( $infos['addAttachment'] );
+		if($infos['attachments'] && count($infos['attachments']) > 0){
+			foreach ($infos['attachments']as $key => $attachment) {
+				$mail->addAttachment( $attachment );
+			}
 		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
@@ -598,6 +600,7 @@
 
 	function uploadFiles( $idDevis, $files, $uploaddir ){  ;
 
+		$attachments = array();
 		foreach ($files as $key => $file) {
   
 			$fileName = time()."_". basename( slugify($file['name']) );
@@ -610,9 +613,12 @@
 			    	"fileName" => $fileName,
 			    	"realName" => $file['name']
 			    ));
+
+			    $attachments[] = '../admin/uploads/'.$fileName;
 			}
 
-		} 
+		}
+		return $attachments;
 	} 
 
 	function getConditionsGenerales()

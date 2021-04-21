@@ -142,9 +142,9 @@ $db = db_connect();
                       <th>Société</th>
                       <th>Téléphone</th>
                       <th>E-mail</th> 
-                      <th>Débus de préstation</th> 
-                      <th>Fin de préstation</th> 
-                      <th>Document téléchargés</th> 
+                      <th>Début de prestation</th> 
+                      <th>Fin de prestation</th> 
+                      <th>Documents téléchargés</th> 
                       <th>Voir le devis</th> 
                       <th>supprimer</th>   
                     </tr>

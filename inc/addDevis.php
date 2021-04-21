@@ -106,8 +106,10 @@ if(isset($_POST)):
 
 		$idDevis = $db->lastInsertId();  
 		
+		$attachments = array();
+
 		if( count($_FILES) > 0 ){
-			uploadFiles( $idDevis, $_FILES, '../admin/uploads/' );
+			$attachments = uploadFiles( $idDevis, $_FILES, '../admin/uploads/' );
 		}
 
 		
@@ -116,13 +118,14 @@ if(isset($_POST)):
 		include 'generatePdfDevis.php';
 		$output = $dompdf->output(); 
 
-		file_put_contents( $infos['addAttachment'], $output );   
+		file_put_contents( $infos['addAttachment'], $output );
+		$attachments[] = $infos['addAttachment'];
 
 		include '../libraries/PHPMailer/PHPMailerAutoload.php';
 		
 		// if( sendEmailToCLient( array("email"=>$infos['email'], "addAttachment"=> $infos['addAttachment']) )  &&  sendEmailToAdmin( array("addAttachment"=> $infos['addAttachment'] ) ) ){
 
-		if( sendEmailToCLient( array("email"=>$infos['email'], "addAttachment"=> $infos['addAttachment']) )  ){
+		if( sendEmailToCLient( array("email"=>$infos['email'], "attachments"=> $attachments) )  ){
 			if(file_exists($infos['addAttachment'])){
 				unlink($infos['addAttachment']);
 			}
