@@ -346,7 +346,7 @@
                     // Hebergement
                     if( data.idf == '0' && GlobalData.son[ data.son ] > 0 && data.sonorisation.hebergement ){
                         var priceHebergementSon = GlobalData.autres.priceHebergementSon; 
-                        totalDevis += priceHebergementSon * nbrJour;
+                        totalDevis += priceHebergementSon * data.sonorisation.techniciens * nbrJour;
                     }
 
                     //Transport 
@@ -691,15 +691,15 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             switch( $('[name=video_jamions]').val() ){
                 case '1':
                     $('[name=sonorisation_unite]').val(1)
-                    $('[name=sonorisation_techniciens]').val(2)
+                    $('[name=sonorisation_techniciens]').val(1)
                     break;
                 case '2':
-                    $('[name=sonorisation_unite]').val(2)
-                    $('[name=sonorisation_techniciens]').val(2)
+                    $('[name=sonorisation_unite]').val(1)
+                    $('[name=sonorisation_techniciens]').val(1)
                     break;
                 case '3':
-                    $('[name=sonorisation_unite]').val(3)
-                    $('[name=sonorisation_techniciens]').val(3)
+                    $('[name=sonorisation_unite]').val(2)
+                    $('[name=sonorisation_techniciens]').val(2)
                     break;
             }
 
