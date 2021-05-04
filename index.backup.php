@@ -30,21 +30,27 @@
 	 </div> -->
 	 <div class="introduction">
  	 	<p>
- 	 		<?= _translate('introduction') ?>	
-	 	</p>
+ 	 		Ce calculateur de prix vous permet d’obtenir une première approche budgétaire de votre projet.
+ 	 	</p>
+		<p>
+			Le devis sera validé après étude de votre projet et du site de l’événement par l’équipe de l’Atelier JAM.
+		</p>
+		<p>
+			Pour soutenir la reprise des événements, nos tarifs de relance sont valables pour toute commande ferme<br> avant le 31/08/2021 pour la réalisation d’une projection en 2021.
+		</p>
 	 </div>
 	 <form class="blocks-content" id="formDevis" enctype="multipart/form-data" style="display: none;">
 	 	<div class="clear"></div>
 	 	<div class="block block-1">
 	 		<div class="head">
-	 			<?= _translate('event') ?>
+	 			événement
 	 		</div>
 	 		<div class="content"> 
 
 	 			<div class="table">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('type') ?>
+	 						Type
 	 					</div>
 	 					<div>
 	 						<?php  
@@ -53,7 +59,7 @@
 	 						$types = $query->fetchAll()
 	 						?>
 	 						<select name="type">
-	 							<option value=""><?= _translate('eventType') ?></option>
+	 							<option value="">Type d’événement</option>
 	 							<?php foreach ($types as $key => $type):?>
 	 								<option value="<?= $type['idType'] ?>"><?= $type['name'] ?></option> 
 	 							<?php endforeach ?>
@@ -64,21 +70,21 @@
 	 			<div class="table">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('location') ?>
+	 						Lieu
 	 					</div>
 	 					<div>
-	 						<input type="text" name="lieu" placeholder="<?= _translate('location') ?>">
+	 						<input type="text" name="lieu" placeholder="Lieu">
 	 					</div>
 	 				</div>
 	 			</div>
 	 			<div class="table">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('address') ?><sup style="top: -6px;">⁎</sup>
+	 						Adresse<sup style="top: -6px;">⁎</sup>
 	 					</div>
 	 					<div class="adresse">
 	 						<div>
-	 							<input type="text" name="rue" id="rue" placeholder="<?= _translate('street') ?>">
+	 							<input type="text" name="rue" id="rue" placeholder="RUE">
 	 						</div> 
 	 					</div>
 	 				</div>
@@ -90,8 +96,8 @@
 	 					<div class="adresse"> 
 	 						<div>
 	 							<div class="clear"></div>
-		 							<input type="text" name="cp" placeholder="<?= _translate('zipCode') ?>">
-		 							<input type="text" name="ville" placeholder="<?= _translate('city') ?>">
+		 							<input type="text" name="cp" placeholder="CP">
+		 							<input type="text" name="ville" placeholder="Ville">
 		 							<input type="hidden" name="idf" placeholder="idf">
 		 							<input type="hidden" name="distance" value="-1">
 	 							<div class="clear"></div>
@@ -106,7 +112,7 @@
 	 					</div> 
 	 					<div class="adresse"> 
 	 						<div> 
-		 						<input type="text" name="pays" placeholder="<?= _translate('country') ?>">  
+		 						<input type="text" name="pays" placeholder="Pays">  
 	 						</div>
 	 					</div>
 	 				</div>
@@ -115,14 +121,14 @@
 	 			<div class="table domaine">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('domain') ?>
+	 						Domaine
 	 					</div>
 	 					<div>
 	 						 <label>
-	 						 	<input type="radio" name="domaine" value="<?= _translate('public') ?>" checked> <?= _translate('public') ?>
+	 						 	<input type="radio" name="domaine" value="Public" checked> Public
 	 						 </label>
 	 						 <label class="nth-child-2">
-	 						 	<input type="radio" name="domaine" value="<?= _translate('private') ?>"> <?= _translate('private') ?>
+	 						 	<input type="radio" name="domaine" value="Privé"> Privé
 	 						 </label>
 	 					</div>
 	 				</div>
@@ -131,7 +137,7 @@
 	 			<div class="dimensions">
 	 				<div>
 	 					<strong>
-							<?= _translate('frontDimensions') ?>
+							Dimensions façade <span>(en m)</span>
 						</strong>
 	 				</div>
 	 				<div class="table"> 
@@ -157,7 +163,7 @@
 	 					<div>
 	 						<p class="warning-message warning-distance">
 				 				<span class="info">i</span>
-				 				<?= _translate('frontDimensionsErrorMsg') ?>
+				 				Au vue des dimensions de votre façade, du matériel supplémentaire pourrait être nécessaire. Nous vous invitons à nous contacter.
 				 			</p>
 	 					</div>
 	 				</div>
@@ -168,17 +174,17 @@
 	 			<div class="table date">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('date') ?>
+	 						Date
 	 					</div>
 	 					<div>
 	 						<div class="table">
 	 							<div>
-	 								<div class="subLabel subLabel-1"><?= _translate('dateStart') ?></div>
+	 								<div class="subLabel subLabel-1">début</div>
 	 								<div class="inputDate">
 	 									<input type="text" name="dateDebut" placeholder="01-01-2021" readonly>
 	 								</div>
 	 								
-	 								<div class="subLabel"><?= _translate('dateEnd') ?></div>
+	 								<div class="subLabel">fin</div>
 	 								<div class="inputDate">
 	 									<input type="text" name="dateFin" placeholder="01-01-2021" readonly>
 	 								</div> 
@@ -194,7 +200,7 @@
 	 					<div>
 	 						<p class="warning-message warning-out-10-days">
 				 				<span class="info">i</span>
-				 				<?= _translate('dateErrorMsg') ?>
+				 				Pour une réservations de plus de 10 jours. Nous vous invitons à nous contacter.
 				 			</p>
 	 					</div>
 	 				</div>
@@ -203,7 +209,11 @@
 	 			<div class="table uploads">
 	 				<div>
 	 					<div class="customLabel">
-	 						<?= _translate('downloadLabel') ?>
+	 						téléchargez<br>
+	 						<strong>
+	 							vos plans
+								ou images
+	 						</strong>
 	 					</div>
 	 					<div class="block-files">
 	 						 <img src="images/icon-upload.png">
@@ -223,13 +233,13 @@
 
 	 	<div class="block block-2">
 	 		<div class="head">
-	 			<?= _translate('content') ?>
+	 			Contenus
 	 		</div>
 	 		<div class="content">
 		 		<div class="table img-button-container images-animees">
 		 			<div>
 		 				<div class="customLabel">
-		 					<?= _translate('imagesLabel') ?>
+		 					Images<br> animées
 		 				</div>
 		 				<div class="item-1 alignLeft">
 		 					<a href="#" class="img-button" data-index="creationOriginale"></a>
@@ -262,8 +272,8 @@
 		 		<div class="table boucles">
 		 			<div>
 		 				<div class="customLabel">
-		 					<span class="titleDefault"><?= _translate('timeLabel') ?></span> 
-		 					<span class="titleCreationOriginal"><?= _translate('timeLabel') ?></span> 
+		 					<span class="titleDefault">Durée</span> 
+		 					<span class="titleCreationOriginal">Durée</span> 
 		 					<span class="titleVisuel"><?= $ForfaisTexts['visuel'][1]['name'] ?></span>
 		 				</div>
 		 				<div class="range">
@@ -292,7 +302,7 @@
 		 		<div class="table son img-button-container">
 		 			<div>
 		 				<div class="customLabel">
-		 					<?= _translate('sound') ?>
+		 					son
 		 				</div>
 		 				<div class="item-1 alignLeft">
 		 					<a href="#" class="img-button active" data-index="creationOriginale"></a>
@@ -326,7 +336,7 @@
 
 	 	<div class="block block-3">
 	 		<div class="head">
-	 			<?= _translate('options') ?>
+	 			Options
 	 		</div>
 	 		<div class="content">
 	 			<div class="item-1">
@@ -354,7 +364,7 @@
 		 				<div>
 		 					<div class="definition-de-option">
 		 						<p class="default captationVideo">
-				 					 <?= _translate('choseYourOption') ?>
+				 					 Choisissez <br>vos options
 				 					<span class="info">i</span>
 				 				</p>
 				 				<p class="option captationVideo">
@@ -556,7 +566,7 @@
 		 			<div class="table">
 		 				<div>
 		 					<div class="customLabel">
-		 						<?= _translate('estimateLabel') ?> <span class="ht">(HT)</span>
+		 						DEVIS <br>estimatif <span class="ht">(HT)</span>
 		 					</div>
 		 					<div class="inputContainer">
 		 						<input type="text" name="devis" disabled> 
@@ -573,13 +583,13 @@
 		 			</div>	 -->
 
 		 			<div class="recevoir-devis">
-		 				<h2><?= _translate('receiveEstimateLabel') ?> <span>?</span></h2>
+		 				<h2>recevoir le DEVIS détaillé <span>?</span></h2>
 		 			</div>	
 
 		 			<div class="table blockEmail">
 			 			<div>
 			 				<div class="emailInput">
-			 					<input type="text" name="email" placeholder="<?= _translate('yourEmail') ?>">
+			 					<input type="text" name="email" placeholder="Votre e-mail">
 			 				</div>
 			 				<div class="submitInput">
 			 					<button type="button" id="buttonDemandeDevis">Envoyer</button>
@@ -609,34 +619,34 @@
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><?= _translate('modalReceiveEstimateTitle') ?></h4>
+        <h4 class="modal-title">recevoir votre devis</h4>
       </div>
       <div class="modal-body">
-        <p><?= _translate('indication') ?></p>
+        <p>Indiquer vos noms et adresses pour recevoir votre devis </p>
         <form class="form-horizontal" id="SendDevis">
 	        <div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('emailAddress') ?></label>
+			    <label  class="col-sm-3 control-label">ADRESSE MAIL</label>
 			    <div class="col-sm-9">
 			      <input class="form-control" name="email" placeholder="">
 			    </div>
 			</div>
 
 			<div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('phone') ?></label>
+			    <label  class="col-sm-3 control-label">TÉLÉPHONE</label>
 			    <div class="col-sm-4">
 			      <input class="form-control" name="tel" placeholder="">
 			    </div>
 			</div>
 
 			<div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('company') ?></label>
+			    <label  class="col-sm-3 control-label">SOCIÉTÉ</label>
 			    <div class="col-sm-9">
 			      <input class="form-control" name="societe" placeholder="">
 			    </div>
 			</div>
 
 			<div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('name') ?></label>
+			    <label  class="col-sm-3 control-label">NOM</label>
 			    <div class="col-sm-4">
 			      <input type="text" class="form-control" name="fname" placeholder="">
 			    </div>
@@ -646,7 +656,7 @@
 			</div>
 
 			<div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('address') ?></label>
+			    <label  class="col-sm-3 control-label">ADRESSE</label>
 			    <div class="col-sm-9">
 			      <input class="form-control" name="address1" placeholder="">
 			    </div>
@@ -660,23 +670,23 @@
 			</div>
 
 			<div class="form-group">
-			    <label  class="col-sm-3 control-label"><?= _translate('address') ?></label>
+			    <label  class="col-sm-3 control-label">ADRESSE</label>
 			    <div class="col-sm-4">
-			      <input type="text" class="form-control" name="cp" placeholder="<?= _translate('zipCode') ?>">
+			      <input type="text" class="form-control" name="cp" placeholder="CP">
 			    </div>
 			    <div class="col-sm-5">
-			      <input class="form-control" name="ville" placeholder="<?= _translate('city') ?>">
+			      <input class="form-control" name="ville" placeholder="Ville">
 			    </div> 
 			</div>
 			<div class="form-group">
 			    <label  class="col-sm-3 control-label"></label> 
 			    <div class="col-sm-9">
-			      <input class="form-control" name="pays" placeholder="<?= _translate('country') ?>">
+			      <input class="form-control" name="pays" placeholder="Pays">
 			    </div>
 			</div>
 			<div class="privacy-policy">
 				<p>
-					<a href="#" id="open-privacy-policy"> <?= _translate('cgvLinkText') ?> </a>
+					<a href="#" id="open-privacy-policy"> Consultez nos conditions générales </a>
 				</p>
 				<div class="content-privacy-policy" style="display: none;">
 				 	<?= getConditionsGenerales() ?>
@@ -686,7 +696,7 @@
 			</div>
 
 			<div class="submitBTN">
-				<button type="button" class="btn btn-large" id="ButtonSendDevis"><?= _translate('receiveYourEstimation') ?></button>
+				<button type="button" class="btn btn-large" id="ButtonSendDevis">Recevoir votre devis</button>
 			</div>
 
 			<p class="footer-modal">
@@ -708,17 +718,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><?= _translate('modalThanksTitle') ?></h4>
+        <h4 class="modal-title">MERCI</h4>
       </div>
       <div class="modal-body"> 
       	
       	<center> 
       		<p>
-      			<?= _translate('yourEstimationHasBeenSentToYourEmailAddress') ?> <br> <span id="email"> ....@....com </span><br>
-      			<?= _translate('dontForgetToCheckYourSpam') ?>
+      			Votre devis a bien été envoyé à l'adresse <br> <span id="email"> ....@....com </span><br>
+      			N'oubliez pas de vérifier vos spams.
       		</p>
       		<div class="submitBTN">
-				<a class="btn btn-large" data-dismiss="modal"><?= _translate('seeYouSoon') ?></a>
+				<a class="btn btn-large" data-dismiss="modal">À BIENTÔT</a>
 			</div>
       	</center>
       </div>
@@ -758,15 +768,6 @@
 
 <script type="text/javascript" src="js/script.js"></script> 
 <script type="text/javascript"> 
-
-var errorMessages = {
-	invalidAddress: "<?= _translate('invalidAddress') ?>",
-	errorGeolocalisation: "<?= _translate('errorGeolocalisation') ?>",
-	invalidAdressOrZipCodeerrorMessages: "<?= _translate('invalidAdressOrZipCodeerrorMessages') ?>"
-}
-
-var currentLang = "<?php echo getCurrendLang() ?>"
-
 $(function() {
 	jcf.replaceAll();
  

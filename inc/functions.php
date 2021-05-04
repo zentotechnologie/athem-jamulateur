@@ -10,15 +10,15 @@
 	}
 	function db_connect(){
 		
-		$servername = "localhost";
-		$username = "jamuser";
-		$password = "J@MZTO2o18"; // 
-		$dbname = "jamulateur";
-
 		// $servername = "localhost";
-		// $username = "root";
-		// $password = "mysql";
+		// $username = "jamuser";
+		// $password = "J@MZTO2o18"; // 
 		// $dbname = "jamulateur";
+
+		$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -660,7 +660,18 @@
         return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
 	}
 
+	function getCurrendLang()
+	{
+		return isset($_GET['lang']) && $_GET['lang'] == 'en' ? 'en' : 'fr';
+	}
 
+
+	function _translate($keyString)
+	{
+		$languages = json_decode(file_get_contents("./inc/languages.min.json"), true);
+		$currendLang = getCurrendLang();
+		return $languages[$currendLang][$keyString];
+	} 
 
 
 

@@ -95,7 +95,7 @@
                                                 if(hasZipCode == 0 && !isVille ){
                                                     $('#formDevis [name=cp]').val( '' ).valid();
                                                     $('#formDevis [name=ville]').val( '' ).valid();
-                                                    $('#error').modal('show').find('center p').text("L'adresse que vous avez saisie est invalide")
+                                                    $('#error').modal('show').find('center p').text(errorMessages.invalidAddress)
                                                     $('[name=distance]').val( "-1" )
                                                     reject();
                                                 }
@@ -104,7 +104,7 @@
                                       }else{ 
                                         $('#formDevis [name=cp]').val( '' ).valid();
                                         $('#formDevis [name=ville]').val( '' ).valid();
-                                        $('#error').modal('show').find('center p').text("L'adresse que vous avez saisie est invalide")
+                                        $('#error').modal('show').find('center p').text(errorMessages.invalidAddress)
                                         $('[name=distance]').val( "-1" )
                                         $('[name=devis]').removeClass('loading').val(''); 
                                         reject();
@@ -131,7 +131,7 @@
                         $('[name=devis]').removeClass('loading').val(''); 
                         $('#formDevis  [name=cp]').val(''); 
                         $('#formDevis  [name=ville]').val(''); 
-                        $('#error').modal('show').find('center p').text("La géolocalisation ne peut pas être effectué pour le moment, veillez réesayer"); 
+                        $('#error').modal('show').find('center p').text(errorMessages.errorGeolocalisation); 
                     }
                 });
             }else{
@@ -227,7 +227,7 @@
 
                 var distance = $('[name=distance]').val()
                 if( parseInt(distance) < 0 ) {
-                    $('#error').modal('show').find('center p').text('Adresse invalide ou mauvais code postal')
+                    $('#error').modal('show').find('center p').text(errorMessages.invalidAdressOrZipCode)
                     return false;
                 } 
 
@@ -498,6 +498,9 @@
         formData.append("cp"            , $('#SendDevis [name=cp]').val() ); 
         formData.append("ville"         , $('#SendDevis [name=ville]').val() ); 
         formData.append("pays"         , $('#SendDevis [name=pays]').val() ); 
+
+        /// lang
+        formData.append("lang"         , window.currentLang); /// defined o index.php
 
         // HTML file input, chosen by user   
         $.each(filesInputElement, function(index, file){
@@ -899,7 +902,7 @@ var countriesCodes = ["fr","pt","es","be","lu","nl","de","ch","at","cz","pl","si
             }
 
             if( $('[name=devis]').val() == '' ){
-                $('#error').modal('show').find('center p').text('Adresse invalide ou mauvais code postal');
+                $('#error').modal('show').find('center p').text(errorMessages.invalidAdressOrZipCode);
                 return false
             }
 
