@@ -505,7 +505,7 @@
 				<?php if( $DataCalcule['sonorisation_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Défraiements équipe technique</td>
-						<td align="right"><?= $DataCalcule['sonorisation_hebergement']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
+						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
 						<td>Jour(s)</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['totalHT'],2,',',' ' ) ?> €</td>
@@ -515,7 +515,7 @@
 					</tr> 
 				<?php endif ?> 
 				
-				<?php if( $DataCalcule['sonorisation_transport']['totalHT'] > 0 ): ?>
+				<!-- <?php if( $DataCalcule['sonorisation_transport']['totalHT'] > 0 ): ?>
 					<tr>
 						<td>Transport du matériel</td>
 						<td align="right"><?= $DataCalcule['sonorisation_transport']['qte'] ?></td>
@@ -526,7 +526,7 @@
 						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['TVA'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_transport']['TotalTTC'],2,',',' ' ) ?> €</td>
 					</tr> 
-				<?php endif ?>
+				<?php endif ?> -->
 
 
 				<?php $ForfaisTexts = GetForfaisTexts(); ?>

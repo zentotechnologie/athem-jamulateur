@@ -350,10 +350,10 @@
                     }
 
                     //Transport 
-                    if( data.idf == '0' && GlobalData.son[ data.son ] > 0 && data.sonorisation.transport ){
-                        var priceDeplacementSon = GlobalData.autres.priceDeplacementSon; 
-                        totalDevis += (priceDeplacementSon * data.sonorisation.unite) * distance * 2;
-                    }
+                    // if( data.idf == '0' && GlobalData.son[ data.son ] > 0 && data.sonorisation.transport ){
+                    //     var priceDeplacementSon = GlobalData.autres.priceDeplacementSon; 
+                    //     totalDevis += (priceDeplacementSon * data.sonorisation.unite) * distance * 2;
+                    // }
 
                     
 
@@ -522,15 +522,15 @@
                 $('#sent #email').text( $('#demandeDevis [name=email]').val() );
                 $('#sent').modal('show');
 
-                $("form").get(0).reset();
-                $("form").get(1).reset();
-                $('.filesPreview').html('');
-                filesInputElement = {};
+                // $("form").get(0).reset();
+                // $("form").get(1).reset();
+                // $('.filesPreview').html('');
+                // filesInputElement = {};
 
-                jcf.destroyAll();
-                setTimeout(function(){
-                    jcf.replaceAll();
-                })
+                // jcf.destroyAll();
+                // setTimeout(function(){
+                //     jcf.replaceAll();
+                // })
                 //////// End success ///////////
             // } 
 
