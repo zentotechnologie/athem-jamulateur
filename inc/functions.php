@@ -53,37 +53,40 @@
 	{	
 		$data = array();
 		$db = db_connect();
+
+		$isFr = getCurrendLang() === 'fr';
+
 		//////////////////////// Visuel ////////////////////////
-		$query = $db->query("SELECT name, description from visuel");
+		$query = $db->query("SELECT name, description, name_en, description_en from visuel");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['visuel'][$key]['name'] = $value['name'];
-			$data['visuel'][$key]['description'] = $value['description'];
+			$data['visuel'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['visuel'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		///////////////////////////////////////////////////////
 
 		//////////////////////// SON ////////////////////////
-		$query = $db->query("SELECT  name, description from son");
+		$query = $db->query("SELECT  name, description, name_en, description_en from son");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['son'][$key]['name'] = $value['name'];
-			$data['son'][$key]['description'] = $value['description'];
+			$data['son'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['son'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		////////////////////////////////////////////////////////
 
 		//////////////////////// Option ////////////////////////
-		$query = $db->query("SELECT  name, description from options");
+		$query = $db->query("SELECT  name, description, name_en, description_en from options");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['options'][$key]['name'] = $value['name'];
-			$data['options'][$key]['description'] = $value['description'];
+			$data['options'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['options'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		////////////////////////////////////////////////////////
  		
 		return $data;
 	}
-	function getDataPrices()
-	{
+	function getDataPrices() {
+
 		$db = db_connect();
 		$data = array(
 			"visuel" => array(),
@@ -98,6 +101,7 @@
 		$query = $db->query("SELECT slug, price from visuel");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
+
 			$data['visuel'][$value['slug']] = intval($value['price']);
 		}
 		///////////////////////// Visuel ////////////////////////
@@ -645,12 +649,14 @@
 		return $attachments;
 	} 
 
-	function getConditionsGenerales()
+	function getConditionsGenerales($lang = 'fr')
 	{	
 		$db = db_connect();
 
 		$query = $db->query("SELECT * FROM contents where slug = 'conditions_generales'"); 
-        return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
+        $data =  $query->fetchAll(PDO::FETCH_ASSOC)[0];
+
+        return $lang == 'fr' ? $data['content'] : $data['content_en'];
 	}
 
 	function getDepotAddress()
@@ -672,6 +678,13 @@
 		$currendLang = getCurrendLang();
 		return $languages[$currendLang][$keyString];
 	} 
+
+	function _translate_admin($keyString)
+	{
+		$languages = json_decode(file_get_contents("../inc/languages.min.json"), true);
+		$currendLang = getCurrendLang(); 
+		return $languages[$currendLang][$keyString];
+	}
 
 
 

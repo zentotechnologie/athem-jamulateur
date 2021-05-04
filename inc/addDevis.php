@@ -52,7 +52,8 @@ if(isset($_POST)):
 	 	`cp`,
 	 	`ville`,
 	 	`pays`,
-	 	`dateDevis`) 
+	 	`dateDevis`,
+	 	`lang`) 
 
 	 	VALUES (
   
@@ -95,7 +96,8 @@ if(isset($_POST)):
 	 	'$cp', 
 	 	'$ville', 
 	 	'$pays', 
-	 	'$time_stamp' )"
+	 	'$time_stamp', 
+	 	'$lang' )"
 	);
 
 	if( $query ){

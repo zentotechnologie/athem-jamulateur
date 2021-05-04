@@ -161,15 +161,15 @@ if(isset($_POST['address'],$_POST['id'])){
         <!-- Main content -->
         <section class="content"> 
           <div class="row">  
-            <div class="col-sm-12 col-md-8">
+            <div class="col-sm-12 col-md-12">
                 <!-- Custom Tabs -->
                   <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                       <li class="<?= (!isset($_GET['tab']) || $_GET['tab'] == 1 || $_GET['tab'] == '' ) ? 'active' : '' ?>"><a href="#tab_1" data-toggle="tab">Jamion</a></li>
                       <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 2 ) ? 'active' : '' ?>"><a href="#tab_2" data-toggle="tab">Son</a></li>
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 3 ) ? 'active' : '' ?>"><a href="#tab_3" data-toggle="tab">Textes des Visuels</a></li> 
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 4 ) ? 'active' : '' ?>"><a href="#tab_4" data-toggle="tab">Textes de Son</a></li> 
-                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 5 ) ? 'active' : '' ?>"><a href="#tab_5" data-toggle="tab">Les Options</a></li> 
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 3 ) ? 'active' : '' ?>"><a href="#tab_3" data-toggle="tab">Images animées</a></li> 
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 4 ) ? 'active' : '' ?>"><a href="#tab_4" data-toggle="tab">Sonorisation</a></li> 
+                      <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 5 ) ? 'active' : '' ?>"><a href="#tab_5" data-toggle="tab">Options</a></li> 
                       <li class="<?= (isset($_GET['tab']) && $_GET['tab'] == 6 ) ? 'active' : '' ?>"><a href="#tab_6" data-toggle="tab">Paramétrage</a></li>  
                     </ul>
                     <div class="tab-content">
@@ -180,7 +180,7 @@ if(isset($_POST['address'],$_POST['id'])){
                             $result = $query->fetchAll(PDO::FETCH_ASSOC);
                           ?>  
                           <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                               <div class="box box-jamions">
                                 <div class="box-header ">PARIS IDF</div> 
                                 <div class="box-body table-responsive ">
@@ -221,7 +221,7 @@ if(isset($_POST['address'],$_POST['id'])){
                               </div><!-- /.box -->  
                             </div>
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-6">
                               <div class="box box-jamions">
                                 <div class="box-header">HORS IDF</div> 
                                 <div class="box-body table-responsive ">
@@ -265,45 +265,51 @@ if(isset($_POST['address'],$_POST['id'])){
                       </div>
                       <!-- /.tab-pane -->
                       <div class="tab-pane <?= (isset($_GET['tab']) && $_GET['tab'] == 2 ) ? 'active' : '' ?>" id="tab_2">
-                          <p>Location d'une unité de son par jour</p>
-                          <form method="post" action="update-prices.php">
-                            <div class="row form-group">
-                             <label class="col-xs-2"  align="right">Nombre de jour</label>
-                             <label class="col-xs-10">Coût (€)</label>
-                            </div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <p>Location d'une unité de son par jour</p>
+                                <form method="post" action="update-prices.php">
+                                  <div class="row form-group">
+                                   <label class="col-xs-2"  align="right">Nombre de jour</label>
+                                   <label class="col-xs-10">Coût (€)</label>
+                                  </div>
 
-                            <?php  
-                              $query = $db->query("SELECT * FROM JamSon");
-                              $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                            ?>   
-                            <?php foreach ($result as $key => $row): ?>
-                              <div class="row form-group">
-                               <label class="col-xs-2" align="right" style="padding-top: 7px"><?= $row['nbrJours'] ?></label>
-                               <div class="col-xs-10">
-                                  <input type="text" class="form-control" name="<?= $row['idJamSon'] ?>" value="<?= $row['price'] ?>">
-                               </div>
-                              </div>
+                                  <?php  
+                                    $query = $db->query("SELECT * FROM JamSon");
+                                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+                                  ?>   
+                                  <?php foreach ($result as $key => $row): ?>
+                                    <div class="row form-group">
+                                     <label class="col-xs-2" align="right" style="padding-top: 7px"><?= $row['nbrJours'] ?></label>
+                                     <div class="col-xs-10">
+                                        <input type="text" class="form-control" name="<?= $row['idJamSon'] ?>" value="<?= $row['price'] ?>">
+                                     </div>
+                                    </div>
 
-                            <?php endforeach ?>
+                                  <?php endforeach ?>
 
-                            <div class="row form-group">
-                             <label class="col-xs-2"  align="right"></label>
-                             <label class="col-xs-10">
-                               <input type="hidden" name="type" value="JamSon">
-                               <input type="hidden" name="tab" value="2">
-                               <button class="btn btn-block btn-success">Enregistrer</button>
-                             </label>
-                            </div>
-                          </form>
+                                  <div class="row form-group">
+                                   <label class="col-xs-2"  align="right"></label>
+                                   <label class="col-xs-10">
+                                     <input type="hidden" name="type" value="JamSon">
+                                     <input type="hidden" name="tab" value="2">
+                                     <button class="btn btn-block btn-success">Enregistrer</button>
+                                   </label>
+                                  </div>
+                                </form>
+                              </div>  
+                          </div>
                       </div>
                       <!-- /.tab-pane -->
                       <div class="tab-pane <?= (isset($_GET['tab']) && $_GET['tab'] == 3 ) ? 'active' : '' ?>" id="tab_3">
                          
                       <form method="post" action="update-prices.php">
                             <div class="row form-group">
-                             <label class="col-xs-3">Images animées</label>
-                             <label class="col-xs-3">Coût (€)</label>
-                             <label class="col-xs-6">Description</label>
+                             <label class="col-xs-2">Titre (FR)</label>
+                             <label class="col-xs-2">Titre (EN) </label> 
+                             <label class="col-xs-3">Description (FR)</label>
+                             <label class="col-xs-3">Description (EN)</label>
+                             <label class="col-xs-2">Coût (€)</label>
                             </div>
 
                             <?php  
@@ -312,15 +318,22 @@ if(isset($_POST['address'],$_POST['id'])){
                             ?>   
                             <?php foreach ($result as $key => $row): ?>
                               <div class="row form-group">
-                               <div class="col-xs-3">
+                               <div class="col-xs-2">
                                  <textarea class="form-control" name="fields[<?= $key ?>][name]"><?= ($row['name']) ?></textarea>
                                </div>
-                               <div class="col-xs-3">
-                                  <input type="hidden" name="fields[<?= $key ?>][id]" value="<?= $row['idVisuel'] ?>">
-                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>" >
+                               <div class="col-xs-2">
+                                 <textarea class="form-control" name="fields[<?= $key ?>][name_en]"><?= ($row['name_en']) ?></textarea>
                                </div>
-                               <div class="col-xs-6">
+                               
+                               <div class="col-xs-3">
                                  <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description]"><?= ($row['description']) ?></textarea>
+                               </div>
+                               <div class="col-xs-3">
+                                 <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description_en]"><?= ($row['description_en']) ?></textarea>
+                               </div>
+                               <div class="col-xs-2">
+                                  <input type="hidden" name="fields[<?= $key ?>][idVisuel]" value="<?= $row['idVisuel'] ?>">
+                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>" >
                                </div>
                               </div>
 
@@ -342,9 +355,11 @@ if(isset($_POST['address'],$_POST['id'])){
                          
                          <form method="post" action="update-prices.php">
                             <div class="row form-group">
-                             <label class="col-xs-3">Son</label>
-                             <label class="col-xs-3">Coût (€)</label>
-                             <label class="col-xs-6">Description</label>
+                             <label class="col-xs-2">Titre (FR)</label>
+                             <label class="col-xs-2">Titre (EN) </label> 
+                             <label class="col-xs-3">Description (FR)</label>
+                             <label class="col-xs-3">Description (EN)</label>
+                             <label class="col-xs-2">Coût (€)</label>
                             </div>
 
                             <?php  
@@ -353,15 +368,22 @@ if(isset($_POST['address'],$_POST['id'])){
                             ?>   
                             <?php foreach ($result as $key => $row): ?>
                               <div class="row form-group">
-                               <div class="col-xs-3">
+                               <div class="col-xs-2">
                                  <textarea class="form-control" name="fields[<?= $key ?>][name]"><?= ($row['name']) ?></textarea>
                                </div>
-                               <div class="col-xs-3">
-                                  <input type="hidden" name="fields[<?= $key ?>][id]" value="<?= $row['idSon'] ?>">
-                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>" >
+                               <div class="col-xs-2">
+                                 <textarea class="form-control" name="fields[<?= $key ?>][name_en]"><?= ($row['name_en']) ?></textarea>
                                </div>
-                               <div class="col-xs-6">
+                               
+                               <div class="col-xs-3">
                                  <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description]"><?= ($row['description']) ?></textarea>
+                               </div>
+                               <div class="col-xs-3">
+                                 <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description_en]"><?= ($row['description_en']) ?></textarea>
+                               </div>
+                               <div class="col-xs-2">
+                                  <input type="hidden" name="fields[<?= $key ?>][idSon]" value="<?= $row['idSon'] ?>">
+                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>" >
                                </div>
                               </div>
 
@@ -383,9 +405,11 @@ if(isset($_POST['address'],$_POST['id'])){
                           
                           <form method="post" action="update-prices.php">
                             <div class="row form-group">
-                             <label class="col-xs-3">Options</label>
-                             <label class="col-xs-3">Coût (€)</label>
-                             <label class="col-xs-6">Description</label>
+                             <label class="col-xs-2">Titre (FR)</label>
+                             <label class="col-xs-2">Titre (EN) </label> 
+                             <label class="col-xs-3">Description (FR)</label>
+                             <label class="col-xs-3">Description (EN)</label>
+                             <label class="col-xs-2">Coût (€)</label>
                             </div>
 
                             <?php  
@@ -394,17 +418,24 @@ if(isset($_POST['address'],$_POST['id'])){
                             ?>   
                             <?php foreach ($result as $key => $row): ?>
                               <div class="row form-group">
-                               <div class="col-xs-3">
-                                 <textarea rows="3" class="form-control" name="fields[<?= $key ?>][name]"><?= ($row['name']) ?></textarea>
+                               <div class="col-xs-2">
+                                 <textarea class="form-control" rows="4" name="fields[<?= $key ?>][name]"><?= ($row['name']) ?></textarea>
                                </div>
-                               <div class="col-xs-3">
-                                  <input type="hidden" name="fields[<?= $key ?>][id]" value="<?= $row['idOption'] ?>">
-                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>">
+                               <div class="col-xs-2">
+                                 <textarea class="form-control" rows="4" name="fields[<?= $key ?>][name_en]"><?= ($row['name_en']) ?></textarea>
                                </div>
-                               <div class="col-xs-6">
+                               
+                               <div class="col-xs-3">
                                  <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description]"><?= ($row['description']) ?></textarea>
                                </div>
-                              </div>
+                               <div class="col-xs-3">
+                                 <textarea class="form-control" rows="8" name="fields[<?= $key ?>][description_en]"><?= ($row['description_en']) ?></textarea>
+                               </div>
+                               <div class="col-xs-2">
+                                  <input type="hidden" name="fields[<?= $key ?>][id]" value="<?= $row['idOption'] ?>">
+                                  <input type="text" class="form-control" name="fields[<?= $key ?>][price]" value="<?= $row['price'] ?>" >
+                               </div>
+                              </div> 
 
                             <?php endforeach ?>
 
@@ -614,7 +645,7 @@ if(isset($_POST['address'],$_POST['id'])){
               $result = $query->fetchAll(PDO::FETCH_ASSOC)[0];
             ?> 
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="box">
                 <div class="box-header">L'address du dépot</div> 
                 <div class="box-body table-responsive ">

@@ -1,6 +1,7 @@
 <?php include('inc/functions.php') ?>
 <?php $ForfaisTexts = GetForfaisTexts(); ?>
 <?php generateJsonDataPrice() ?>
+<?php $currentLang = getCurrendLang() ?>
 <!DOCTYPE html>
 <!--[if lt IE 9]> <html class="lt-ie9" lang="fr"> <![endif]-->
 <html class="no-js" lang="fr" style="opacity: 1">
@@ -55,7 +56,7 @@
 	 						<select name="type">
 	 							<option value=""><?= _translate('eventType') ?></option>
 	 							<?php foreach ($types as $key => $type):?>
-	 								<option value="<?= $type['idType'] ?>"><?= $type['name'] ?></option> 
+	 								<option value="<?= $type['idType'] ?>"><?= $currentLang == 'fr' ? $type['name'] : $type['name_en'] ?></option> 
 	 							<?php endforeach ?>
 	 						</select>
 	 					</div>
@@ -679,7 +680,7 @@
 					<a href="#" id="open-privacy-policy"> <?= _translate('cgvLinkText') ?> </a>
 				</p>
 				<div class="content-privacy-policy" style="display: none;">
-				 	<?= getConditionsGenerales() ?>
+				 	<?= getConditionsGenerales($currentLang) ?>
 				</div>
 
 				</div>
@@ -765,7 +766,7 @@ var errorMessages = {
 	invalidAdressOrZipCodeerrorMessages: "<?= _translate('invalidAdressOrZipCodeerrorMessages') ?>"
 }
 
-var currentLang = "<?php echo getCurrendLang() ?>"
+var currentLang = "<?php echo $currentLang ?>"
 
 $(function() {
 	jcf.replaceAll();

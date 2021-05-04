@@ -5,7 +5,7 @@ $db = db_connect();
   if(isset($_POST['name'],$_POST['idType'])){
     extract($_POST);
     $db = db_connect();
-    $db->exec("UPDATE `types` SET `name` = '$name'  WHERE idType = $idType");
+    $db->exec("UPDATE `types` SET `name` = '$name', `name_en` = '$name_en'  WHERE idType = $idType");
   }
 ?>
 <html>
@@ -134,14 +134,15 @@ $db = db_connect();
         <section class="content">
         
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
               <div class="box">
                 <div class="box-header">
                   
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover list-inscription">
                     <tr>
-                      <th>Nom d'événement</th>
+                      <th>En français</th>
+                      <th>En anglais</th>
                       <th>Modifier</th> 
                       <th>Supprimer</th> 
                     </tr>
@@ -152,6 +153,7 @@ $db = db_connect();
                     <?php foreach ($types as $key => $type):?>
                         <tr> 
                           <td class="name"><?= $type['name'] ?></td>  
+                          <td class="name_en"><?= $type['name_en'] ?></td>  
                           <td>
                             <a class="btn-edit" data-id="<?= $type['idType'] ?>">
                               <img src="dist/img/edit.png">
@@ -169,14 +171,18 @@ $db = db_connect();
               </div><!-- /.box -->
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
               <div class="box">
                 <div class="box-header">Ajouter un type d'événement</div> 
                 <div class="box-body table-responsive ">
                   <form method="post" action="add-type.php">
                       <div class="form-group">
-                        <label for="exampleFormControlInput1"></label>
-                        <input type="text" class="form-control" name="type" placeholder="" required>
+                        <label for="type">Titre en français</label>
+                        <input type="text" class="form-control" id="type" name="type" placeholder="" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="type_en">Titre en anglais</label>
+                        <input type="text" class="form-control" id="type_en" name="type_en" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <button class="btn btn-block btn-success">Ajouter</button>
@@ -210,10 +216,15 @@ $db = db_connect();
               <div class="modal-body">
                 
                   <div class="form-group">
-                    <label for="exampleFormControlInput1"></label>
-                    <input type="text" class="form-control" name="name" placeholder="" required>
-                    <input type="hidden" class="form-control" name="idType" placeholder="" required>
+                    <label for="name">Titre en français</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="" required> 
+                  </div>
+                  <div class="form-group">
+                    <label for="name_en">Titre en anglais</label>
+                    <input type="text" class="form-control" id="name_en" name="name_en" placeholder="" required> 
                   </div> 
+
+                  <input type="hidden" class="form-control" name="idType" placeholder="" required>
                   
               </div>
               <div class="modal-footer">
@@ -254,6 +265,7 @@ $db = db_connect();
         $( ".btn-edit" ).click(function() {
           $('#EditType').modal('show')
           $('#EditType').find('[name=name]').val( $(this).parents('tr').find('td.name').text() )
+          $('#EditType').find('[name=name_en]').val( $(this).parents('tr').find('td.name_en').text() )
           $('#EditType').find('[name=idType]').val( $(this).attr('data-id') )
         })
   </script>

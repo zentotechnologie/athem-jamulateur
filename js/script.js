@@ -508,7 +508,7 @@
         })  
 
         var request = new XMLHttpRequest();
-        request.open("POST", "inc/addDevis.php");
+        request.open("POST", "inc/addDevis.php?lang="+window.currentLang);
         request.send(formData);
 
         request.upload.onprogress =  function(oEvent){ 
