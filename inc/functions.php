@@ -10,15 +10,15 @@
 	}
 	function db_connect(){
 		
-		// $servername = "localhost";
-		// $username = "jamuser";
-		// $password = "J@MZTO2o18"; // 
-		// $dbname = "jamulateur";
-
 		$servername = "localhost";
-		$username = "root";
-		$password = "mysql";
+		$username = "jamuser";
+		$password = "J@MZTO2o18"; // 
 		$dbname = "jamulateur";
+
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "mysql";
+		// $dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -362,13 +362,13 @@
 				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceHebergementSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage'] ) : 0,
 				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceHebergementSon']*$result['sonorisation_techniciens']*$infos['nbrJoursPlusCalage']) : 0
 			),
-			"sonorisation_transport" => array(
-				"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_transport']*$infos['distance']*2 : 0,
-				"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon'] : 0,
-				"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 : 0,
-				"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 ) : 0,
-				"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2) : 0
-			), 
+			// "sonorisation_transport" => array(
+			// 	"qte" 			=> $infos['idf'] == 0 ? $result['sonorisation_transport']*$infos['distance']*2 : 0,
+			// 	"prixUnitaire" 	=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon'] : 0,
+			// 	"totalHT" 		=> $infos['idf'] == 0 ? $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 : 0,
+			// 	"TVA" 			=> $infos['idf'] == 0 ? TVA( $DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2 ) : 0,
+			// 	"TotalTTC" 		=> $infos['idf'] == 0 ? HTTC($DataPrices['autres']['priceDeplacementSon']*$result['sonorisation_transport']*$result['sonorisation_unite']*$infos['distance']*2) : 0
+			// ), 
 			/////////////////////////////////////////////// Demarches administratives /////////////////////////////////////////////////////////
 			"GestDemarAdmin" => array(
 				"qte" 			=> ($GestDemarAdmin > 0) ? 1 : 0,
@@ -449,9 +449,22 @@
 						$DataCalcule['video_transport']['TotalTTC']
 			),
 			"sonorisation" => array(
-				"HT"  => $DataCalcule['son']['totalHT'] + $DataCalcule['sonorisation_unite']['totalHT'] + $DataCalcule['JamSon']['totalHT'] + $DataCalcule['sonorisation_techniciens']['totalHT'] + $DataCalcule['sonorisation_hebergement']['totalHT'] + $DataCalcule['sonorisation_transport']['totalHT'],
-				"TVA" => $DataCalcule['son']['TVA'] + $DataCalcule['sonorisation_unite']['TVA'] + $DataCalcule['JamSon']['TVA'] + $DataCalcule['sonorisation_hebergement']['TVA'] + $DataCalcule['sonorisation_transport']['TVA'],
-				"TTC" => $DataCalcule['son']['TotalTTC'] + $DataCalcule['sonorisation_unite']['TotalTTC'] + $DataCalcule['JamSon']['TotalTTC'] + $DataCalcule['sonorisation_hebergement']['TotalTTC'] + $DataCalcule['sonorisation_transport']['TotalTTC']
+				"HT"  => $DataCalcule['son']['totalHT'] + 
+						 $DataCalcule['sonorisation_unite']['totalHT'] + 
+						 $DataCalcule['JamSon']['totalHT'] + 
+						 $DataCalcule['sonorisation_techniciens']['totalHT'] + 
+						 $DataCalcule['sonorisation_hebergement']['totalHT'],
+
+				"TVA" => $DataCalcule['son']['TVA'] + 
+				         $DataCalcule['sonorisation_unite']['TVA'] + 
+				         $DataCalcule['JamSon']['TVA'] + 
+				         $DataCalcule['sonorisation_techniciens']['TVA'] + 
+				         $DataCalcule['sonorisation_hebergement']['TVA'],
+
+				"TTC" => $DataCalcule['son']['TotalTTC'] + 
+						 $DataCalcule['sonorisation_unite']['TotalTTC'] + 
+						 $DataCalcule['JamSon']['TotalTTC'] + 
+						 $DataCalcule['sonorisation_hebergement']['TotalTTC']
 			),  
 			"GestDemarAdmin" => array(
 				"HT"  => $DataCalcule['GestDemarAdmin']['totalHT'] ,
@@ -459,9 +472,20 @@
 				"TTC" => $DataCalcule['GestDemarAdmin']['TotalTTC']
 			), 
 			"options" => array(
-				"HT"  => $DataCalcule['captationVideo']['totalHT'] + $DataCalcule['liveVideo']['totalHT'] + $DataCalcule['affiche']['totalHT'] + $DataCalcule['teaser']['totalHT'] ,
-				"TVA" => $DataCalcule['captationVideo']['TVA'] + $DataCalcule['liveVideo']['TVA'] + $DataCalcule['affiche']['TVA'] + $DataCalcule['teaser']['TVA'],
-				"TTC" => $DataCalcule['captationVideo']['TotalTTC'] + $DataCalcule['liveVideo']['TotalTTC'] + $DataCalcule['affiche']['TotalTTC'] + $DataCalcule['teaser']['TotalTTC']
+				"HT"  => $DataCalcule['captationVideo']['totalHT'] + 
+				         $DataCalcule['liveVideo']['totalHT'] + 
+				         $DataCalcule['affiche']['totalHT'] + 
+				         $DataCalcule['teaser']['totalHT'] ,
+
+				"TVA" => $DataCalcule['captationVideo']['TVA'] + 
+				         $DataCalcule['liveVideo']['TVA'] + 
+				         $DataCalcule['affiche']['TVA'] + 
+				         $DataCalcule['teaser']['TVA'],
+
+				"TTC" => $DataCalcule['captationVideo']['TotalTTC'] + 
+				         $DataCalcule['liveVideo']['TotalTTC'] + 
+				         $DataCalcule['affiche']['TotalTTC'] + 
+				         $DataCalcule['teaser']['TotalTTC']
 			),
 			"autres" => array(
 				"HT"  => $DataCalcule['autre_gardinnage']['totalHT'],

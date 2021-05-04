@@ -556,7 +556,7 @@ if(isset($_POST['address'],$_POST['id'])){
                              </div> 
                             </div>
                             <hr>
-                            <div class="row form-group">
+                            <div class="row form-group" style="display: none;">
                              <div class="col-xs-8">
                                 Transport du matériel (Coût / 1km)
                              </div> 

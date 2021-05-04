@@ -717,7 +717,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" onclick="window.location.reload()" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">MERCI</h4>
       </div>
       <div class="modal-body"> 
@@ -728,7 +728,7 @@
       			N'oubliez pas de vérifier vos spams.
       		</p>
       		<div class="submitBTN">
-				<a onclick="window.location.reload()" class="btn btn-large" data-dismiss="modal">A BIENTOT</a>
+				<a class="btn btn-large" data-dismiss="modal">A BIENTOT</a>
 			</div>
       	</center>
       </div>
