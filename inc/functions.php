@@ -53,37 +53,40 @@
 	{	
 		$data = array();
 		$db = db_connect();
+
+		$isFr = getCurrendLang() === 'fr';
+
 		//////////////////////// Visuel ////////////////////////
-		$query = $db->query("SELECT name, description from visuel");
+		$query = $db->query("SELECT name, description, name_en, description_en from visuel");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['visuel'][$key]['name'] = $value['name'];
-			$data['visuel'][$key]['description'] = $value['description'];
+			$data['visuel'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['visuel'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		///////////////////////////////////////////////////////
 
 		//////////////////////// SON ////////////////////////
-		$query = $db->query("SELECT  name, description from son");
+		$query = $db->query("SELECT  name, description, name_en, description_en from son");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['son'][$key]['name'] = $value['name'];
-			$data['son'][$key]['description'] = $value['description'];
+			$data['son'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['son'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		////////////////////////////////////////////////////////
 
 		//////////////////////// Option ////////////////////////
-		$query = $db->query("SELECT  name, description from options");
+		$query = $db->query("SELECT  name, description, name_en, description_en from options");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
-			$data['options'][$key]['name'] = $value['name'];
-			$data['options'][$key]['description'] = $value['description'];
+			$data['options'][$key]['name'] = $isFr ? $value['name'] :  $value['name_en'];
+			$data['options'][$key]['description'] = $isFr ? $value['description'] :  $value['description_en'];
 		}
 		////////////////////////////////////////////////////////
  		
 		return $data;
 	}
-	function getDataPrices()
-	{
+	function getDataPrices() {
+
 		$db = db_connect();
 		$data = array(
 			"visuel" => array(),
@@ -98,6 +101,7 @@
 		$query = $db->query("SELECT slug, price from visuel");
 		$result = $query->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $key => $value) {
+
 			$data['visuel'][$value['slug']] = intval($value['price']);
 		}
 		///////////////////////// Visuel ////////////////////////
@@ -579,7 +583,7 @@
 		$mail->setFrom( $contactInfos['email'], 'ATHEM');
 		$mail->addAddress( $infos['email'] );
 		$mail->addCC( "contact@jamion.fr" );
-		$mail->Subject  = 'JAMULATEUR - Atelier JAM';
+		
 		if($infos['attachments'] && count($infos['attachments']) > 0){
 			foreach ($infos['attachments']as $key => $attachment) {
 				$mail->addAttachment( $attachment );
@@ -587,7 +591,15 @@
 		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
-		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/> N&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone pour &eacute;tudier votre projet et finaliser votre chiffrage.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>ATELIER JAM</strong><br /> <span style="color: #555"><strong>PRODUCTION &amp; SC&Eacute;NOGRAPHIE CULTURELLE - COLLABORATION ARTISTIQUE</strong></span> </body></html>';
+
+		if( getCurrendLang() == 'fr' ){
+			$mail->Subject  = 'JAMULATEUR - Atelier JAM';
+			$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/> N&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone pour &eacute;tudier votre projet et finaliser votre chiffrage.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>ATELIER JAM</strong><br /> <span style="color: #555"><strong>PRODUCTION &amp; SC&Eacute;NOGRAPHIE CULTURELLE - COLLABORATION ARTISTIQUE</strong></span> </body></html>';
+		}else{
+			$mail->Subject  = 'JAMULATOR - JAM Workshop';
+			$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body> Dear,<br/><br/> Thank you very much for using the JAMULATOR to make your attached estimate,<br/> <br/> Do not hesitate to contact me by email or phone to study your project and finalize your costing.<br/> <br/> Remaining at your disposal,<br/> <br /> Best regards,<br/> <br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>JAM WORKSHOP</strong><br /> <span style="color: #555"><strong>CULTURAL PRODUCTION &amp; SCENOGRAPHY - ARTISTIC COLLABORATION</strong></span> </body></html>';
+		}
+		
 
 		return ( $mail->send() ) ? true : false;
 	}
@@ -645,12 +657,14 @@
 		return $attachments;
 	} 
 
-	function getConditionsGenerales()
+	function getConditionsGenerales($lang = 'fr')
 	{	
 		$db = db_connect();
 
 		$query = $db->query("SELECT * FROM contents where slug = 'conditions_generales'"); 
-        return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
+        $data =  $query->fetchAll(PDO::FETCH_ASSOC)[0];
+
+        return $lang == 'fr' ? $data['content'] : $data['content_en'];
 	}
 
 	function getDepotAddress()
@@ -660,7 +674,25 @@
         return $query->fetchAll(PDO::FETCH_ASSOC)[0]['content'];
 	}
 
+	function getCurrendLang()
+	{
+		return isset($_GET['lang']) && $_GET['lang'] == 'en' ? 'en' : 'fr';
+	}
 
+
+	function _translate($keyString)
+	{
+		$languages = json_decode(file_get_contents("./inc/languages.min.json"), true);
+		$currendLang = getCurrendLang();
+		return $languages[$currendLang][$keyString];
+	} 
+
+	function _translate_admin($keyString)
+	{
+		$languages = json_decode(file_get_contents("../inc/languages.min.json"), true);
+		$currendLang = getCurrendLang(); 
+		return $languages[$currendLang][$keyString];
+	}
 
 
 

@@ -35,30 +35,31 @@ if( isset($_POST['type']) ):
 
 			foreach ($_POST['fields'] as $key => $field) {
 				extract($field); 
-				$query = $db->prepare("UPDATE visuel SET price = '$price' , name = ?, description = ? WHERE idVisuel = $id");
-				$query->execute( array($name, $description) );
+				$query = $db->prepare("UPDATE visuel SET price = '$price' , name = ?, name_en = ?, description = ?, description_en = ? WHERE idVisuel = $idVisuel");
+				$query->execute( array($name, $name_en, $description, $description_en) );
 			}
 			break;
 
 		case 'son':
-			unset($_POST['type']);
-
+			unset($_POST['type']); 
 			foreach ($_POST['fields'] as $key => $field) {
 				extract($field); 
-				$query = $db->prepare("UPDATE son SET price = '$price' , name = ?, description = ? WHERE idSon = $id");
-				$query->execute( array($name, $description) );
+				$query = $db->prepare("UPDATE son SET price = '$price' , name = ?, name_en = ?, description = ?, description_en = ? WHERE idSon = $idSon");
+				$query->execute( array($name, $name_en, $description, $description_en) );
 			}
 			break;
 
 		case 'options':
-			unset($_POST['type']);
+			unset($_POST['type']); 
 
 			foreach ($_POST['fields'] as $key => $field) {
 				extract($field); 
-				$query = $db->prepare("UPDATE options SET price = :price , name = :name, description =:description WHERE idOption = $id");
+				$query = $db->prepare("UPDATE options SET price = :price , name = :name,  name_en = :name_en, description =:description, description_en =:description_en WHERE idOption = $id");
 				$query->bindParam(":price", $price);
 				$query->bindParam(":name", $name);
+				$query->bindParam(":name_en", $name_en);
 				$query->bindParam(":description", $description);
+				$query->bindParam(":description_en", $description_en);
 				$query->execute();
 			}
 			break;

@@ -93,7 +93,7 @@
 						</p>
 					</td>
 					<td width="140">
-						<h2>DEVIS No. <?= $infos['devisNumber'] ?></h2>
+						<h2><?= _translate_admin('devisNumber') ?>. <?= $infos['devisNumber'] ?></h2>
 					</td>
 				</tr>
 			</table>
@@ -104,7 +104,7 @@
 						<table class="infoDevis">
 							<tr>
 								<td align="right">
-									Date du devis
+									<?= _translate_admin('devisDate') ?>
 								</td>
 								<td>
 									<?= $infos['dateDevis'] ?>
@@ -112,7 +112,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Référence du devis	
+									<?= _translate_admin('devisReference') ?>	
 								</td>
 								<td>
 									 <?= $infos['devisNumber'] ?>
@@ -120,7 +120,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Nom du Client
+									<?= _translate_admin('clientName') ?>	
 								</td>
 								<td>
 									 <?= $infos['fname'] ?> <?= $infos['lname'] ?>
@@ -128,7 +128,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Date de validité du devis
+									<?= _translate_admin('devisValidateDate') ?>	
 								</td>
 								<td>
 									 <?= $infos['validateDate'] ?>
@@ -136,34 +136,34 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Modalité de paiement
+									<?= _translate_admin('paymentMethod') ?>
 								</td>
 								<td>
-									 Acompte 50% - Solde 10 jours avant l'évènement
+									 <?= _translate_admin('paymentMethodValue') ?>
 								</td>
 							</tr>
 							<tr>
 								<td align="right">
-									Emis par
+									<?= _translate_admin('from') ?>
 								</td>
 								<td>
 									 <table width="100%" cellpadding="0" cellspacing="0">
 									 	<tr>
 									 		<td width="70"><?= $infos['contact']['name'] ?></td>
-									 		<td>Tél. <?= $infos['contact']['tel'] ?></td>
+									 		<td><?= _translate_admin('shortPhoneLabel') ?> <?= $infos['contact']['tel'] ?></td>
 									 	</tr>
 									 </table>
 								</td>
 							</tr>
 							<tr>
 								<td align="right">
-									Contact client
+									<?= _translate_admin('from') ?>
 								</td>
 								<td>
 									 <table width="100%" cellpadding="0" cellspacing="0">
 									 	<tr>
 									 		<td width="70"><?= $infos['fname'] ?> <?= $infos['lname'] ?></td>
-									 		<td>Tél. <?= preg_replace('#(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})#', '$1.$2.$3.$4.$5', $infos['tel']) ?></td>
+									 		<td><?= _translate_admin('shortPhoneLabel') ?> <?= preg_replace('#(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})#', '$1.$2.$3.$4.$5', $infos['tel']) ?></td>
 									 	</tr>
 									 </table>
 								</td>
@@ -171,7 +171,7 @@
 							<?php if($infos['domaine']): ?>
 								<tr>
 									<td align="right">
-										Domaine
+										<?= _translate_admin('domain') ?>
 									</td>
 									<td>
 										 <?= $infos['domaine'] ?>
@@ -180,7 +180,7 @@
 							<?php endif ?>
 							<tr>
 								<td align="right">
-									Date de début de la prestation
+									<?= _translate_admin('dateStartService') ?>
 								</td>
 								<td>
 									 <?= $infos['dateDebut'] ?>
@@ -188,7 +188,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Date de fin de la prestation
+									<?= _translate_admin('dateEndService') ?>
 								</td>
 								<td>
 									 <?= $infos['dateFin'] ?>
@@ -196,7 +196,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Surface de projection (m²)
+									<?= _translate_admin('projectionSurface') ?>
 								</td>
 								<td>
 									 <?= $infos['area'] ?>
@@ -204,7 +204,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Nombre de jamions
+									<?= _translate_admin('nbrOfjamions') ?>
 								</td>
 								<td>
 									 <?= $infos['jamions'] ?>
@@ -212,7 +212,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Nombre de soirée(s) de projection	
+									<?= _translate_admin('screeningDays') ?>
 								</td>
 								<td>
 									<?= $infos['nbrJours'] ?>
@@ -220,7 +220,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Nombre de journée(s) de calage / installation
+									<?= _translate_admin('screeningDaysSetting') ?>
 								</td>
 								<td>
 									<?= $infos['nbrJoursPlusCalage'] - $infos['nbrJours'] ?>
@@ -228,7 +228,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Nombre de soirée(s) sur place	
+									<?= _translate_admin('screeningDaysSettingOnSite') ?>	
 								</td>
 								<td>
 									<?= $infos['nbrJoursPlusCalage'] ?>
@@ -236,7 +236,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Lieu
+									<?= _translate_admin('location') ?>	
 								</td>
 								<td>
 									<?= $infos['lieu'] ?>
@@ -244,7 +244,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									Ville
+									<?= _translate_admin('city') ?>	
 								</td>
 								<td>
 									<?= $infos['villeEvent'] ?>
@@ -253,7 +253,7 @@
 							<?php if( !empty($infos['paysEvent']) ): ?>
 								<tr>
 									<td align="right">
-										Pays
+										<?= _translate_admin('country') ?>
 									</td>
 									<td>
 										<?= $infos['paysEvent'] ?>
@@ -267,7 +267,7 @@
 						
 					</td>
 					<td width="100">
-						<h4>DESTINATAIRE :</h4>
+						<h4><?= _translate_admin('recipent') ?> :</h4>
 						<p> <?= $infos['societe'] ?><br>
 							<?= $infos['fname'] ?> <?= $infos['lname'] ?><br>
 							<?= $infos['address1'] ?><br>
@@ -279,30 +279,24 @@
 			</table>
 
 			<p style="text-align: left; padding: 5px;background:#f3f3f3;">
-				Ce devis sera validé après étude de votre projet et du lieu de projection par les équipes de l’Atelier JAM.<br><br>
-
-				Ce devis n'intègre pas: le gardiennage obligatoire du matériel, les éventuels droits d'utilisation des contenus devant être acquis auprès de tiers, les éventuels droits d’asile, de location d’espace ou de taxes lies à la projection et l'accueil et la protection des publics.<br><br>
-
-				Les projections démarrent 30 minutes après la tombée de la nuit.
-
-				<!-- <?php //$DataCalcule['visuel']['qte'] ?> -->
+				<?= _translate_admin('devisIntroduction') ?>
 			</p>
 
 			<table style="margin-top: 10px;" class="detailDevis" cellpadding="0" cellspacing="0">
 				<tr>
-					<th>Description</th>
-					<th>Quantités</th> 
-					<th align="right">Unités</th> 
-					<th align="right">Prix unitaires HT</th> 
-					<th align="right">TOTAL HT</th> 
-					<th align="center">TVA %</th> 
-					<th align="right">TVA</th> 
-					<th align="right">TOTAL TTC</th> 
+					<th><?= _translate_admin('description') ?></th>
+					<th><?= _translate_admin('quantities') ?></th> 
+					<th align="right"><?= _translate_admin('units') ?></th> 
+					<th align="right"><?= _translate_admin('unitPriceHT') ?></th> 
+					<th align="right"><?= _translate_admin('totalHT') ?></th> 
+					<th align="center"><?= _translate_admin('tvaPercent') ?></th> 
+					<th align="right"><?= _translate_admin('tva') ?></th> 
+					<th align="right"><?= _translate_admin('totalTTC') ?></th> 
 				</tr> 
 				<?php if( $subTotal['videoMapimg']['HT'] > 0 ): ?>
 					<tr class="subTotal">
 						<td>
-							VIDÉO MAPPING
+							<?= _translate_admin('videoMaping') ?>
 						</td>
 						<td></td>
 						<td></td>
@@ -319,20 +313,20 @@
 						<td> 
 							<?php switch ( $DataCalcule['visuel']['type'] ) {
 								case 'creationOriginale':
-									echo "Création originale";
+									echo _translate_admin('originalCreation');
 									break; 
 
 								case 'pretJammer':
-									echo "Bibliothèque de contenus prêts à jammer";
+									echo _translate_admin('readyToJam');
 									break; 
 
 								case 'performanceArt':
-									echo "Cahier des charges et coordination artistique et technique";
+									echo _translate_admin('customContent');
 									break; 
 							} ?>
 						</td>
 						<td align="right"><?= $DataCalcule['visuel']['qte'] ?></td> 
-						<td><?php echo $DataCalcule['visuel']['type'] == 'performanceArt' ? 'Forfait' : 'Minutes' ?></td>
+						<td><?php echo $DataCalcule['visuel']['type'] == 'performanceArt' ? _translate_admin('flatRate') : _translate_admin('minutes') ?></td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['visuel']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -358,9 +352,9 @@
 
 				
 					<tr>
-						<td>Location et opération du jamion</td>
+						<td><?= _translate_admin('rentalAndOperationOfTheJamion') ?></td>
 						<td align="right">1</td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['JamMobile']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -398,7 +392,7 @@
 				
 				<?php if( $DataCalcule['video_transport']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Transport</td>
+						<td><?= _translate_admin('transport') ?></td>
 						<td align="right"><?= $DataCalcule['video_transport']['qte'] ?></td>
 						<td>Km</td>
 						<td align="right"><?php echo $infos['jamions'] ?> x <?= number_format($DataCalcule['video_transport']['prixUnitaire'],2,',',' ' ) ?> €</td>
@@ -421,7 +415,7 @@
 				<?php if( $subTotal['sonorisation']['HT'] > 0 ): ?>
 					<tr class="subTotal">
 						<td>
-							SONORISATION
+							<?= _translate_admin('soundSystem') ?>
 						</td>
 						<td></td>
 						<td></td>
@@ -438,21 +432,21 @@
 						<td>
 						<?php switch ( $DataCalcule['son']['type'] ) {
 								case 'creationOriginale':
-									echo "Création originale";
+									echo  _translate_admin('originalCreation');
 									break; 
 
 								case 'pretJammer':
-									echo "Musique existante";
+									echo  _translate_admin('existingMusic');
 									break; 
 
 								case 'pasDeSon':
-									echo "Pas de son";
+									echo _translate_admin('noSound');
 									break; 
 							} ?>
 							
 						</td>
 						<td align="right"><?= $DataCalcule['son']['qte'] ?></td>
-						<td>Minutes</td>
+						<td><?= _translate_admin('minutes') ?></td>
 						<td align="right"><?= number_format($DataCalcule['son']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['son']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -464,9 +458,9 @@
 				
 				
 					<tr>
-						<td>Location des unités de son  - équipement léger</td>
+						<td><?= _translate_admin('rentalOfSoundUnitsLightEquipment') ?></td>
 						<td align="right"><?= $DataCalcule['sonorisation_unite']['qte'] ?> </td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['prixUnitaire'] + $DataCalcule['JamSon']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_unite']['totalHT'] + $DataCalcule['JamSon']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -491,9 +485,9 @@
 				
 				<?php if( $DataCalcule['sonorisation_techniciens']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Equipe technique</td>
+						<td><?= _translate_admin('technicalTeam') ?></td>
 						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
-						<td>Jour(s)</td>
+						<td><?= _translate_admin('days') ?></td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_techniciens']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_techniciens']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -504,9 +498,9 @@
 				
 				<?php if( $DataCalcule['sonorisation_hebergement']['totalHT'] > 0 ): ?>
 					<tr>
-						<td>Défraiements équipe technique</td>
+						<td><?= _translate_admin('technicalTeamExpenses') ?></td>
 						<td align="right"><?= $DataCalcule['sonorisation_techniciens']['qte'] ?> x <?= $infos['nbrJoursPlusCalage'] ?></td>
-						<td>Jour(s)</td>
+						<td><?= _translate_admin('days') ?></td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['sonorisation_hebergement']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -536,7 +530,7 @@
 				<?php if( $DataCalcule['GestDemarAdmin']['totalHT'] > 0 ): ?>
 					<tr class="subTotal">
 						<td>
-							DEMARCHES ADMINISTRATIVES
+							<?= _translate_admin('administrativeProcedures') ?>
 						</td>
 						<td></td>
 						<td></td>
@@ -552,7 +546,7 @@
 					<tr>
 						<td><?php echo $ForfaisTexts['options'][3]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['GestDemarAdmin']['qte'] ?></td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['GestDemarAdmin']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['GestDemarAdmin']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -568,7 +562,7 @@
 				<?php if( $subTotal['options']['HT'] > 0 ): ?>
 				<tr class="subTotal">
 					<td>
-						OPTIONS
+						<?= _translate_admin('options') ?>
 					</td>
 					<td></td>
 					<td></td>
@@ -585,7 +579,7 @@
 					<tr>
 						<td><?php echo $ForfaisTexts['options'][0]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['captationVideo']['qte'] ?></td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['captationVideo']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['captationVideo']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -599,7 +593,7 @@
 					<tr>
 						<td><?php echo $ForfaisTexts['options'][1]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['teaser']['qte'] ?></td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['teaser']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['teaser']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -613,7 +607,7 @@
 					<tr>
 						<td><?php echo $ForfaisTexts['options'][2]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['liveVideo']['qte'] ?></td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['liveVideo']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['liveVideo']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -627,7 +621,7 @@
 					<tr>
 						<td><?php echo $ForfaisTexts['options'][4]['name'] ?></td>
 						<td align="right"><?= $DataCalcule['affiche']['qte'] ?></td>
-						<td>Forfait</td>
+						<td><?= _translate_admin('flatRate') ?></td>
 						<td align="right"><?= number_format($DataCalcule['affiche']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['affiche']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -640,7 +634,7 @@
 				<?php if( $subTotal['autres']['HT'] > 0 ): ?>
 					<tr class="subTotal">
 						<td>
-							AUTRES
+							<?= _translate_admin('other') ?>
 						</td>
 						<td></td>
 						<td></td>
@@ -668,7 +662,7 @@
 					<tr>
 						<td>Prestation de gardiennage</td>
 						<td align="right"><?= $DataCalcule['autre_gardinnage']['qte'] ?></td>
-						<td>Jour(s)</td>
+						<td><?= _translate_admin('days') ?></td>
 						<td align="right"><?= number_format($DataCalcule['autre_gardinnage']['prixUnitaire'],2,',',' ' ) ?> €</td>
 						<td align="right"><?= number_format($DataCalcule['autre_gardinnage']['totalHT'],2,',',' ' ) ?> €</td>
 						<td align="center">20%</td>
@@ -683,12 +677,12 @@
 			<table style="margin-top: 10px;" >
 				<tr>
 					<td class="ml">
-						Conditions de règlement : Acompte 50% - Solde 10 jours avant l'évènement
+						<?= _translate_admin('termsOfPayment') ?>
 					</td>
 					<td width="200">
 						<table class="total" cellpadding="0" cellspacing="0">
 							<tr>
-								<td>Total HT</td>
+								<td><?= _translate_admin('totalHT') ?></td>
 								<td align="right"><?= number_format($Total['HT'],2,',',' ' ) ?> €</td>
 							</tr>
 							<!-- <?php //if( $remise ): ?> 
@@ -702,11 +696,11 @@
 								</tr>
 							<?php //endif ?> -->
 							<tr>
-								<td>TVA</td>
+								<td><?= _translate_admin('tva') ?></td>
 								<td align="right"><?= number_format($Total['TVA'],2,',',' ' ) ?> €</td>
 							</tr>
 							<tr class="trTotal">
-								<td>Total TTC</td>
+								<td><?= _translate_admin('totalTTC') ?></td>
 								<td align="right"><?= number_format($Total['TTC'],2,',',' ' ) ?> €</td>
 							</tr>
 						</table>
@@ -719,9 +713,7 @@
 			<table style="margin-top: 20px;margin-bottom: 10px;">
 				<tr>
 					<td>
-						Merci vivement d'avoir sollicité notre atelier,<br>  
-						N'hésitez pas à me contacter pour plus de précision,<br> 	 	 	 	 	 	 	 	 
-						Très cordialement,
+						<?= _translate_admin('signatureContactText') ?> 
 						<br>
 						<br>
 						<?= $infos['contact']['name'] ?><br>  	 	 	 	 	 
@@ -732,20 +724,20 @@
 						
 					</td>
 					<td width="250" align="center" style="background:#f3f3f3;padding-top: 10px">
-						Signature du client (précédée de la mention « Bon pour accord »)
+						<?= _translate_admin('signature') ?>
 					</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td></td>
-					<td style="font-size: 8px; color: #383838">Le Client déclare avoir préalablement pris connaissance et accepté les termes des présentes conditions générales et particulières. </td>
+					<td style="font-size: 8px; color: #383838"><?= _translate_admin('underSignatureText') ?></td>
 				</tr>
 			</table>
 
 		</div>
 		<div style="page-break-after: always;"></div>
 		<div class="content-privacy-policy" style="padding-top: 20px">
-			  <?= getConditionsGenerales() ?>
+			  <?= getConditionsGenerales(getCurrendLang()) ?>
 		</div>
 
 		<div style="border-top: 2px solid #aaa;padding-top: 10px; position: absolute;width: 100%;bottom: 0;">
@@ -773,35 +765,35 @@
 									
 					</td>
 					<td>
-						<h3>Contact</h3>
+						<h3>CONATACT</h3>
 						<table>
 							<tr>
 								<td width="50"><?= $infos['contact']['name'] ?></td>
 								<td><?= $infos['contact']['function'] ?></td>
 							</tr>
 							<tr>
-								<td>Téléphone :</td>
+								<td><?= _translate_admin('phone') ?> :</td>
 								<td><?= $infos['contact']['tel'] ?></td>
 							</tr>
 							<tr>
-								<td>Email :</td>
+								<td><?= _translate_admin('email') ?> :</td>
 								<td><?= $infos['contact']['email'] ?></td>
 							</tr>
 						</table>
 					</td>
 					<td width="150">
-						<h3>Détails bancaires</h3>
+						<h3><?= _translate_admin('bankDetail') ?></h3>
 						<table>
 							<tr>
-								<td width="50">Banque</td>
+								<td width="50"><?= _translate_admin('bank') ?></td>
 								<td>SOCIÉTÉ GÉNÉRALE</td>
 							</tr>
 							<tr>
-								<td>Code banque</td>
+								<td><?= _translate_admin('bankCode') ?></td>
 								<td>30003</td>
 							</tr>
 							<tr>
-								<td>No de compte</td>
+								<td><?= _translate_admin('accountNumber') ?></td>
 								<td>25711452</td>
 							</tr>
 							<tr>
@@ -818,7 +810,7 @@
 			</table>
 		</div> 
 
-<?php  $html = ob_get_clean();
+<?php $html = ob_get_clean();
 	header( 'content-type: text/html; charset=utf-8' );
 	require_once '../libraries/dompdf/autoload.inc.php';
 	use Dompdf\Dompdf;

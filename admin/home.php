@@ -177,7 +177,7 @@ $db = db_connect();
                                 <?php endif; ?>
                               </td> 
                               <td>
-                                <a href="devis.php?id=<?= $devis['idDevis'] ?>" target="_blank">
+                                <a href="devis.php?id=<?= $devis['idDevis'] ?>&lang=<?= $devis['lang'] ?>" target="_blank">
                                   <img src="dist/img/pdf.png">
                                 </a>
                               </td> 

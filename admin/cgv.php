@@ -10,6 +10,13 @@ if(isset($_POST['content'],$_POST['id'])){
   $query->execute( array($content) );
 }
 
+if(isset($_POST['content_en'],$_POST['id'])){
+  extract($_POST);
+  
+  $query = $db->prepare("UPDATE `contents` SET `content_en` = ?  WHERE id = $id"); 
+  $query->execute( array($content_en) );
+}
+
 ?>
 <html>
   <head>
@@ -119,21 +126,45 @@ if(isset($_POST['content'],$_POST['id'])){
           <div class="col-sm-12">
               <div class="box"> 
                 <div class="box-body table-responsive ">
-                   <form method="post" action="" class="form-horizontal  col-sm-12">
-                      <div class="form-group"> 
-                        <div class="col-sm-12">
+
+                  <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs"> 
+                      <li class="active"><a href="#tab_1" data-toggle="tab">Français</a></li> 
+                      <li class=""><a href="#tab_2" data-toggle="tab">Anglais</a></li>  
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="tab_1">
+                         <form method="post" action="" class="">
+                          <div style="text-align: right;margin-bottom: 20px"> 
+                                <button  class="btn btn-warning">Enregistrer les modifications</button>
+                          </div>
                           <textarea class="form-control" name="content"><?= $result['content'] ?></textarea>
-                        </div> 
-                      </div> 
+                          
+                          <div style="text-align: right;margin-top: 20px">
+                              <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                              <button  class="btn btn-warning">Enregistrer les modifications</button>
+                          </div>
                       
-                      <div class="form-group">
-                        <label class="col-sm-9"></label>
-                        <div class="col-sm-3">
-                          <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                          <button class="btn btn-block btn-warning">Mise à jour</button>
-                        </div>
+                      </form>
                       </div>
-                  </form>
+                      <div class="tab-pane" id="tab_2">
+
+                         <form method="post" action="" class="">
+                            <div style="text-align: right;margin-bottom: 20px"> 
+                                  <button  class="btn btn-warning">Enregistrer les modifications</button>
+                            </div>
+                            <textarea class="form-control" name="content_en"><?= $result['content_en'] ?></textarea>
+                            
+                            <div style="text-align: right;margin-top: 20px">
+                                <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                                <button  class="btn btn-warning">Enregistrer les modifications</button>
+                            </div>
+                        
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div>
