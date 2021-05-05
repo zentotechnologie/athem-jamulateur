@@ -188,7 +188,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									<?= _translate_admin('Projection surface') ?>
+									<?= _translate_admin('dateEndService') ?>
 								</td>
 								<td>
 									 <?= $infos['dateFin'] ?>
@@ -285,7 +285,7 @@
 			<table style="margin-top: 10px;" class="detailDevis" cellpadding="0" cellspacing="0">
 				<tr>
 					<th><?= _translate_admin('description') ?></th>
-					<th><?= _translate_admin('quantites') ?></th> 
+					<th><?= _translate_admin('quantities') ?></th> 
 					<th align="right"><?= _translate_admin('units') ?></th> 
 					<th align="right"><?= _translate_admin('unitPriceHT') ?></th> 
 					<th align="right"><?= _translate_admin('totalHT') ?></th> 

@@ -10,15 +10,15 @@
 	}
 	function db_connect(){
 		
-		// $servername = "localhost";
-		// $username = "jamuser";
-		// $password = "J@MZTO2o18"; // 
-		// $dbname = "jamulateur";
-
 		$servername = "localhost";
-		$username = "root";
-		$password = "mysql";
+		$username = "jamuser";
+		$password = "J@MZTO2o18"; // 
 		$dbname = "jamulateur";
+
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "mysql";
+		// $dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -583,7 +583,7 @@
 		$mail->setFrom( $contactInfos['email'], 'ATHEM');
 		$mail->addAddress( $infos['email'] );
 		$mail->addCC( "contact@jamion.fr" );
-		$mail->Subject  = 'JAMULATEUR - Atelier JAM';
+		
 		if($infos['attachments'] && count($infos['attachments']) > 0){
 			foreach ($infos['attachments']as $key => $attachment) {
 				$mail->addAttachment( $attachment );
@@ -591,7 +591,15 @@
 		} 
 		$mail->IsHTML(true); 
 		$mail->CharSet = 'UTF-8';
-		$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/> N&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone pour &eacute;tudier votre projet et finaliser votre chiffrage.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>ATELIER JAM</strong><br /> <span style="color: #555"><strong>PRODUCTION &amp; SC&Eacute;NOGRAPHIE CULTURELLE - COLLABORATION ARTISTIQUE</strong></span> </body></html>';
+
+		if( getCurrendLang() == 'fr' ){
+			$mail->Subject  = 'JAMULATEUR - Atelier JAM';
+			$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body>Madame, Monsieur,<br/><br/>Merci vivement d&rsquo;avoir utilis&eacute; le JAMULATEUR pour r&eacute;aliser votre devis ci joint,<br/><br/> N&rsquo;h&eacute;sitez pas &agrave; me contacter par courriel ou t&eacute;l&eacute;phone pour &eacute;tudier votre projet et finaliser votre chiffrage.<br/><br/>Restant &agrave; votre disposition,<br/><br/>Tr&egrave;s cordialement,<br/><br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>ATELIER JAM</strong><br /> <span style="color: #555"><strong>PRODUCTION &amp; SC&Eacute;NOGRAPHIE CULTURELLE - COLLABORATION ARTISTIQUE</strong></span> </body></html>';
+		}else{
+			$mail->Subject  = 'JAMULATOR - JAM Workshop';
+			$mail->Body     = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-6-I"/><title>Untitled Document</title></head><body> Dear,<br/><br/> Thank you very much for using the JAMULATOR to make your attached estimate,<br/> <br/> Do not hesitate to contact me by email or phone to study your project and finalize your costing.<br/> <br/> Remaining at your disposal,<br/> <br /> Best regards,<br/> <br/> '.$contactInfos['name'].'<br/><a href="mailto:'.$contactInfos['email'].'">'.$contactInfos['email'].'</a><br/>GSM '.$contactInfos['tel'].'<br /> <br/> <strong>JAM WORKSHOP</strong><br /> <span style="color: #555"><strong>CULTURAL PRODUCTION &amp; SCENOGRAPHY - ARTISTIC COLLABORATION</strong></span> </body></html>';
+		}
+		
 
 		return ( $mail->send() ) ? true : false;
 	}

@@ -135,15 +135,14 @@ if(isset($_POST['content_en'],$_POST['id'])){
                     <div class="tab-content">
                       <div class="tab-pane active" id="tab_1">
                          <form method="post" action="" class="">
-
+                          <div style="text-align: right;margin-bottom: 20px"> 
+                                <button  class="btn btn-warning">Enregistrer les modifications</button>
+                          </div>
                           <textarea class="form-control" name="content"><?= $result['content'] ?></textarea>
                           
-                          <div class="form-group">
-                            <label class="col-sm-9"></label>
-                            <div class="col-sm-3">
+                          <div style="text-align: right;margin-top: 20px">
                               <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                              <button class="btn btn-block btn-warning">Mise à jour</button>
-                            </div>
+                              <button  class="btn btn-warning">Enregistrer les modifications</button>
                           </div>
                       
                       </form>
@@ -151,14 +150,14 @@ if(isset($_POST['content_en'],$_POST['id'])){
                       <div class="tab-pane" id="tab_2">
 
                          <form method="post" action="" class="">
+                            <div style="text-align: right;margin-bottom: 20px"> 
+                                  <button  class="btn btn-warning">Enregistrer les modifications</button>
+                            </div>
                             <textarea class="form-control" name="content_en"><?= $result['content_en'] ?></textarea>
                             
-                            <div class="form-group">
-                              <label class="col-sm-9"></label>
-                              <div class="col-sm-3">
+                            <div style="text-align: right;margin-top: 20px">
                                 <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                                <button class="btn btn-block btn-warning">Mise à jour</button>
-                              </div>
+                                <button  class="btn btn-warning">Enregistrer les modifications</button>
                             </div>
                         
                         </form>
