@@ -245,6 +245,8 @@
                     cp          : $('#formDevis  [name=cp]').val(),
                     ville       : $('#formDevis  [name=ville]').val(),
                     idf         : $('#formDevis  [name=idf]').val(),
+                    width       : $('#formDevis  [name=largeur]').val(),
+                    height      : $('#formDevis  [name=hauteur]').val(),
                     dateDebut   : $('[name=dateDebut]').val(),
                     dateFin     : $('[name=dateFin]').val(),
                     visuel      : $('[name=index-images-animees]').val(),
@@ -275,9 +277,17 @@
                 var totalDevis = 0;   
  
                 $('[name=devis]').removeClass('loading'); 
-                
-                var nbrJour = DatesDiffrence( data.dateDebut, data.dateFin );  
 
+
+
+                if( parseInt(data.width) <= 0 || parseInt(data.height) <= 0 ){
+                    $("[name=devis]").val('')
+                    return;
+                }
+
+                console.log(data.width,data.height)
+                
+                var nbrJour = DatesDiffrence( data.dateDebut, data.dateFin );   
                 if( nbrJour > 10 ){
                     $('.warning-out-10-days').slideDown()
                     $("[name=devis]").val('')

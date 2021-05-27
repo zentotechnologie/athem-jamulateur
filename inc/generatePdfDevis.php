@@ -157,7 +157,7 @@
 							</tr>
 							<tr>
 								<td align="right">
-									<?= _translate_admin('from') ?>
+									<?= _translate_admin('to') ?>
 								</td>
 								<td>
 									 <table width="100%" cellpadding="0" cellspacing="0">
