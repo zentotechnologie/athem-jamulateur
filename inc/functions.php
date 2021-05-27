@@ -15,10 +15,10 @@
 		$password = "J@MZTO2o18"; // 
 		$dbname = "jamulateur";
 
-		// $servername = "localhost";
-		// $username = "root";
-		// $password = "mysql";
-		// $dbname = "jamulateur";
+		/*$servername = "localhost";
+		$username = "root";
+		$password = "mysql";
+		$dbname = "jamulateur";*/
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -577,7 +577,7 @@
 		$mail->SMTPSecure = 'tls'; 
 		$mail->SMTPAuth = true; 
 		$mail->Username = "athem.zento@gmail.com"; 
-		$mail->Password = "ptnjuzmmblbrupvg";
+		$mail->Password = "uzvdfjmqagrwhxbj";
 
 
 		$mail->setFrom( $contactInfos['email'], 'ATHEM');
