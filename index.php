@@ -755,7 +755,7 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap-datepicker.min.js"></script> 
 <script type="text/javascript" src="js/bootstrap-datepicker.fr.js"></script>   
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places,geometry,geocoder&key=AIzaSyD9qWb51Zg3oUowbJHGox-VCWu4C5zDOzs&language=fr"></script>   
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places,geometry,geocoder&key=AIzaSyD9qWb51Zg3oUowbJHGox-VCWu4C5zDOzs&language=<?php echo $currentLang ?>"></script>   
 
 <script type="text/javascript" src="js/script.js"></script> 
 <script type="text/javascript"> 

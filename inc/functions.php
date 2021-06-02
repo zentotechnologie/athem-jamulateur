@@ -15,10 +15,10 @@
 		$password = "J@MZTO2o18"; // 
 		$dbname = "jamulateur";
 
-		/*$servername = "localhost";
-		$username = "root";
-		$password = "mysql";
-		$dbname = "jamulateur";*/
+		// $servername = "localhost";
+		// $username = "root";
+		// $password = "mysql";
+		// $dbname = "jamulateur";
 
 		try {
 			    $db = new PDO("mysql:host=$servername;dbname=".$dbname, $username, $password);
@@ -183,10 +183,19 @@
 
 	function getFrenchDate( $timestamp ){	
 		
-		$days = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
-		$months = array('janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
-		
+		if( getCurrendLang() == 'fr' ){
+
+			$days = array('Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi');
+			$months = array('janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre');
 			return $days[date('w', $timestamp)].date(' j ', $timestamp).$months[date('n', $timestamp)-1].date(' Y', $timestamp);
+
+		}else{
+			$days = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+			$months = array('january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december');
+			return $days[date('w', $timestamp)].date(' j ', $timestamp).$months[date('n', $timestamp)-1].date(' Y', $timestamp); 
+		}
+		
+			
 	}
 	function generatePDFDevis( $idDevis ){
 		$data = array();
